@@ -1,0 +1,59 @@
+body {
+    font-family: "McLaren", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    margin: 0;
+    padding: 0;
+    color: #FFF5EA;
+}
+
+.hero {
+    width: 100%;
+    height: 675px;
+    /* replace image with video montage & lower brightness */
+    background-image: url(placeholder-images/video.png);
+    background-size: 100%;
+}
+
+#logo {
+    position: absolute;
+    width: 3rem;
+    margin: 1rem;
+}
+
+.nav-bar {
+    
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+#menu {
+    margin-left: 20rem;
+}
+
+#menu:hover, #order:hover,
+#phil:hover, #contact:hover,
+#sign:hover {
+    color: #01A294;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#title {
+    color: white;
+    font-size: 8rem;
+    margin-top: 27rem;
+    margin-left: 3rem;
+}
+
+#pause {
+    position: absolute;
+    margin-bottom: 30rem;
+}
+
+.reviews h2 {
+    color: #4C3015;
+}
