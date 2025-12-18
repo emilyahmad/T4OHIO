@@ -8,12 +8,14 @@ body {
     color: #FFF5EA;
 }
 
+video {
+    z-index: 0;
+}
+
 .hero {
     width: 100%;
     height: 675px;
-    /* replace image with video montage & lower brightness */
-    background-image: url(placeholder-images/video.png);
-    background-size: 100%;
+    position: relative;
 }
 
 #logo {
@@ -23,11 +25,9 @@ body {
 }
 
 .nav-bar {
-    
     color: white;
     display: flex;
     justify-content: space-around;
-    background: rgba(0, 0, 0, 0.15);
 }
 
 #menu {
@@ -52,6 +52,17 @@ body {
 #pause {
     position: absolute;
     margin-bottom: 30rem;
+}
+
+#myVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.7);
 }
 
 .reviews h2 {
