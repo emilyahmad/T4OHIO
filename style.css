@@ -85,6 +85,7 @@ video {
 
 .cards {
     display: flex;
+    justify-content: center;
     flex-direction: row;
     width: 100%;
     gap: 1.25%;
@@ -95,8 +96,25 @@ video {
     color: #4C3015;
     font-weight: normal;
     border-radius: 5%;
+    width: 34%;
 }
 
 .review-card h4 {
     font-size: 1.3rem;
+}
+
+.first-line {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin-left: .5rem;
+}
+
+.review-card img {
+    object-fit: contain;
+}
+
+.post {
+    margin-left: 55%;
+    margin-top: -15%;
 }
