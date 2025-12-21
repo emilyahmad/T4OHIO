@@ -184,7 +184,7 @@ video {
 }
 
 .blue {
-    margin-top: 5%;
+    margin-top: .8%;
     background-color: #9EE2DC;
     font-weight: normal;
     color: #4C3015;
@@ -328,7 +328,7 @@ boba pearls
 }
 
 .specials h2 {
-    padding-top: 5%;
+    padding-top: 2.5%;
     display: flex;
     justify-content: center;
     
@@ -336,7 +336,61 @@ boba pearls
     font-weight: normal;
 }
 
+.specials-posters {
+    padding-top: 1%;
+    padding-bottom: 4%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    border-radius: 10px;
+}
 
+.specials-posters:hover {
+    /* act as links to menu item? */
+    cursor: pointer;
+}
+
+/******************************************
+store-info section
+*******************************************/
+.store-info {
+    margin-top: -1%;
+    background-color: #AE9375;
+    font-weight: normal;
+    color: #4C3015;
+}
+
+.store-info-titles {
+    margin-left: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 35rem;
+    padding-top: 3rem;
+}
+
+.store-info-media-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-align: center;
+}
+
+.location {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    margin-left: 2rem;
+
+    gap: 3rem;
+}
+
+.store-hours {
+    display: flex;
+    justify-content: center;
+    margin-left: 19%;
+    margin-bottom: 2.5%;
+}
 
 
 
