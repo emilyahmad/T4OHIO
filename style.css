@@ -6,6 +6,8 @@ body {
     margin: 0;
     padding: 0;
     color: #FFF5EA;
+    /* extending boba pearls cause horizontal shift */
+    overflow-X: hidden;
 }
 
 /* hero section */
@@ -193,7 +195,8 @@ video {
     margin-left: 2.5rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 35rem;
     padding-top: 3rem;
 }
 
@@ -208,6 +211,7 @@ video {
     display: flex;
     flex-direction: row;
     width: 40%;
+    margin-left: 2rem;
 
     gap: 3rem;
 }
@@ -241,9 +245,10 @@ video {
 .hours {
     display: flex;
     flex-direction: row;
-    gap: .5rem;
+    gap: 1.5rem;
     justify-content: center;
-    margin-left: 20%;
+    margin-left: 19%;
+    margin-bottom: 2.5%;
 }
 
 #holiday-hours {
@@ -275,29 +280,52 @@ video {
 boba pearls
 *************************************************/
 .boba-pearls {
-    position: absolute;
     width: 100vh;
 }
 
 #tl1 {
+    top: 133%;
+    left: 89.5%;
+    position: absolute;
     width: 4rem;
-    margin-left: 160%;
-    margin-top: -2%;
 }
 #bl1 {
+    left: 91.5%;
+    top: 147%;
+    position: absolute;
     width: 2.7rem;
-    margin-top: 2%;
-    margin-left: 158%;
 }
 #br1 {
-    width: 5.5rem;
-    margin-left: 165%;
-    margin-top: -8%;
+    top: 136%;
+    left: 94.25%;
+    position: absolute;
+    width: 6.5rem;
 }
 
+/* bottom pearls */
 
+#tl2 {
+    top: 210%;
+    left: 5.2%;
+    position: absolute;
+    width: 4rem;
+}
+#bl2 {
+    left: -2%;
+    top: 204%;
+    position: absolute;
+    width: 6.3rem;
+}
+#tr2 {
+    top: 202%;
+    left: 5%;
+    position: absolute;
+    width: 2.3rem;
+}
 
-
+.specials {
+    background-color: 
+}
 
 
 
