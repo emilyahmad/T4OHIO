@@ -118,3 +118,28 @@ video {
     margin-left: 55%;
     margin-top: -15%;
 }
+
+.review-card p {
+    width: 50%;
+    margin-left: 5%;
+    margin-top: -20%;
+}
+
+.review-buttons {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%
+
+    background-color: #FFF5EA;
+    color: #4C3015;
+}
+
+.read-more-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.read-more-buttons img {
+    height: 1em;
+}
