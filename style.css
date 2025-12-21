@@ -175,3 +175,18 @@ video {
     text-decoration: none;
     color: #4C3015;
 }
+
+/****************************************************
+****************************************************
+Account (sign in/log in styling)
+****************************************************/
+.sign-in {
+    color: #4C3015;
+    background-color: #FFF5EA;
+    width: 75%;
+    position: relative;
+    margin-top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 25px;
+}
