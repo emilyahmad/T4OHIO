@@ -77,8 +77,26 @@ video {
 /* review section */
 
 .reviews h2 {
+    margin-top: 2.5%;
     color: #4C3015;
     display: flex;
     justify-content: center;
 }
 
+.cards {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 1.25%;
+}
+
+.review-card {
+    background-color: #AE9375;
+    color: #4C3015;
+    font-weight: normal;
+    border-radius: 5%;
+}
+
+.review-card h4 {
+    font-size: 1.3rem;
+}
