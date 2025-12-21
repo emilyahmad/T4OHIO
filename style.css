@@ -184,7 +184,7 @@ video {
 }
 
 .blue {
-    margin-top: .8%;
+    margin-top: 2%;
     background-color: #9EE2DC;
     font-weight: normal;
     color: #4C3015;
@@ -270,8 +270,8 @@ video {
     cursor: pointer;
 }
 
-#oat, #barley, #rice,
-#holiday-hours, #matcha-poster {
+#oat:hover, #barley:hover, #rice:hover,
+#holiday-hours:hover, #matcha-poster:hover {
     transition: .7s ease;
 }
 
@@ -283,19 +283,19 @@ boba pearls
 }
 
 #tl1 {
-    top: 133%;
+    top: 135%;
     left: 89.5%;
     position: absolute;
     width: 4rem;
 }
 #bl1 {
     left: 91.5%;
-    top: 147%;
+    top: 149%;
     position: absolute;
     width: 2.7rem;
 }
 #br1 {
-    top: 136%;
+    top: 138%;
     left: 94.25%;
     position: absolute;
     width: 6.5rem;
@@ -304,19 +304,19 @@ boba pearls
 /* bottom pearls */
 
 #tl2 {
-    top: 210%;
+    top: 216%;
     left: 5.2%;
     position: absolute;
     width: 4rem;
 }
 #bl2 {
     left: -2%;
-    top: 204%;
+    top: 210%;
     position: absolute;
     width: 6.3rem;
 }
 #tr2 {
-    top: 202%;
+    top: 208%;
     left: 5%;
     position: absolute;
     width: 2.3rem;
@@ -349,7 +349,6 @@ boba pearls
     /* act as links to menu item? */
     cursor: pointer;
 }
-
 /******************************************
 store-info section
 *******************************************/
@@ -379,17 +378,27 @@ store-info section
 .location {
     display: flex;
     justify-content: center;
-    width: 40%;
-    margin-left: 2rem;
+    width: 60%;
+    margin-bottom: 2rem;
+}
 
-    gap: 3rem;
+#map {
+    width: 90%;
+    height: 25rem;
+    margin-left: 2rem;
+    border-radius: 10px;
 }
 
 .store-hours {
+    background-color: #FFF5EA;
     display: flex;
+    width: 20%;
     justify-content: center;
-    margin-left: 19%;
+    margin-left: 4rem;
+    border-radius: 10px;
     margin-bottom: 2.5%;
+    gap: 1rem;
+    border: solid 2px #4C3015;
 }
 
 
