@@ -8,6 +8,8 @@ body {
     color: #FFF5EA;
 }
 
+/* hero section */
+
 video {
     z-index: 0;
 }
@@ -72,10 +74,11 @@ video {
     filter: brightness(0.7);
 }
 
+/* review section */
+
 .reviews h2 {
     color: #4C3015;
     display: flex;
     justify-content: center;
 }
-
 
