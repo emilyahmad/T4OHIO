@@ -53,32 +53,3 @@ function reviewFunc1() {
         long.innerHTML = "It was such a great experience coming here. I love trying new boba places. The staff was so nice and welcoming and if you had any questions they knew the answer! I tried the Kyoto matcha iced latte and I loved it! My fiancé tried the tiramisu";
     }
 }
-
-const review2 = document.getElementById('expand-review2');
-const d2 = document.getElementById('dropdown2');
-let isExpanded2 = false;
-review2.addEventListener('click', reviewFunc2);
-function reviewFunc2() {
-    if (isExpanded2 == false) {
-        d2.style.transform = 'rotate(' + 180 + 'deg)';
-        isExpanded2 = true;
-    } else { // collapse
-        d2.style.transform = 'rotate(' + 0 + 'deg)';
-        isExpanded2 = false;
-    }
-}
-
-const review3 = document.getElementById('expand-review3');
-const d3 = document.getElementById('dropdown3');
-let isExpanded3 = false;
-review3.addEventListener('click', reviewFunc3);
-function reviewFunc3() {
-    if (isExpanded3 == false) {
-        d3.style.transform = 'rotate(' + 180 + 'deg)';
-        isExpanded3 = true;
-    } else { // collapse
-        d3.style.transform = 'rotate(' + 0 + 'deg)';
-        isExpanded3 = false;
-    }
-}
-

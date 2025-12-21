@@ -188,7 +188,6 @@ video {
     background-color: #9EE2DC;
     font-weight: normal;
     color: #4C3015;
-    transition: 5s ease;
 }
 
 .section-titles {
@@ -324,10 +323,18 @@ boba pearls
 }
 
 .specials {
-    background-color: 
+    margin-top: -1.5%;
+    background-color: #FFF5EA;
 }
 
-
+.specials h2 {
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    
+    color: #4C3015;
+    font-weight: normal;
+}
 
 
 
