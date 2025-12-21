@@ -186,10 +186,14 @@ video {
     background-color: #9EE2DC;
     font-weight: normal;
     color: #4C3015;
+    transition: 5s ease;
 }
 
-.blue h2 {
-    margin-left: 20%;
+.section-titles {
+    margin-left: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     padding-top: 3rem;
 }
 
@@ -210,7 +214,7 @@ video {
 
 .new-toppings {
     width: 10rem;
-    margin-left: 1.5rem;
+    margin-left: 2rem;
 }
 
 .new-toppings img {
@@ -221,16 +225,88 @@ video {
 
 #oat:hover {
     transform: rotate(1.1deg);
+    cursor: pointer;
 }
 
 #barley:hover, #rice:hover {
     transform: rotate(-1.1deg);
+    cursor: pointer;
 }
 
 .new-toppings h3 {
     margin-top: .5rem;
     transform: translateX(20%);
 }
+
+.hours {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    justify-content: center;
+    margin-left: 20%;
+}
+
+#holiday-hours {
+    width: 16.05rem;
+    object-fit: contain;
+}
+
+#holiday-hours:hover {
+    transform: rotate(-1.1deg);
+    cursor: pointer;
+}
+
+#matcha-poster {
+    width: 10rem;
+    object-fit: contain;
+}
+
+#matcha-poster:hover {
+    transform: rotate(1.1deg);
+    cursor: pointer;
+}
+
+#oat, #barley, #rice,
+#holiday-hours, #matcha-poster {
+    transition: .7s ease;
+}
+
+/*************************************************
+boba pearls
+*************************************************/
+.boba-pearls {
+    position: absolute;
+    width: 100vh;
+}
+
+#tl1 {
+    width: 4rem;
+    margin-left: 160%;
+    margin-top: -2%;
+}
+#bl1 {
+    width: 2.7rem;
+    margin-top: 2%;
+    margin-left: 158%;
+}
+#br1 {
+    width: 5.5rem;
+    margin-left: 165%;
+    margin-top: -8%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /****************************************************
 ****************************************************
