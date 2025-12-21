@@ -88,7 +88,7 @@ video {
     justify-content: center;
     flex-direction: row;
     width: 100%;
-    gap: 1.25%;
+    gap: 1%;
 }
 
 .review-card {
@@ -96,7 +96,7 @@ video {
     color: #4C3015;
     font-weight: normal;
     border-radius: 5%;
-    width: 34%;
+    width: 32%;
 }
 
 .review-card h4 {
@@ -125,21 +125,21 @@ video {
     margin-top: -20%;
 }
 
-.review-buttons {
+.read-more-button {
     position: absolute;
     display: flex;
-    justify-content: center;
-    width: 100%
-
-    background-color: #FFF5EA;
-    color: #4C3015;
-}
-
-.read-more-buttons {
-    display: flex;
     align-items: center;
+    gap: 2rem;
+    margin-left: .75%;
+    margin-top: .5%;
+    padding: 0px 10px;
+    
+    color: #4c3015ab;
+    background-color: #FFF5EA;
+    border-radius: 20px;
 }
 
-.read-more-buttons img {
-    height: 1em;
+.read-more-button:hover {
+    background-color: #DCCFC0;
+    cursor: pointer;
 }
