@@ -17,9 +17,16 @@ function playVideo() {
     herovideo.play();
     pause.hidden = false;
 }
+
+
+
 /* OPTIMIZE LATER (use $ code) */
 /* Read more button for reviews */
 const review1 = document.getElementById('expand-review1');
+
+const rev2 = document.getElementById('r2');
+const rev3 = document.getElementById('r3');
+
 const d1 = document.getElementById('dropdown1');
 const short = document.getElementById('long-collapsed');
 const long = document.getElementById('long-expanded');
@@ -28,6 +35,10 @@ let isExpanded1 = false;
 review1.addEventListener('click', reviewFunc1);
 function reviewFunc1() {
     if (isExpanded1 == false) {
+        // make sure other cards don't change height when 1st does
+        rev2.style.height = '16rem';
+        rev3.style.height = '16rem';
+
         review1.style.marginTop = '5.4%';
         d1.style.transform = 'rotate(' + 180 + 'deg)';
         short.hidden = true;
