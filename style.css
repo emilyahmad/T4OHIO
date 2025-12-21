@@ -125,6 +125,10 @@ video {
     margin-top: -20%;
 }
 
+.review-card a {
+    color: #87715B;
+}
+
 .read-more-button {
     position: absolute;
     display: flex;

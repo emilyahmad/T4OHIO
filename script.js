@@ -21,16 +21,25 @@ function playVideo() {
 /* Read more button for reviews */
 const review1 = document.getElementById('expand-review1');
 const d1 = document.getElementById('dropdown1');
+const short = document.getElementById('long-collapsed');
+const long = document.getElementById('long-expanded');
+long.hidden = true;
 let isExpanded1 = false;
 review1.addEventListener('click', reviewFunc1);
 function reviewFunc1() {
     if (isExpanded1 == false) {
         review1.style.marginTop = '5.4%';
         d1.style.transform = 'rotate(' + 180 + 'deg)';
+        short.hidden = true;
+        long.hidden = false;
         isExpanded1 = true;
     } else { // collapse
         review1.style.marginTop = '.5%';
         d1.style.transform = 'rotate(' + 0 + 'deg)';
+        short.hidden = false;
+        long.hidden = true;
+        isExpanded1 = false;
+        long.innerHTML = "It was such a great experience coming here. I love trying new boba places. The staff was so nice and welcoming and if you had any questions they knew the answer! I tried the Kyoto matcha iced latte and I loved it! My fiancé tried the tiramisu";
     }
 }
 
@@ -40,12 +49,11 @@ let isExpanded2 = false;
 review2.addEventListener('click', reviewFunc2);
 function reviewFunc2() {
     if (isExpanded2 == false) {
-        review2.style.marginTop = '5.4%';
         d2.style.transform = 'rotate(' + 180 + 'deg)';
         isExpanded2 = true;
     } else { // collapse
-        review2.style.marginTop = '.5%';
         d2.style.transform = 'rotate(' + 0 + 'deg)';
+        isExpanded2 = false;
     }
 }
 
@@ -55,12 +63,11 @@ let isExpanded3 = false;
 review3.addEventListener('click', reviewFunc3);
 function reviewFunc3() {
     if (isExpanded3 == false) {
-        review3.style.marginTop = '5.4%';
         d3.style.transform = 'rotate(' + 180 + 'deg)';
         isExpanded3 = true;
     } else { // collapse
-        review3.style.marginTop = '.5%';
         d3.style.transform = 'rotate(' + 0 + 'deg)';
+        isExpanded3 = false;
     }
 }
 
