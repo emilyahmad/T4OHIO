@@ -147,3 +147,31 @@ video {
     background-color: #DCCFC0;
     cursor: pointer;
 }
+
+.leave-review {
+    background-color: #AE9375;
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    width: fit-content;
+    padding: 5px 20px;
+    border-radius: 50px;
+    margin-left: 1%;
+    margin-top: .5%;
+}
+
+.leave-review:hover {
+    /* make hover colors more unified */
+    background-color: #CCAD8B;
+    cursor: pointer;
+}
+
+/* get rid of when replace image with icon from font awesome */
+.leave-review img {
+    object-fit: contain;
+}
+
+.leave-review a {
+    text-decoration: none;
+    color: #4C3015;
+}
