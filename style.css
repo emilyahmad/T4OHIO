@@ -34,6 +34,11 @@ video {
     transition: white 1s ease;
 }
 
+.nav-bar a {
+    color: white;
+    text-decoration: none;
+}
+
 #menu {
     margin-left: 20rem;
 }
@@ -176,6 +181,57 @@ video {
     color: #4C3015;
 }
 
+.blue {
+    margin-top: 5%;
+    background-color: #9EE2DC;
+    font-weight: normal;
+    color: #4C3015;
+}
+
+.blue h2 {
+    margin-left: 20%;
+    padding-top: 3rem;
+}
+
+.news {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-align: center;
+}
+
+.toppings {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+
+    gap: 3rem;
+}
+
+.new-toppings {
+    width: 10rem;
+    margin-left: 1.5rem;
+}
+
+.new-toppings img {
+    margin-top: 1.5rem;
+    width: 14rem;
+    border-radius: 10px;
+}
+
+#oat:hover {
+    transform: rotate(1.1deg);
+}
+
+#barley:hover, #rice:hover {
+    transform: rotate(-1.1deg);
+}
+
+.new-toppings h3 {
+    margin-top: .5rem;
+    transform: translateX(20%);
+}
+
 /****************************************************
 ****************************************************
 Account (sign in/log in styling)
@@ -190,3 +246,4 @@ Account (sign in/log in styling)
     transform: translateX(-50%);
     border-radius: 25px;
 }
+
