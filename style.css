@@ -29,7 +29,7 @@ video {
     display: flex;
     justify-content: space-around;
     position: relative;
-    transition: white 0.05s ease;
+    transition: white 1s ease;
 }
 
 #menu {
@@ -52,7 +52,8 @@ video {
 
 #pause {
     position: absolute;
-    margin-bottom: 30rem;
+    left: 95%;
+    margin-top: -11%;
 }
 
 #myVideo {
@@ -68,4 +69,8 @@ video {
 
 .reviews h2 {
     color: #4C3015;
+    display: flex;
+    justify-content: center;
 }
+
+
