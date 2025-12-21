@@ -28,6 +28,8 @@ video {
     color: white;
     display: flex;
     justify-content: space-around;
+    position: relative;
+    transition: white 0.05s ease;
 }
 
 #menu {
@@ -37,8 +39,7 @@ video {
 #menu:hover, #order:hover,
 #phil:hover, #contact:hover,
 #sign:hover {
-    color: #01A294;
-    text-decoration: underline;
+    box-shadow: 0 2px 0 white;
     cursor: pointer;
 }
 
