@@ -360,7 +360,6 @@ store-info section
 }
 
 .store-info-titles {
-    margin-left: 2.5rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -401,9 +400,38 @@ store-info section
     border: solid 2px #4C3015;
 }
 
+/************************************
+quiz styling
+*************************************/
+.quiz { /* change to just be position absolute */
+    background-color: #FFF5EA;
+    font-family: "VT323", monospace;
+    width: 100%;
+    display: flex;
+    margin-left: -.5%;
+}
 
+#animal {
+    transform: rotate(1.1deg);
+    width: 5rem;
+    object-fit: contain;
+    margin-top: 1%;
+}
 
+/* make bigger when user scrolls (animate will make them see it/pay attention) */
+.speech-bubble img {
+    object-fit: contain;
+    width: 8rem;
+}
 
+.quiz p {
+    font-size: .9rem;
+    color: #4C3015;
+    z-index: 2;
+    margin-top: -87.5%;
+    margin-left: 20%;
+    line-height: .9;
+}
 
 
 /****************************************************
