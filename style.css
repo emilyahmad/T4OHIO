@@ -50,7 +50,7 @@ video {
     margin-left: 3rem;
 }
 
-#pause {
+#pause, #play {
     position: absolute;
     left: 95%;
     margin-top: -11%;
