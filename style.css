@@ -50,10 +50,15 @@ video {
     margin-left: 3rem;
 }
 
-#pause, #play {
+#pauseButton, #playButton {
     position: absolute;
     left: 95%;
     margin-top: -11%;
+}
+
+#pauseButton:hover,
+#playButton:hover {
+    cursor: pointer;
 }
 
 #myVideo {
