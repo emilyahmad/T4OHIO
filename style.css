@@ -41,7 +41,7 @@ video {
     text-decoration: none;
 }
 
-#menu {
+#menu, #home {
     margin-left: 20rem;
 }
 
@@ -510,4 +510,11 @@ menu styling
     /* add color changing to background bubble */
     transition: 500ms ease;
     transform: rotate(-1.2deg);
+}
+
+.item-names {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 26rem;
 }
