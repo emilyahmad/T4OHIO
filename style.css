@@ -449,3 +449,65 @@ Account (sign in/log in styling)
     border-radius: 25px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+/***********************************************
+menu styling
+***********************************************
+***********************************************/
+.menu-start {
+    background-color: #FFF5EA;
+    color: #4C3015;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-start h2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.menu-start a {
+    display: flex;
+    justify-content: center;
+    color: #4C3015;
+}
+
+.background-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+    margin-top: 2.5%;
+}
+
+.image-container img {
+    width: 20rem;
+}
+
+.item-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 9rem;
+    margin-top: -21%;
+
+    position: absolute;
+    z-index: 2;
+}
+
+#snack:hover, #drink:hover {
+    /* add color changing to background bubble */
+    transition: 500ms ease;
+    transform: rotate(-1.2deg);
+}
