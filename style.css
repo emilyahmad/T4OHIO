@@ -464,14 +464,14 @@ Account (sign in/log in styling)
 menu styling
 ***********************************************
 ***********************************************/
-.menu-start {
+.menu-start, .menu-second {
     background-color: #FFF5EA;
     color: #4C3015;
     padding: 0;
     margin: 0;
 }
 
-.menu-start h2 {
+.menu-start h2, .menu-second h2 {
     display: flex;
     justify-content: center;
     margin-top: 3rem;
@@ -510,6 +510,7 @@ menu styling
     /* add color changing to background bubble */
     transition: 500ms ease;
     transform: rotate(-1.2deg);
+    cursor: pointer;
 }
 
 .item-names {
@@ -517,4 +518,30 @@ menu styling
     display: flex;
     justify-content: center;
     gap: 26rem;
+}
+
+.background-container2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 2.5%;
+}
+
+.background-container2 img {
+    width: 20rem;
+    object-fit: contain;
+}
+
+.background-container3 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 2.5%;
+}
+
+.background-container3 img {
+    width: 20rem;
+    object-fit: contain;
 }

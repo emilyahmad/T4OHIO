@@ -53,3 +53,17 @@ function reviewFunc1() {
         long.innerHTML = "It was such a great experience coming here. I love trying new boba places. The staff was so nice and welcoming and if you had any questions they knew the answer! I tried the Kyoto matcha iced latte and I loved it! My fiancé tried the tiramisu";
     }
 }
+
+const first = document.getElementByClassName('menu-start');
+first.hidden = false;
+const second = document.getElementByClassName('menu-second');
+second.hidden = true;
+
+const bev = document.getElementById('drink-bubble-background');
+const snack = document.getElementById('snack-bubble-background');
+
+bev.addEventListener('click', showBevChoices);
+function showBevChoices() {
+    first.hidden = true;
+    second.hidden = false;
+}
