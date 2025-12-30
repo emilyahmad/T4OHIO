@@ -464,20 +464,20 @@ Account (sign in/log in styling)
 menu styling
 ***********************************************
 ***********************************************/
-.menu-start, .menu-second {
+#menu-start, #menu-second {
     background-color: #FFF5EA;
     color: #4C3015;
     padding: 0;
     margin: 0;
 }
 
-.menu-start h2, .menu-second h2 {
+#menu-start h2, #menu-second h2 {
     display: flex;
     justify-content: center;
     margin-top: 3rem;
 }
 
-.menu-start a {
+#menu-start a {
     display: flex;
     justify-content: center;
     color: #4C3015;
@@ -506,7 +506,9 @@ menu styling
     z-index: 2;
 }
 
-#snack:hover, #drink:hover {
+#drink, #snack,
+#snack-bubble-background:hover,
+#drink-bubble-background:hover {
     /* add color changing to background bubble */
     transition: 500ms ease;
     transform: rotate(-1.2deg);

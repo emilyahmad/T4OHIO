@@ -1,69 +1,71 @@
 /* Video controls */
 const herovideo = document.getElementById('myVideo');
 const pause = document.getElementById('pauseButton');
-pause.addEventListener('click', pauseVideo);
 const play = document.getElementById('playButton');
-play.addEventListener('click', playVideo);
-// hide play button first
-play.hidden = true;
+// only attach handlers if the elements exist on the page
+if (pause) pause.addEventListener('click', pauseVideo);
+if (play) play.addEventListener('click', playVideo);
+// hide play button first (only if present)
+if (play) play.hidden = true;
 // track if playing or not
 function pauseVideo() {
-    pause.hidden = true;
-    herovideo.pause();
-    play.hidden = false;
+    if (pause) pause.hidden = true;
+    if (herovideo) herovideo.pause();
+    if (play) play.hidden = false;
 }
 function playVideo() {
-    play.hidden = true;
-    herovideo.play();
-    pause.hidden = false;
-}
+    if (play) play.hidden = true;
+    if (herovideo) herovideo.play();
+    if (pause) pause.hidden = false;
+} 
 
 
 
 /* OPTIMIZE LATER (use $ code) */
 /* Read more button for reviews */
 const review1 = document.getElementById('expand-review1');
+if (review1) {
+    const rev2 = document.getElementById('r2');
+    const rev3 = document.getElementById('r3');
+    const d1 = document.getElementById('dropdown1');
+    const short = document.getElementById('long-collapsed');
+    const long = document.getElementById('long-expanded');
+    if (long) long.hidden = true;
+    let isExpanded1 = false;
+    review1.addEventListener('click', reviewFunc1);
+    function reviewFunc1() {
+        if (!isExpanded1) {
+            // make sure other cards don't change height when 1st does
+            if (rev2) rev2.style.height = '16rem';
+            if (rev3) rev3.style.height = '16rem';
 
-const rev2 = document.getElementById('r2');
-const rev3 = document.getElementById('r3');
-
-const d1 = document.getElementById('dropdown1');
-const short = document.getElementById('long-collapsed');
-const long = document.getElementById('long-expanded');
-long.hidden = true;
-let isExpanded1 = false;
-review1.addEventListener('click', reviewFunc1);
-function reviewFunc1() {
-    if (isExpanded1 == false) {
-        // make sure other cards don't change height when 1st does
-        rev2.style.height = '16rem';
-        rev3.style.height = '16rem';
-
-        review1.style.marginTop = '5.4%';
-        d1.style.transform = 'rotate(' + 180 + 'deg)';
-        short.hidden = true;
-        long.hidden = false;
-        isExpanded1 = true;
-    } else { // collapse
-        review1.style.marginTop = '.5%';
-        d1.style.transform = 'rotate(' + 0 + 'deg)';
-        short.hidden = false;
-        long.hidden = true;
-        isExpanded1 = false;
-        long.innerHTML = "It was such a great experience coming here. I love trying new boba places. The staff was so nice and welcoming and if you had any questions they knew the answer! I tried the Kyoto matcha iced latte and I loved it! My fiancé tried the tiramisu";
+            review1.style.marginTop = '5.4%';
+            if (d1) d1.style.transform = 'rotate(180deg)';
+            if (short) short.hidden = true;
+            if (long) long.hidden = false;
+            isExpanded1 = true;
+        } else { // collapse
+            review1.style.marginTop = '.5%';
+            if (d1) d1.style.transform = 'rotate(0deg)';
+            if (short) short.hidden = false;
+            if (long) long.hidden = true;
+            isExpanded1 = false;
+            if (long) long.innerHTML = "It was such a great experience coming here. I love trying new boba places. The staff was so nice and welcoming and if you had any questions they knew the answer! I tried the Kyoto matcha iced latte and I loved it! My fiancé tried the tiramisu";
+        }
     }
 }
 
-const first = document.getElementByClassName('menu-start');
-first.hidden = false;
-const second = document.getElementByClassName('menu-second');
-second.hidden = true;
 
-const bev = document.getElementById('drink-bubble-background');
-const snack = document.getElementById('snack-bubble-background');
+const first = document.getElementById('menu-start');
+const second = document.getElementById('menu-second');
+if (first) first.hidden = false;
+if (second) second.hidden = true;
 
-bev.addEventListener('click', showBevChoices);
+const bev = document.getElementById('drink');
+const snack = document.getElementById('snack');
+
+if (bev) bev.addEventListener('click', showBevChoices);
 function showBevChoices() {
-    first.hidden = true;
-    second.hidden = false;
+    if (first) first.hidden = true;
+    if (second) second.hidden = false;
 }
