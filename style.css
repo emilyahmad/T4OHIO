@@ -10,12 +10,21 @@
   }
   
   #menu, #home {
-    margin-left: 5rem;
+    margin-left: 1rem;
   }
   
   .nav-bar {
+    font-size: 2rem;
+  }
+  
+  h2 {
     font-size: 4rem;
   }
+  
+  .review-cards h4 {
+    font-size: .6rem;
+  }
+  
 }
 
 
