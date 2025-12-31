@@ -3,6 +3,19 @@
     max-width: 100vh;
     overflow-x: hidden;
   }
+  
+  #logo {
+    width: 1.5rem;
+    margin: .5rem;
+  }
+  
+  #menu, #home {
+    margin-left: 5rem;
+  }
+  
+  .nav-bar {
+    font-size: 4rem;
+  }
 }
 
 
