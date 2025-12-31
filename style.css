@@ -1,6 +1,7 @@
-@media screen and (max-width: 600px) {
+@media (max-width: 600px) {
   * {
-    width: 80%;
+    max-width: 100vh;
+    overflow-x: hidden;
   }
 }
 
