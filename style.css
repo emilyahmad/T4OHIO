@@ -6,15 +6,17 @@
   
   #logo {
     width: 1.5rem;
-    margin: .5rem;
+    margin: .5 0 0 .5;
   }
-  
-  #menu, #home {
-    margin-left: .5rem;
-  }
-  
+
   .nav-bar {
-    font-size: .&rem;
+    margin-top: -2.5rem;
+    margin-right: 1.2rem;
+    margin-left: 79.5%;
+    font-size: .8rem;
+    justify-content: none;
+    text-align: right;
+    flex-direction: column;
   }
   
   h2 {
