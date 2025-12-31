@@ -10,19 +10,19 @@
   }
   
   #menu, #home {
-    margin-left: 1rem;
+    margin-left: .5rem;
   }
   
   .nav-bar {
-    font-size: .5rem;
+    font-size: .&rem;
   }
   
   h2 {
-    font-size: .5rem;
+    font-size: .1rem;
   }
   
   .review-cards h4 {
-    font-size: .3rem;
+    font-size: .1rem;
   }
   
 }
