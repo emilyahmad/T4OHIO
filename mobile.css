@@ -101,7 +101,7 @@ video {
 REVIEWS SECTION
 ************************/
 .reviews {
-    margin-top: -25%;
+    margin-top: -26%;
     padding: 0;
 }
 
@@ -132,11 +132,36 @@ REVIEWS SECTION
     font-size: .9rem;
 }
 
-.first-line {
+.post-profile {
+    display: flex;
+    justify-content: left;
+    width: 85%;
+    gap: .5rem;
+    margin-top: -10%;
+    margin-left: 5%;
+}
+
+.post-profile img {
+    width: 1rem;
+    object-fit: contain;
+}
+
+.review-card p {
+    padding-right: 10%;
+    font-size: .75rem;
+}
+/*
+
+.post-profile {
     display: flex;
     justify-content: space-around;
-    width: 50%;
+    width: 100%;
     margin-left: .5rem;
+    gap: 1rem;
+}
+
+.post-profile img {
+    width: 2rem;
 }
 
 .review-card img {
