@@ -1,21 +1,13 @@
-/****************************
-MOBILE MEDIA QUERY
-****************************/
-
 @media (max-width: 600px) {
   * {
     max-width: 100vh;
     overflow-x: hidden;
   }
-
-  .hero {
-    height: 200px;
-    }
   
   #logo {
     width: 1.5rem;
     margin: .5 0 0 .5;
-    }
+  }
 
   .nav-bar {
     margin-top: -2.5rem;
@@ -23,52 +15,20 @@ MOBILE MEDIA QUERY
     margin-left: 79.5%;
     font-size: .8rem;
     justify-content: none;
-    text-align: center;
+    text-align: right;
     flex-direction: column;
-    
-    background-color: purple;
-  }
-
-  #sign:hover {
-    box-shadow: 0 2px 0 white;
   }
   
   h2 {
     font-size: .1rem;
   }
-
+  
   .review-cards h4 {
     font-size: .1rem;
   }
   
 }
 
-/****************************
-DESKTOP MEDIA QUERY
-****************************/
-@media (max-width: 5000px) {
-
-  .hero {
-    height: 675px;
-}
-  
-  #logo {
-    width: 3rem;
-    margin: 1rem;
-}
-  
-  h2 {
-    font-size: .1rem;
-  }
-
-  .review-cards h4 {
-    font-size: .1rem;
-  }
-} /* end of desktop media query */
-
-.hero {
-    height: 200px;
-}
 
 body {
     font-family: "Lexend", sans-serif;
@@ -88,8 +48,16 @@ video {
     z-index: 0;
 }
 
+.hero {
+    width: 100%;
+    height: 675px;
+    position: relative;
+}
+
 #logo {
     position: absolute;
+    width: 3rem;
+    margin: 1rem;
 }
 
 .nav-bar {
