@@ -38,7 +38,6 @@
     z-index: 1;
     margin-top: 0rem;
     margin-right: .5rem;
-    margin-left: 79.5%;
     font-size: .8rem;
     justify-content: none;
     text-align: right;
@@ -53,7 +52,15 @@
 #menu:hover, #order:hover,
 #phil:hover, #contact:hover,
 #sign:hover {
+
+    margin-right: 2rem;
+
+    /*
+    having issue with box shadow
+    temporarily using underline
     box-shadow: 0 2px 0 white;
+    */
+    text-decoration: underline;
     cursor: pointer;
 }
 /* hero section video */
@@ -75,17 +82,18 @@ video {
 
 #title {
     color: white;
-    font-size: 8rem;
-    margin-top: 27rem;
-    margin-left: 3rem;
+    font-size: 4rem;
+    margin-top: 0;
+    margin-left: 1rem;
 }
 
 /* video pause button */
 
 #pauseButton, #playButton {
     position: absolute;
-    left: 95%;
-    margin-top: -11%;
+    left: 23%;
+    width: 2.5rem;
+    margin-top: -19.5%;
 }
 
 #pauseButton:hover,
