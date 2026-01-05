@@ -1,3 +1,14 @@
+const mobileMediaQuery = window.matchMedia("(max-width: 600px)");
+const mobile = document.getElementById('mobile-view');
+const desktop = document.getElementById('desktop-view');
+mobile.hidden = true;
+desktop.hidden = false;
+
+if (mobileMediaQuery.matches) {
+    mobile.hidden = false;
+    desktop.hidden = true;
+}
+
 /* Video controls */
 const herovideo = document.getElementById('myVideo');
 const pause = document.getElementById('pauseButton');
