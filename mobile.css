@@ -298,3 +298,53 @@ specials */
     /* act as links to menu item? */
     cursor: pointer;
 }
+
+/**********************
+store info section
+**********************/
+
+.store-info {
+    background-color: #AE9375;
+    font-weight: normal;
+    color: #4C3015;
+}
+
+.store-info-titles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.store-info-media-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    text-align: center;
+}
+
+.location {
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    margin-left: 1rem;
+    margin-bottom: 2rem;
+}
+
+.store-hours {
+    margin-left: -13%;
+    margin-right: 1rem;
+    border-radius: 10px;
+    background-color: #FFF5EA;
+    display: flex;
+    justify-content: center;
+    border: solid 2px #4C3015;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table td,
+table th {
+    padding: 0;
+}
