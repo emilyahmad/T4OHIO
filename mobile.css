@@ -4,7 +4,7 @@
   }
   body {
     font-family: "Lexend", sans-serif;
-    font-weight: 100;
+    font-weight: 400;
     font-style: normal;
 
     margin: 0;
@@ -150,68 +150,22 @@ REVIEWS SECTION
     padding-right: 10%;
     font-size: .75rem;
 }
-/*
-
-.post-profile {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin-left: .5rem;
-    gap: 1rem;
-}
-
-.post-profile img {
-    width: 2rem;
-}
-
-.review-card img {
-    object-fit: contain;
-}
-
-.post {
-    margin-left: 55%;
-    margin-top: -15%;
-}
-
-.review-card p {
-    width: 50%;
-    margin-left: 5%;
-    margin-top: -20%;
-}
-
-.review-card a {
-    color: #87715B;
-}
-
-.read-more-button {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-left: .75%;
-    margin-top: .5%;
-    padding: 0px 10px;
-    
-    color: #4c3015ab;
-    background-color: #FFF5EA;
-    border-radius: 20px;
-}
-
-.read-more-button:hover {
-    background-color: #DCCFC0;
-    cursor: pointer;
-}
 
 .leave-review {
+    font-size: .85rem;
     background-color: #AE9375;
     display: flex;
     flex-direction: row;
     gap: .5rem;
     width: fit-content;
-    padding: 5px 20px;
+    padding: 2.5px 10px;
     border-radius: 50px;
     margin-left: 1%;
     margin-top: .5%;
+}
+
+.leave-review img {
+    width: 1.5rem;
 }
 
 .leave-review:hover {
@@ -228,4 +182,119 @@ REVIEWS SECTION
 .leave-review a {
     text-decoration: none;
     color: #4C3015;
+}
+
+.blue {
+    margin-top: 2%;
+    background-color: #9EE2DC;
+    font-weight: normal;
+    color: #4C3015;
+}
+
+.section-titles {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.news {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2.5%;
+}
+
+.toppings {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    margin-left: .85rem;
+    gap: .5rem;
+    font-size: .6rem;
+}
+
+.new-toppings img {
+    border-radius: 10px;
+    width: 10rem;
+}
+
+#oat:hover {
+    transform: rotate(1.1deg);
+    cursor: pointer;
+}
+
+#barley:hover, #rice:hover {
+    transform: rotate(-1.1deg);
+    cursor: pointer;
+}
+
+.new-toppings h3 {
+    margin-top: .25rem;
+}
+
+.hours {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+#holiday-hours {
+    margin-left: 3.15rem;
+    width: 8rem;
+    object-fit: contain;
+}
+
+#holiday-hours:hover {
+    transform: rotate(-1.1deg);
+    cursor: pointer;
+}
+
+#matcha-poster {
+    width: 5rem;
+    margin-left: -.5rem;
+    object-fit: contain;
+}
+
+#matcha-poster:hover {
+    transform: rotate(1.1deg);
+    cursor: pointer;
+}
+
+#oat:hover, #barley:hover, #rice:hover,
+#holiday-hours:hover, #matcha-poster:hover {
+    transition: .7s ease;
+}
+
+/**********
+specials */
+
+.specials {
+    background-color: #FFF5EA;
+}
+
+.specials h2 {
+    padding-top: 2.5%;
+    display: flex;
+    justify-content: center;
+    
+    color: #4C3015;
+    font-weight: normal;
+}
+
+.specials-posters {
+    padding: 1% 2.5% 4% 2.5%;
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.specials-posters {
+    border-radius: 5px;
+}
+
+.specials-posters:hover {
+    /* act as links to menu item? */
+    cursor: pointer;
 }
