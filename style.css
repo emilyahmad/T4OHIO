@@ -849,6 +849,7 @@
         display: flex;
         justify-content: center;
         color: #4C3015;
+        margin-bottom: 1.5%;
     }
 
     .background-container {
@@ -859,16 +860,20 @@
         margin-top: 2.5%;
     }
 
-    .image-container img {
-        width: 5rem;
+    .background-container img {
+        width: 20rem;
+    }
+    
+    .item-container img {
+        width: 17rem;
     }
 
     .item-container {
         width: 100%;
         display: flex;
         justify-content: center;
-        gap: 9rem;
-        margin-top: -21%;
+        gap: 11rem;
+        margin-top: -20%;
 
         position: absolute;
         z-index: 2;
@@ -877,9 +882,6 @@
     #drink, #snack,
     #snack-bubble-background:hover,
     #drink-bubble-background:hover {
-        /* add color changing to background bubble */
-        transition: 500ms ease;
-        transform: rotate(-1.2deg);
         cursor: pointer;
     }
 
@@ -887,9 +889,10 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        gap: 26rem;
+        gap: 23rem;
+        margin-bottom: 5%;
     }
-
+/*
     .background-container2 {
         width: 100%;
         display: flex;
