@@ -823,17 +823,26 @@
     menu styling
     ***********************************************
     ***********************************************/
+    body {
+        background-color: #FFF5EA;
+    }
+
     #menu-start, #menu-second {
         background-color: #FFF5EA;
         color: #4C3015;
         padding: 0;
-        margin: 0;
+        margin: -3% 0 0 0;
+    }
+    
+    #top-h2 {
+        margin-top: 5rem;
+        margin-bottom: 3rem;
+        background-color: #FFF5EA;
     }
 
     #menu-start h2, #menu-second h2 {
         display: flex;
         justify-content: center;
-        margin-top: 3rem;
     }
 
     #menu-start a {
@@ -851,7 +860,7 @@
     }
 
     .image-container img {
-        width: 20rem;
+        width: 5rem;
     }
 
     .item-container {
@@ -904,6 +913,18 @@
 
     .background-container3 img {
         width: 20rem;
+        object-fit: contain;
+    }
+
+    #menu-second .item-container {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        margin-top: 1rem;
+    }
+
+    #menu-second .item-container img {
+        width: 15rem;
         object-fit: contain;
     }
 }

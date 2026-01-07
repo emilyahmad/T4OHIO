@@ -66,7 +66,6 @@ if (review1) {
     }
 }
 
-
 const first = document.getElementById('menu-start');
 const second = document.getElementById('menu-second');
 if (first) first.hidden = false;
