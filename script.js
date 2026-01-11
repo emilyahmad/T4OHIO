@@ -1,3 +1,21 @@
+// order now page functions
+
+const first = document.getElementById('menu-start');
+const second = document.getElementById('menu-second');
+first.hidden = false;
+second.hidden = true;
+
+const bev = document.getElementById('drink');
+const snack = document.getElementById('snack');
+
+bev.addEventListener('click', showBevChoices);
+function showBevChoices() {
+    first.hidden = true;
+    second.hidden = false;
+}
+
+// mobile media queries
+
 const mobileMediaQuery = window.matchMedia("(max-width: 600px)");
 const mobile = document.getElementById('mobile-view');
 const desktop = document.getElementById('desktop-view');
@@ -64,19 +82,4 @@ if (review1) {
             if (long) long.innerHTML = "It was such a great experience coming here. I love trying new boba places. The staff was so nice and welcoming and if you had any questions they knew the answer! I tried the Kyoto matcha iced latte and I loved it! My fiancé tried the tiramisu";
         }
     }
-}
-
-
-const first = document.getElementById('menu-start');
-const second = document.getElementById('menu-second');
-if (first) first.hidden = false;
-if (second) second.hidden = true;
-
-const bev = document.getElementById('drink');
-const snack = document.getElementById('snack');
-
-if (bev) bev.addEventListener('click', showBevChoices);
-function showBevChoices() {
-    if (first) first.hidden = true;
-    if (second) second.hidden = false;
 }

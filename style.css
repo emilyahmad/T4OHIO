@@ -823,23 +823,33 @@
     menu styling
     ***********************************************
     ***********************************************/
+    body {
+        background-color: #FFF5EA;
+    }
+
     #menu-start, #menu-second {
         background-color: #FFF5EA;
         color: #4C3015;
         padding: 0;
-        margin: 0;
+        margin: -3% 0 0 0;
+    }
+    
+    #menu-start h2, #menu-second h2 {
+        margin-top: 5rem;
+        margin-bottom: 3rem;
+        background-color: #FFF5EA;
     }
 
     #menu-start h2, #menu-second h2 {
         display: flex;
         justify-content: center;
-        margin-top: 3rem;
     }
 
     #menu-start a {
         display: flex;
         justify-content: center;
         color: #4C3015;
+        margin-bottom: 1.5%;
     }
 
     .background-container {
@@ -850,16 +860,35 @@
         margin-top: 2.5%;
     }
 
-    .image-container img {
+    .background-container img {
         width: 20rem;
+    }
+    
+    .item-container img {
+        width: 17rem;
     }
 
     .item-container {
         width: 100%;
         display: flex;
         justify-content: center;
-        gap: 9rem;
-        margin-top: -21%;
+        gap: 11rem;
+        margin-top: -18rem;
+
+        position: absolute;
+        z-index: 2;
+    }
+
+    .item-container2 img {
+        width: 17rem;
+    }
+
+    .item-container2 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 5rem;
+        margin-top: -25%;
 
         position: absolute;
         z-index: 2;
@@ -868,9 +897,6 @@
     #drink, #snack,
     #snack-bubble-background:hover,
     #drink-bubble-background:hover {
-        /* add color changing to background bubble */
-        transition: 500ms ease;
-        transform: rotate(-1.2deg);
         cursor: pointer;
     }
 
@@ -878,7 +904,8 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        gap: 26rem;
+        gap: 23rem;
+        margin-bottom: 5%;
     }
 
     .background-container2 {
@@ -904,6 +931,24 @@
 
     .background-container3 img {
         width: 20rem;
+        object-fit: contain;
+    }
+
+    #menu-second .item-container {
+        display: flex;
+        justify-content: center;
+        gap: 5.5rem;
+        margin-top: -21rem;
+    }
+
+    .second-item-names {
+        display: flex;
+        justify-content: center;
+        gap: 17rem;
+    }
+
+    #menu-second .item-container img {
+        width: 15.5rem;
         object-fit: contain;
     }
 }
