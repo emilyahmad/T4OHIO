@@ -865,7 +865,7 @@
     }
     
     .item-container img {
-        width: 18.5rem;
+        width: 17rem;
     }
 
     .item-container {
@@ -873,7 +873,22 @@
         display: flex;
         justify-content: center;
         gap: 11rem;
-        margin-top: -40%;
+        margin-top: -18rem;
+
+        position: absolute;
+        z-index: 2;
+    }
+
+    .item-container2 img {
+        width: 17rem;
+    }
+
+    .item-container2 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 5rem;
+        margin-top: -25%;
 
         position: absolute;
         z-index: 2;
@@ -929,7 +944,7 @@
     .second-item-names {
         display: flex;
         justify-content: center;
-        gap: 20rem;
+        gap: 17rem;
     }
 
     #menu-second .item-container img {
