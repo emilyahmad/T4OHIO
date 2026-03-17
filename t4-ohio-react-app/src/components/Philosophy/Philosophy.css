@@ -7,6 +7,11 @@
     .cards {
         grid-template-columns: 1fr 1fr;
     }
+
+    .philosophy h2 {
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+    }
 }
 /* desktop */
 @media (min-width: 767px) {
@@ -15,7 +20,18 @@
     }
 
     .cards {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: .5rem;
+        padding: 25px;
+    }
+
+    .philosophy-section {
+        height: auto;
+    }
+
+    .philosophy h2 {
+        margin-top: 3.5rem;
+        margin-bottom: 1rem;
     }
 }
 
@@ -25,17 +41,26 @@
     position: absolute;
 }
 
-h2 {
+.philosophy h2 {
     display: flex;
     justify-content: center;
-    margin-top: 4rem;
+}
+
+.philosophy h3 {
+    font-size: 2rem;
+}
+
+.philosophy h4 {
+    font-size: 1.5rem;
+}
+
+.philosophy h6 {
+    font-size: 1rem;
 }
 
 .cards {
     display: grid;
     background-color: rgb(192, 164, 192);
-    gap: .5rem;
-    padding: 10px;
 }
 
 .philosophy-section {
@@ -43,4 +68,16 @@ h2 {
     background-color: rgb(204, 223, 204);
     border-radius: 20px;
     padding: 10px;
+}
+
+.philosophy-section img {
+    width: 100%;
+    height: 45%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+/* add space between text & img */
+#fresh-img, #flavor-img {
+    margin-top: 5px;
 }

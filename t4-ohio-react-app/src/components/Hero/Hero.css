@@ -19,7 +19,7 @@
 /* desktop */
 @media (min-width: 767px) { 
     #video {
-        height: 28.5rem;
+        height: 35rem;
     }
 
     #logo {
@@ -29,7 +29,7 @@
     }
 
     #title {
-        top: 50%;
+        top: 62.5%;
         left: 2%;
         font-size: 5rem;
     }
