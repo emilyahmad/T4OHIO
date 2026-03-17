@@ -1,0 +1,61 @@
+/* mobile */
+@media (max-width: 767px) {
+    /* replace with collapsable section
+    like teaspoon website */
+    .navbar {
+        text-align: right;
+        right: 1rem;
+        justify-content: center;
+
+        margin-top: -1rem;
+        width: 25%;
+        font-size: 1.15rem;
+        line-height: 1.75;
+
+        top: 2rem;
+    }
+
+    #menu:hover,
+    #order:hover,
+    #contact:hover,
+    #sign:hover {
+        text-decoration: underline;
+        color: white;
+    }
+}
+
+/* desktop */
+@media (min-width: 767px) { 
+    .navbar {
+        display: flex;
+        justify-content: center;
+        margin-top: -26rem;
+        margin-left: 18rem;
+        gap: 8rem;
+        font-size: 1.35rem;
+    }
+
+    #menu:hover,
+    #order:hover,
+    #contact:hover,
+    #sign:hover {
+        border-bottom: 2px solid white;
+    }
+}
+
+.navbar {
+    position: absolute;
+}
+
+#menu:hover,
+#order:hover,
+#contact:hover,
+#sign:hover {
+    transition: none;
+    cursor: pointer;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+}
