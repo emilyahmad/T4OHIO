@@ -1,7 +1,10 @@
 /* mobile */
 @media (max-width: 767px) {
     #video {
-        height: 20rem;
+        height: 17.5rem;
+
+        width: 560px;
+        /* height="315" */
     }
 
     #logo {
@@ -11,15 +14,21 @@
     }
 
     #title {
-        top: 30%;
+        top: 27%;
         left: 3%;
         font-size: 4.5rem;
     }
 }
 /* desktop */
 @media (min-width: 767px) { 
-    #video {
+    .video-container {
         height: 36rem;
+        overflow: hidden;
+    }
+    
+    #video {
+        transform: scale(1.4);
+        height: 100%;
     }
 
     #logo {

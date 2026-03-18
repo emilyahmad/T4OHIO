@@ -1,11 +1,11 @@
 import "./Philosophy.css";
 
-function PhilosophyCard({ title, description }) {
+function PhilosophyCard({title, description }) {
   return (
     // switch to empty fragment & just use
     // class names from within Philosophy function
     <div className="philosophy-section">
-      <h4>{title}</h4>
+      {/* <h4>{title}</h4> */}
       <h6>{description}</h6>
     </div>
   );
@@ -24,7 +24,7 @@ function Philosophy() {
     {
       title: "Fresh: Purity & Handmade",
       description:
-        'Selected from supreme tea of Taiwan — "Jadeite Royal Tea", is the base of T4 novel tea series. Thanks to rigorous rolling technique of tea masters, modern temperature and humidity control technology, and hand baking for aroma, richness, profundity and beauty, we\'ve accomplished a cup of fine tea to bring to you.',
+        'Selected from premium Taiwanese tea, including our signature "Jadeite Royal Tea." Through expert craftsmanship and precise techniques, we create a rich and aromatic cup to enjoy.',
       image: "img/philo/philo-fresh.png",
       imageAlt: "Fresh green tea leaves growing in sunlight",
       imageClass: "fresh-img",
@@ -32,7 +32,7 @@ function Philosophy() {
     {
       title: "Fashion: Vogue & Vigor",
       description:
-        "T4 sets its high standards over the fine teas and will surprise you with every drink you receive, a sparkling gem.",
+        "We set high standards for our teas and craft each drink with style and care. Every cup is designed to delight and feel like a sparkling experience.",
       image: "img/philo/philo-fashion.png",
       imageAlt: "Person holding two colorful tea drinks",
       imageClass: "fashion-img",
@@ -40,7 +40,7 @@ function Philosophy() {
     {
       title: "Favor: Warm & Fine",
       description:
-        "T4's hand-shaken, fresh-brewed drinks are handled with passion and care. We believe carefully crafted tea and delicious food can connect people and create precious moments. We proudly strive for excellence for every customer.",
+        "Our hand-shaken, fresh-brewed drinks are made with passion and care. We believe great tea brings people together and creates meaningful moments.",
       image: "img/philo/philo-favor.png",
       imageAlt: "Close-up of iced milk tea with tapioca pearls",
       imageClass: "favor-img",
@@ -48,7 +48,7 @@ function Philosophy() {
     {
       title: "Flavor: Cozy & Relish",
       description:
-        "We carefully select all fine ingredients to present true flavors for your taste. Using pure cane sugar reduces 25% of regular sugar's calories. Additionally, we offer customized sweetness levels for our customers, making one cup at a time to ensure each drink is crafted to your liking.",
+        "We carefully select high-quality ingredients to deliver authentic flavors. With customizable sweetness and thoughtful preparation, every drink is made just for you.",
       image: "img/philo/philo-flavor.png",
       imageAlt: "Variety of bubble tea drinks with toppings",
       imageClass: "flavor-img",
@@ -59,7 +59,7 @@ function Philosophy() {
     <section className="philosophy">
       <h2>Philosophy</h2>
       
-        <div className="cards-images">
+        <div className="card-images">
             {philosophyItems.map((item) => (
             <PhilosophyImg
                 key={item.image}
