@@ -32,20 +32,58 @@
         <img id="playButton" src="placeholder-images/playButton.png">
     </div>
     <section id="menu-start">
-        <h2 id="top-h2">Get in Touch</h2>
         <div class="contact-container">
+            <h2 id="top-h2">Get in Touch</h2>
             <form id="contact-form">
-                <label for="fname">First name:</label><br>
-                <input type="text" id="fname" name="fname"><br>
-                <label for="lname">Last name:</label><br>
-                <input type="text" id="lname" name="lname">
-                <input for="email">Email:</label><br>
-                <input type="text" id="email" name="email"><br>
-                <input for="message">Message:</label><br>
-                <input type="text" id="message" name="message"><br>
+                <div id="name">
+                    <div id="name2">
+                        <label>First Name:</label>
+                        <input type="text" id="fname" name="fname" required placeholder="e.g. Jane">
+                    </div>
+                    <div id="name2">
+                        <label>Last Name:</label>
+                        <input type="text" id="lname" name="lname" required placeholder="e.g. Doe">
+                    </div>
+                </div>
+                <label>Email:</label>
+                <input type="email" id="email" name="email" required placeholder="e.g. janedoe@gmail.com">
+                <label>Message:</label>
+                <textarea id="message" rows="4" cols="50" required></textarea>
+                <button id="submit-button">Submit</button>
             </form>
-            <button id="submit-button">Submit</button>
+            <div class="form-complete">
+            <h2 id="h2-contact">Thank you for contacting us! Your message has been sent and we will email you shortly regarding your message!</h2>
+            <button id="submit-another">Submit Another</button>
+        </div>
         </div>
     </section>
     <script src="script.js"></script>
+    <script>
+        let isDirty = false;
+        var form = document.getElementById("contact-form");
+        form.querySelectorAll("input", "textArea").forEach(input => {
+            input.addEventListener("input", () =>{
+                isDirty = true;
+            });
+        });
+        window.addEventListener("beforeunload", function(e){
+            if(isDirty){
+                e.preventDefault();
+                e.returnValue = "";
+            }
+        });
+        form.addEventListener('submit', function(event){
+            event.preventDefault();
+            form.style.display = "none";
+            document.querySelector(".form-complete").style.display = "flex";
+            form.reset();
+            isDirty = false;
+        });
+
+        var submitAnother = document.getElementById("submit-another");
+        submitAnother.addEventListener("click", function(){
+            form.style.display = "flex";
+            document.querySelector(".form-complete").style.display = "none";
+        });
+    </script>
 </body>
