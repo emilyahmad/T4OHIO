@@ -19,7 +19,7 @@
 /* desktop */
 @media (min-width: 767px) { 
     #video {
-        height: 35rem;
+        height: 36rem;
     }
 
     #logo {
@@ -37,7 +37,7 @@
 
 #video {
     width: 100%;
-    object-fit: cover;
+    /* object-fit: cover; */
 }
 
 #logo {
@@ -47,6 +47,8 @@
 
 #logo:hover {
     transform: scale(1.15);
+    cursor: pointer;
+    /* take to home page (on all sites) */
 }
 
 #title {

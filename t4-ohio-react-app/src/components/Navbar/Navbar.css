@@ -29,9 +29,9 @@
     .navbar {
         display: flex;
         justify-content: center;
-        margin-top: -33rem;
-        margin-left: 18rem;
-        gap: 8rem;
+        margin-top: -33.5rem;
+        margin-left: 25rem;
+        gap: 10rem;
         font-size: 1.35rem;
     }
 
