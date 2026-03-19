@@ -1,0 +1,36 @@
+.footer {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #8b603b;
+    color: white;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.footer img {
+    width: 3rem;
+}
+
+.logo {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.mission-statement {
+    margin-top: 1.5rem;
+}
+
+.top-button {
+    margin-top: 4rem;
+    text-align: center;
+    padding: .95rem;
+    font-size: 1.5rem;
+    border: white solid 1.5px;
+}
+
+.top-button:hover {
+    cursor: pointer;
+    background-color: #ffffff2c;
+}
