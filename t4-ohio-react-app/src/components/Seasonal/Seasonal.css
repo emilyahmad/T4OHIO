@@ -1,0 +1,34 @@
+.seasonal {
+    margin-top: 2rem;
+    padding: .25rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+
+}
+
+.seasonal-posters img {
+    width: 30%;
+    padding: .25rem;
+}
+
+.seasonal-posters {
+    display: flex;
+    justify-content: center;
+}
+
+/* replace */
+.button {
+    margin-top: 1.5rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: #51bab1;
+    border-radius: 10px;
+    
+    cursor: pointer;
+
+    font-size: 1.2rem;
+    padding: 10px;
+
+    text-align: center;
+}
