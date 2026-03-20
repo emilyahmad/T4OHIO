@@ -1,36 +1,64 @@
 .footer {
-    margin-top: 1rem;
-    padding: 1rem;
     background-color: #8b603b;
     color: white;
+}
 
+/* .left-footer-col {
+
+} */
+
+.footer-logo:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+.footer-sections {
+    padding-left: 5%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
 
-.footer img {
-    width: 3rem;
+.button-top {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.05rem;
+    border: solid white 1.5px;
 }
 
-.logo {
+.footer-col1 {
+    padding-left: 25%;
+}
+
+.footer-col2 {
+    padding-left: 25%;
+}
+
+.footer-col1, .footer-col2 {
+    margin-top: -1rem;
+    line-height: 3;
+}
+
+.footer-col1:hover, .footer-col2:hover {
+    cursor: pointer;
+    /* replace w border bottom? */
+    /* add to individual sites */
+    text-decoration: underline;
+}
+
+.button-top:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.219);
+}
+
+.logo-section {
     display: flex;
-    gap: 2rem;
     align-items: center;
 }
 
-.mission-statement {
-    margin-top: 1.5rem;
-}
-
-.top-button {
-    margin-top: 4rem;
-    text-align: center;
-    padding: .95rem;
-    font-size: 1.5rem;
-    border: white solid 1.5px;
-}
-
-.top-button:hover {
-    cursor: pointer;
-    background-color: #ffffff2c;
+.logo-section img {
+    width: 10%;
+    padding: 5%;
 }
