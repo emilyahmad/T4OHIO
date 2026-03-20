@@ -18,7 +18,6 @@ function PhilosophyImg({ image, imageAlt, imageClass }) {
     </div>
   );
 }
-
 function Philosophy() {
   const philosophyItems = [
     {
