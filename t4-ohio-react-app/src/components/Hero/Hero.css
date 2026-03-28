@@ -1,86 +1,28 @@
-/* mobile */
-@media (max-width: 767px) {
-    /* need to stop controls/
-    additional info from
-    appearing with hover */
-    #video {
-        /* need to change
-        video dims */
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 120%;
-        height: 120%;
-        transform: translate(-50%, -50%);
-        border: 0;
-    }
+.hero-container {
+    background-color: #25B8BC;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    .video-container {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        overflow: hidden;
-        position: relative;
-    }
-
-    #logo {
-        width: 2.5rem;
-        top: 1rem;
-        left: 1rem;
-    }
-
-    #title {
-        top: 25%;
-        left: 3%;
-        font-size: 5rem;
-        /* still shows up with
-        light parts of video */
-        mix-blend-mode: difference;
-    }
-}
-/* desktop */
-@media (min-width: 767px) { 
-    .video-container {
-        height: 36rem;
-        overflow: hidden;
-    }
-    
-    #video {
-        transform: scale(1.4);
-        height: 100%;
-    }
-
-    #logo {
-        width: 3.25rem;
-        top: 2rem;
-        left: 2rem;
-    }
-
-    #title {
-        top: 62.5%;
-        left: 2%;
-        font-size: 5rem;
-    }
-}
-
-#video {
-    width: 100%;
-    /* object-fit: cover; */
-}
-
-#logo {
-    position: absolute;
-    z-index: 100;
-}
-
-#logo:hover {
-    transform: scale(1.3) rotate(1.3deg);
-    cursor: pointer;
-    /* take to home page (on all sites) */
-}
-
-#title {
     color: white;
-    font-family: Arial;
-    position: absolute;
-    z-index: 100;
+}
+
+/* rem = 16px */
+
+.title {
+    font-size: 8rem;
+    margin-bottom: -2rem;
+    letter-spacing: -.25rem;
+}
+
+.hero-text-container {
+    margin-left: 8rem;
+    font-size: 1.75rem;
+    line-height: 2;
+
+}
+
+.hero-container img {
+    margin-top: 9.5rem;
+    width: 35vw;
 }

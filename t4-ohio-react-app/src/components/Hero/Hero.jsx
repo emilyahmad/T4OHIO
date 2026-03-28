@@ -1,22 +1,15 @@
 import "./Hero.css";
 
-function Hero({ isOpen }) {
+function Hero() {
   return (
-    <section className="hero">
-      <div className="video-container">
-        <iframe
-          id="video"
-          src="https://www.youtube.com/embed/on6hNkJiKBw?controls=0&autoplay=1&mute=1&loop=1&playlist=on6hNkJiKBw&playsinline=1"
-          title="Background video"
-          frameBorder="0"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-        ></iframe>
+    <section className="hero-container">
+      <div className="hero-text-container">
+        <h1 className="title">T4 Ohio</h1>
+        <h4>A cup of tea for you</h4>
+        <h4>清茶达人</h4>
       </div>
-
-      <img id="logo" src="img/logo.png" alt="T4 logo" />
-
-      {!isOpen && <h1 id="title">T4</h1>}
+      <img alt="Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
+      src="public/img/hero-img.png"/>
     </section>
   );
 }

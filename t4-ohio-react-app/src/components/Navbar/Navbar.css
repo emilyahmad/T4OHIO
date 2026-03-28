@@ -1,108 +1,49 @@
-/* mobile */
-@media (max-width: 767px) {
-    .fa-bars {
-        position: absolute;
-        text-align: right;
-        right: 1.25rem;
-        margin-top: -1rem;
-
-        top: 2rem;
-        font-size: 2.5rem;
-        color: white;
-        mix-blend-mode: difference;
-        z-index: 100;
-    }
-    
-    .fa-x {
-        text-align: right;
-        margin-right: 1.25rem;
-        margin-top: 2rem;
-        font-size: 2.5rem;
-        color: white;
-    }
-
-    .fa-x:hover {
-        cursor: pointer;
-    }
-
-    /* .fa-x {
-        position: absolute;
-        text-align: right;
-        right: 1rem;
-        margin-top: -1rem;
-
-        top: 2rem;
-        font-size: 2.5rem;
-        color: white;
-    } */
-
-    /* replace with collapsable section
-    like teaspoon website */
-    .navbar {
-        background-color: rgb(39, 91, 39);
-        
-        text-align: right;
-        justify-content: center;
-
-        width: 100%;
-        font-size: 1.75rem;
-        line-height: 1.6;
-
-        top: 0;
-        padding-bottom: 100%;
-
-        z-index: 100;
-    }
-    .navbar h3 {
-        margin-right: 1.25rem;
-    }
-
-    #menu:hover,
-    #order:hover,
-    #contact:hover,
-    #sign:hover {
-        text-decoration: underline;
-        color: white;
-    }
-}
-
-/* desktop
-@media (min-width: 767px) { 
-    .navbar {
-        display: flex;
-        justify-content: center;
-        margin-top: -33.5rem;
-        margin-left: 25rem;
-        gap: 10rem;
-        font-size: 1.35rem;
-    }
-
-    #menu:hover,
-    #order:hover,
-    #contact:hover,
-    #sign:hover {
-        border-bottom: 2px solid white;
-    }
-}
-*/
-
 .navbar {
+    background-color: white;
+    height: 10rem;
+}
+
+.white-circles {
+    display: flex;
+    margin: 0 0 0 1rem;
     position: absolute;
 }
 
-#menu:hover,
-#order:hover,
-#contact:hover,
-#sign:hover {
-    transition: none;
-    cursor: pointer;
+.white-circles img {
+    width: 75%;
 }
 
-.navbar a {
+.first-circle {
+    margin-top: 2rem;
+    margin-left: 3rem;
+    margin-right: -3.5rem;
+}
+
+.first-circle:hover {
+    transform: scale(1.125);
+    transition: all 500ms ease;
+}
+
+.second-circle {
+    margin-top: 8rem;
+}
+
+.page-name a {
+    color: #333333;
     text-decoration: none;
-    color: white;
+    padding: .75rem 2rem;
+    border-radius: 1.25rem 1rem 0 0;
 }
 
-.fa-bars:hover {
-        cursor: pointer;
+.page-name a:hover {
+    background-color: #25B8BC;
+}
+
+.page-name {
+    font-size: 2rem;
+    display: flex;
+    margin-left: 25%;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 6.15rem;
 }

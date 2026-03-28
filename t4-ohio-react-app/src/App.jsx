@@ -15,10 +15,9 @@ function App() {
   
   return (
     <>
-      <Quiz />
-      {/* <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Hero isOpen={isOpen} />
-      <Philosophy />
+      <Navbar/>
+      <Hero/>
+      {/* <Philosophy />
       <Seasonal />
       <Map />
       <Reviews />
