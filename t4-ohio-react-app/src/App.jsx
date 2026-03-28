@@ -17,8 +17,8 @@ function App() {
     <>
       <Navbar/>
       <Hero/>
-      {/* <Philosophy />
-      <Seasonal />
+      <Philosophy />
+      {/* <Seasonal />
       <Map />
       <Reviews />
       <Footer /> */}
