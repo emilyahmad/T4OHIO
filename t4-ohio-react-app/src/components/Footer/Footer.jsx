@@ -8,7 +8,7 @@ function Footer() {
             </div>
             <div className="footer-sections">
                 <div className="left-footer-col">
-                    <h4>T4 (Tea For U) boba's mission is to spread joy and connect people worldwide through high-quality, authentic Taiwanese tea. Founded in 2004, their philosophy is to serve "A cup of TEA FOR you," focusing on freshly brewed whole-leaf tea rather than powders, emphasizing freshness, fashion, favor, and flavor.</h4>
+                    <h4>We believe that moving and delicious food can connect people with happy memories. Being able to share good things with people is joyful and blessing; we know better how to share, how to learn, and how to care.And all of it starts with "a good cup of tea. "We wish our work, can drive every sincere and free heart, and bring more flavors and happiness to every one ‘s daily life.</h4>
                     <div className="button-top"
                     onClick={() => window.scrollTo({top: 0, behavior: "smooth"})}>
                         <h3>Back to top</h3>
@@ -32,6 +32,7 @@ function Footer() {
                     </ul>
                 </div>
             </div>
+            <img className="baristas" src="https://www.t4.com.tw/en/image/join1_lgpic.png"/>
         </div>
         
     );

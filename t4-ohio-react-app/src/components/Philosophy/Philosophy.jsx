@@ -2,7 +2,6 @@ import {useState} from "react";
 import "./Philosophy.css";
 
 // add transition
-
 function Philosophy() {
   const [currentStep, setCurrentStep] = useState(0);
 
