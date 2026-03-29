@@ -1,34 +1,48 @@
 .seasonal {
-    margin-top: 2rem;
-    padding: .25rem;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
+    background-color: #785231;
+    color: white;
 
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
 
-.seasonal-posters img {
-    width: 30%;
-    padding: .25rem;
+.seasonal h1 {
+    font-size: 3rem;
 }
 
-.seasonal-posters {
+.seasonal-header {
+    padding-top: 6rem;
+    padding-bottom: 4.5rem;
+
     display: flex;
+    align-items: center;
     justify-content: center;
+    line-height: 1.25;
+    gap: 6rem;
 }
 
-/* replace */
-.button {
-    margin-top: 1.5rem;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    background-color: #51bab1;
-    border-radius: 10px;
+.seasonal-cards {
+    display: flex;
+    padding-bottom: 4.4rem;
+    justify-content: center;
+    gap: 2rem;
     
-    cursor: pointer;
+}
 
-    font-size: 1.2rem;
-    padding: 10px;
+.card {
+    background-color: #AE9375;
+    width: 20%;
+}
 
+.card img {
+    width: 100%;
+}
+
+.card p {
+    color: #333333;
+    font-weight: 850;
+    padding: 1rem;
+    font-size: 1.25rem;
     text-align: center;
 }

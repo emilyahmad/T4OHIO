@@ -17,12 +17,10 @@ function App() {
     <>
       <Navbar/>
       <Hero/>
-      <Philosophy />
-      {/* <Seasonal />
-      <Map />
-      <Reviews />
-      <Footer /> */}
-
+      <Philosophy/>
+      <Seasonal/>
+      <Map/>
+      <Footer/>
     </>
   );
 }
