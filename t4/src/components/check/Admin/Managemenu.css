@@ -1,0 +1,313 @@
+.mm-page {
+    min-height: 100vh;
+    background-color: #4C3015;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem 5rem;
+}
+
+.mm-page-title {
+    font-size: 7rem;
+    color: white;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    text-align: center;
+    opacity: 0.95;
+}
+
+.mm-card {
+    background-color: #ead6bf;
+    border-radius: 2rem;
+    padding: 3.5rem 4rem;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    min-height: 400px;
+}
+
+.mm-section-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #4C3015;
+    margin: 0 0 1.5rem;
+}
+
+/* ── BACK BUTTON ── */
+.mm-back-btn {
+    background: none;
+    border: none;
+    color: #785231;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 1.25rem;
+    display: block;
+    transition: color 150ms ease;
+}
+
+.mm-back-btn:hover { color: #4C3015; }
+
+/* ── CATEGORY LIST ── */
+.mm-category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.mm-category-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: #fffcf8;
+    border: 2px solid #AE9375;
+    border-radius: 0.75rem;
+    color: #4C3015;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 200ms ease;
+    text-align: left;
+}
+
+.mm-category-btn:hover {
+    background-color: #25B8BC;
+    border-color: #25B8BC;
+    color: white;
+}
+
+.mm-category-btn:hover .mm-item-count { color: rgba(255,255,255,0.7); }
+
+.mm-item-count {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #AE9375;
+    transition: color 200ms ease;
+}
+
+/* ── DIVIDER ── */
+.mm-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    color: #AE9375;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.mm-divider::before,
+.mm-divider::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background-color: #AE9375;
+    opacity: 0.4;
+}
+
+/* ── ADD CATEGORY BUTTON ── */
+.mm-add-category-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: transparent;
+    border: 2px dashed #AE9375;
+    border-radius: 0.75rem;
+    color: #785231;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 200ms ease;
+}
+
+.mm-add-category-btn:hover {
+    background-color: #4C3015;
+    border-color: #4C3015;
+    color: #ead6bf;
+}
+
+/* ── EDIT VIEW ── */
+.mm-edit-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.mm-edit-header .mm-back-btn { margin-bottom: 0; }
+
+.mm-edit-header .mm-section-title {
+    flex: 1;
+    margin: 0;
+}
+
+.mm-delete-category-btn {
+    padding: 0.5rem 1.25rem;
+    background-color: transparent;
+    border: 2px solid #c0392b;
+    border-radius: 999px;
+    color: #c0392b;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 200ms ease;
+}
+
+.mm-delete-category-btn:hover {
+    background-color: #c0392b;
+    color: white;
+}
+
+.mm-table-header {
+    display: grid;
+    grid-template-columns: 1fr 120px 48px;
+    gap: 0.75rem;
+    padding: 0 0.5rem 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #785231;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 2px solid #AE9375;
+    margin-bottom: 0.75rem;
+}
+
+.mm-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-height: 320px;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.mm-items-list::-webkit-scrollbar { width: 4px; }
+.mm-items-list::-webkit-scrollbar-thumb { background: #AE9375; border-radius: 4px; }
+
+.mm-item-row {
+    display: grid;
+    grid-template-columns: 1fr 120px 48px;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.mm-input {
+    padding: 0.7rem 1rem;
+    border: 2px solid #AE9375;
+    border-radius: 0.5rem;
+    background-color: #fffcf8;
+    color: #4C3015;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 200ms ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mm-input:focus {
+    border-color: #25B8BC;
+    box-shadow: 0 0 0 3px rgba(37, 184, 188, 0.15);
+}
+
+.mm-input-price { text-align: right; }
+
+.mm-delete-item-btn {
+    background: none;
+    border: none;
+    color: #AE9375;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 150ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mm-delete-item-btn:hover {
+    color: #c0392b;
+    background-color: rgba(192, 57, 43, 0.08);
+}
+
+.mm-add-item-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: transparent;
+    border: 2px dashed #AE9375;
+    border-radius: 0.5rem;
+    color: #785231;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 200ms ease;
+    margin-bottom: 1.5rem;
+}
+
+.mm-add-item-btn:hover {
+    background-color: #25B8BC;
+    border-color: #25B8BC;
+    color: white;
+}
+
+.mm-save-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mm-save-msg {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #25B8BC;
+}
+
+.mm-save-btn {
+    padding: 0.85rem 2.5rem;
+    background-color: #25B8BC;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background-color 200ms ease, transform 150ms ease;
+}
+
+.mm-save-btn:hover {
+    background-color: #1da0a4;
+    transform: translateY(-2px);
+}
+
+/* ── ADD VIEW ── */
+.mm-add-view { display: flex; flex-direction: column; }
+
+.mm-add-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.mm-label {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #785231;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+@media (max-width: 600px) {
+    .mm-page { padding: 5rem 1.25rem 4rem; }
+    .mm-page-title { font-size: 4rem; }
+    .mm-card { padding: 2.5rem 1.75rem; }
+}
