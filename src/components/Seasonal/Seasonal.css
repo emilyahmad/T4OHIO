@@ -1,0 +1,48 @@
+.seasonal {
+    background-color: #785231;
+    color: white;
+
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.seasonal h1 {
+    font-size: 3rem;
+}
+
+.seasonal-header {
+    padding-top: 6rem;
+    padding-bottom: 4.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.25;
+    gap: 6rem;
+}
+
+.seasonal-cards {
+    display: flex;
+    padding-bottom: 4.4rem;
+    justify-content: center;
+    gap: 2rem;
+    
+}
+
+.card {
+    background-color: #AE9375;
+    width: 20%;
+}
+
+.card img {
+    width: 100%;
+}
+
+.card p {
+    color: #333333;
+    font-weight: 850;
+    padding: 1rem;
+    font-size: 1rem;
+    text-align: center;
+}
