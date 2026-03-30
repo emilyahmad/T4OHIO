@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./ManageMenu.css";
+import "./Managemenu.css";
 
 const initialCategories = [
     { name: "Classic", items: [
