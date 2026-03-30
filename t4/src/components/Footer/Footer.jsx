@@ -5,7 +5,7 @@ function Footer() {
     return (
         <div className="footer">
             <div className="logo-section">
-                <img className="footer-logo" src="T4OHIO/public/img/t4-footer.png"/>
+                <img className="footer-logo" src="/img/t4-footer.png"/>
             </div>
             <div className="footer-sections">
                 <div className="left-footer-col">

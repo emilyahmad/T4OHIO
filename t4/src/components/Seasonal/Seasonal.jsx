@@ -4,19 +4,19 @@ function Seasonal() {
     const cards = [
         {
             key: 1,
-            image: "T4OHIO/public/img/posters/poster1.png",
+            image: "/img/posters/poster1.png",
             alt: "change",
             description: "some more information about whatever is in the photo whatever is in the photo"
         },
         {
             key: 2,
-            image: "T4OHIO/public/img/posters/poster2.png",
+            image: "/img/posters/poster2.png",
             alt: "change",
             description: "some more information about whatever is in the photo whatever is in the photo"
         },
         {
             key: 3,
-            image: "T4OHIO/public/img/posters/poster3.png",
+            image: "/img/posters/poster3.png",
             alt: "change",
             description: "some more information about whatever is in the photo whatever is in the photo"
         },

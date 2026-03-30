@@ -9,7 +9,7 @@ function Hero() {
         <h4>清茶达人</h4>
       </div>
       <img alt="Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
-      src="T4OHIO/public/img/hero-img.png"/>
+      src="/img/hero-img.png"/>
     </section>
   );
 }
