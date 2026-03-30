@@ -1,4 +1,5 @@
 import "./Footer.css"
+import { Link } from "react-router-dom";
 
 function Footer() {
     return (
@@ -16,9 +17,9 @@ function Footer() {
                 </div>
                 <div className="footer-col1">
                     <ul>
-                        <li><a href="#ordernow">Order Now</a></li>
-                        <li><a href="#ordernow">Contact Us</a></li>
-                        <li><a href="#ordernow">Sign In</a></li>
+                        <li><Link to="/order-now">Order Now</Link></li>
+                        <li><Link to="/contact-us">Contact</Link></li>
+                        <li><Link to="/sign-in">Sign In</Link></li>
                         <li><a href="https://www.instagram.com/t4ohio/"><i className="fa-brands fa-instagram"></i></a></li>
                         <li><a href="https://www.facebook.com/T4DAYTON/"><i className="fa-brands fa-facebook"></i></a></li>
                     </ul>

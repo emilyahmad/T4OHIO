@@ -1,0 +1,130 @@
+.admin-page {
+    min-height: 100vh;
+    background-color: #4C3015;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem 5rem;
+}
+
+.admin-page-title {
+    font-size: 7rem;
+    color: white;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    text-align: center;
+    opacity: 0.95;
+}
+
+.admin-card {
+    background-color: #ead6bf;
+    border-radius: 2rem;
+    padding: 3.5rem 4rem;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.admin-welcome {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #4C3015;
+    margin: 0;
+}
+
+.admin-subtitle {
+    font-size: 1rem;
+    color: #785231;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.admin-buttons {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.admin-btn {
+    flex: 1;
+    background-color: #fffcf8;
+    border: 2px solid #AE9375;
+    border-radius: 1.25rem;
+    padding: 2rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 200ms ease;
+    text-align: center;
+}
+
+.admin-btn:hover {
+    background-color: #4C3015;
+    border-color: #4C3015;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.admin-btn:hover .admin-btn-icon,
+.admin-btn:hover h3,
+.admin-btn:hover p {
+    color: white;
+}
+
+.admin-btn-icon {
+    font-size: 2rem;
+    color: #25B8BC;
+    transition: color 200ms ease;
+}
+
+.admin-btn h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #4C3015;
+    margin: 0;
+    transition: color 200ms ease;
+}
+
+.admin-btn p {
+    font-size: 0.85rem;
+    color: #785231;
+    margin: 0;
+    line-height: 1.4;
+    transition: color 200ms ease;
+}
+
+.admin-signout-btn {
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+    background-color: transparent;
+    color: #4C3015;
+    border: 2px solid #AE9375;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 200ms ease;
+}
+
+.admin-signout-btn:hover {
+    background-color: #4C3015;
+    color: #ead6bf;
+    border-color: #4C3015;
+}
+
+@media (max-width: 600px) {
+    .admin-page { padding: 5rem 1.25rem 4rem; }
+    .admin-page-title { font-size: 4rem; }
+    .admin-card { padding: 2.5rem 1.75rem; }
+    .admin-buttons { flex-direction: column; }
+}
