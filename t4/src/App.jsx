@@ -14,7 +14,7 @@ import OrderNow from "./components/OrderNow/OrderNow.jsx";
 import Contact from "./components/check/Contact/Contact.jsx";
 import SignIn from "./components/check/SignIn/SignIn.jsx";
 import Admin from "./components/check/Admin/Admin.jsx";
-import ManageMenu from "./components/check/Admin/ManageMenu.jsx";
+import ManageMenu from "./components/check/Admin/Managemenu.jsx";
 
 function App() {
   return (
