@@ -6,10 +6,10 @@ function Navbar() {
     <div className="navbar">
       <div className="white-circles">
         <div className="first-circle">
-          <img src="T4OHIO/public/img/navbar/logo-circle.png"/>
+          <img src="/img/navbar/logo-circle.png"/>
         </div>
         <div className="second-circle">
-          <img src="T4OHIO/public/img/navbar/circle2.png"/>
+          <img src="/img/navbar/circle2.png"/>
         </div>
       </div>
       <div className="page-name">
