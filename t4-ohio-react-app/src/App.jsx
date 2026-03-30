@@ -38,18 +38,21 @@ function App() {
           <>
           {/* Load order now components */}
           <OrderNow/>
+          <Footer/>
           </>
         } />
 
         <Route path="/contact" element={
           <>
           {/* load contact components */}
+          <Footer/>
           </>
         } />
 
         <Route path="/sign-in" element={
           <>
           {/* sign in components */}
+          <Footer/>
           </>
         } />
 
