@@ -53,8 +53,7 @@ function App() {
               subtitle2=""
               imageAlt="Three beverage service (bobaristas), two holding drink shakers and one in the middle holding a yellow drink."
               image="https://www.t4.com.tw/en/image/join1_lgpic.png"
-              imageStyle={marginRight: "2rem"}
-            />
+              style={{marginRight: "14%"}} />
             <Contact />
             <Footer />
           </>
