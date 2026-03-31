@@ -29,7 +29,7 @@ function App() {
               subtitle1="A cup of tea for you"
               subtitle2="清茶达人"
               imageAlt="Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
-              image="public/img/hero-img.png"
+              image="/img/hero-img.png"
             />
             <Philosophy />
             <Seasonal />
