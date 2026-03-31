@@ -44,7 +44,7 @@ function SignIn() {
 
     return (
         <div className="signin-page">
-            <h1 className="signin-page-title">Sign In</h1>
+            {/* <h1 className="signin-page-title">Sign In</h1> */}
             <div className="signin-wrapper">
 
                 <div className="signin-card">

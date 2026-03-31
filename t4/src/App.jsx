@@ -53,6 +53,7 @@ function App() {
               subtitle2=""
               imageAlt="Three beverage service (bobaristas), two holding drink shakers and one in the middle holding a yellow drink."
               image="https://www.t4.com.tw/en/image/join1_lgpic.png"
+              imageStyle={marginRight: "2rem"}
             />
             <Contact />
             <Footer />
@@ -63,8 +64,8 @@ function App() {
           <>
             <Hero
               name="Sign In"
-              subtitle1="A cup of tea for you"
-              subtitle2="清茶达人"
+              subtitle1=""
+              subtitle2=""
               imageAlt="Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
               image="https://www.t4.com.tw/en/image/contact_pic2.png"
             />

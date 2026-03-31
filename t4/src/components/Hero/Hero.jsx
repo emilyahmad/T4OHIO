@@ -9,7 +9,8 @@ function Hero({name, subtitle1, subtitle2, image, imageAlt}) {
         <h4>{subtitle2}</h4>
       </div>
       <img alt={imageAlt}
-      src={image}/>
+      src={image}
+      style={imageStyle}/>
     </section>
   );
 }
