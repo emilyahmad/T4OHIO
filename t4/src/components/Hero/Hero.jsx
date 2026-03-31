@@ -1,6 +1,6 @@
 import "./Hero.css";
 
-function Hero({name, subtitle1, subtitle2, image, imageAlt}) {
+function Hero({name, subtitle1, subtitle2, image, imageAlt, style}) {
   return (
     <section className="hero-container">
       <div className="hero-text-container">
@@ -10,7 +10,7 @@ function Hero({name, subtitle1, subtitle2, image, imageAlt}) {
       </div>
       <img alt={imageAlt}
       src={image}
-      // style={style}
+      style={style}
       />
     </section>
   );

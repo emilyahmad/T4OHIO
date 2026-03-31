@@ -39,7 +39,7 @@ function Contact() {
                                     id="fname"
                                     name="fname"
                                     required
-                                    placeholder="e.g. Jane"
+                                    placeholder="First Name"
                                     value={formData.fname}
                                     onChange={handleChange}
                                 />
@@ -51,7 +51,7 @@ function Contact() {
                                     id="lname"
                                     name="lname"
                                     required
-                                    placeholder="e.g. Doe"
+                                    placeholder="Last Name"
                                     value={formData.lname}
                                     onChange={handleChange}
                                 />
@@ -65,7 +65,7 @@ function Contact() {
                                 id="email"
                                 name="email"
                                 required
-                                placeholder="e.g. janedoe@gmail.com"
+                                placeholder="Enter your email"
                                 value={formData.email}
                                 onChange={handleChange}
                             />
@@ -77,14 +77,14 @@ function Contact() {
                                 id="message"
                                 name="message"
                                 required
-                                placeholder="What is the purpose of your message?"
+                                placeholder="Message here.."
                                 value={formData.message}
                                 onChange={handleChange}
                             />
                         </div>
 
                         <button className="contact-submit-btn" type="submit">
-                            Send Message
+                            Submit message
                         </button>
                     </form>
                 ) : (

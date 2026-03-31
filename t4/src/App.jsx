@@ -53,7 +53,6 @@ function App() {
               subtitle2=""
               imageAlt="Three beverage service (bobaristas), two holding drink shakers and one in the middle holding a yellow drink."
               image="https://www.t4.com.tw/en/image/join1_lgpic.png"
-              // style={{marginRight: "14%"}}
               />
             <Contact />
             <Footer />
@@ -68,8 +67,10 @@ function App() {
               subtitle2=""
               imageAlt="Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
               image="https://www.t4.com.tw/en/image/contact_pic2.png"
+              style={{marginRight: "12rem", width: "25%"}}
             />
             <SignIn />
+            <Footer />
           </>
         } />
 

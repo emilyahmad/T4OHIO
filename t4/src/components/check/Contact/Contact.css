@@ -5,7 +5,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 6rem 2rem 5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 /* .contact-page-title {
@@ -29,9 +30,9 @@
 }
 
 .contact-card h2 {
-    font-size: 1.6rem;
+    font-size: 3rem;
     color: #4C3015;
-    font-weight: 800;
+    /* font-weight: 800; */
     margin-bottom: 2.5rem;
     letter-spacing: 0.01em;
 }
@@ -99,8 +100,8 @@
     color: white;
     border: none;
     border-radius: 999px;
-    font-size: 1rem;
-    font-weight: 800;
+    font-size: 1.25rem;
+    /* font-weight: 800; */
     letter-spacing: 0.04em;
     cursor: pointer;
     align-self: flex-start;
@@ -108,8 +109,8 @@
 }
 
 .contact-submit-btn:hover {
-    background-color: #1da0a4;
-    transform: translateY(-2px);
+    background-color: #00777E;
+    /* transform: translateY(-2px); */
 }
 
 .contact-submit-btn:active {
