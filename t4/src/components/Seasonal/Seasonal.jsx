@@ -5,20 +5,20 @@ function Seasonal() {
         {
             key: 1,
             image: "/img/posters/poster1.png",
-            alt: "change",
-            description: "some more information about whatever is in the photo whatever is in the photo"
+            alt: "A poster of a tiramisu frappe boba drink",
+            description: "A rich and creamy milk tea layered with soft cake textures and chewy boba for a perfectly indulgent treat."
         },
         {
             key: 2,
             image: "/img/posters/poster2.png",
-            alt: "change",
-            description: "some more information about whatever is in the photo whatever is in the photo"
+            alt: "A poster of a boba cake milk tea drink",
+            description: "A smooth iced coffee topped with a velvety sea salt cream foam that creates the perfect balance of sweet and savory."
         },
         {
             key: 3,
             image: "/img/posters/poster3.png",
-            alt: "change",
-            description: "some more information about whatever is in the photo whatever is in the photo"
+            alt: "A poster of a cream crown sea salt coffee boba tea drink",
+            description: "A smooth iced coffee topped with a velvety sea salt cream foam that creates the perfect balance of sweet and savory."
         },
 
     ]
@@ -27,9 +27,9 @@ function Seasonal() {
         <div className="seasonal">
             <div className="seasonal-header">
                 <h1>Seasonal</h1>
-                <h2>Drinks, upcoming events and promotions will be
+                <h2>Stay up-to-date with new and drinks, snacks, upcoming
                     <br></br>
-                    shown here/we will update this</h2>
+                    events and promotions</h2>
             </div>
             <div className="seasonal-cards">
                 {cards.map((card) => (

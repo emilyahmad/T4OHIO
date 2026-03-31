@@ -49,9 +49,9 @@ function App() {
           <>
             <Hero
               name="Contact Us"
-              subtitle1="A cup of tea for you"
-              subtitle2="清茶达人"
-              imageAlt="Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
+              subtitle1="Fill out the form below, we will get back to you shortly!"
+              subtitle2=""
+              imageAlt="Three beverage service (bobaristas), two holding drink shakers and one in the middle holding a yellow drink."
               image="https://www.t4.com.tw/en/image/join1_lgpic.png"
             />
             <Contact />

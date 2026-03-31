@@ -77,7 +77,7 @@ function Contact() {
                                 id="message"
                                 name="message"
                                 required
-                                placeholder="What's on your mind?"
+                                placeholder="What is the purpose of your message?"
                                 value={formData.message}
                                 onChange={handleChange}
                             />
