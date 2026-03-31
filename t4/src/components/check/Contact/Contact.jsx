@@ -26,8 +26,6 @@ function Contact() {
 
     return (
         <div className="contact-page">
-            <h1 className="contact-page-title">Contact Us</h1>
-
             <div className="contact-card">
                 <h2>Get in Touch</h2>
 

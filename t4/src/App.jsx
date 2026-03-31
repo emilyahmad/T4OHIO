@@ -24,7 +24,13 @@ function App() {
 
         <Route path="/" element={
           <>
-            <Hero />
+            <Hero
+              name="T4 Ohio"
+              subtitle1="A cup of tea for you"
+              subtitle2="清茶达人"
+              imageAlt="Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
+              image="public/img/hero-img.png"
+            />
             <Philosophy />
             <Seasonal />
             <Map />
@@ -41,12 +47,30 @@ function App() {
 
         <Route path="/contact-us" element={
           <>
+            <Hero
+              name="Contact Us"
+              subtitle1="A cup of tea for you"
+              subtitle2="清茶达人"
+              imageAlt="Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
+              image="https://www.t4.com.tw/en/image/join1_lgpic.png"
+            />
             <Contact />
             <Footer />
           </>
         } />
 
-        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-in" element={
+          <>
+            <Hero
+              name="Sign In"
+              subtitle1="A cup of tea for you"
+              subtitle2="清茶达人"
+              imageAlt="Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
+              image="https://www.t4.com.tw/en/image/contact_pic2.png"
+            />
+            <SignIn />
+          </>
+        } />
 
         <Route path="/admin" element={<Admin />} />
 

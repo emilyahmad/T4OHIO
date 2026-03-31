@@ -31,9 +31,9 @@
     transform-origin: center;
 }
 
-.menu-header {
-    /* margin-bottom: 2rem; */
-}
+/* .menu-header {
+    margin-bottom: 2rem;
+} */
 
 .menu-title {
     position: absolute;
@@ -56,13 +56,11 @@ h2:hover {
 }
 
 .filter-menu-options {
-    margin-top: 2rem;
+    margin: 2rem;
 
     background-color: #4C3015;
     width: 22%;
 
-    margin-left: 2rem;
-    margin-right: 2rem;
 }
 
 .fa-brands {

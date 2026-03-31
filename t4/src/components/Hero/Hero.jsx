@@ -1,15 +1,15 @@
 import "./Hero.css";
 
-function Hero() {
+function Hero({name, subtitle1, subtitle2, image, imageAlt}) {
   return (
     <section className="hero-container">
       <div className="hero-text-container">
-        <h1 className="title">T4 Ohio</h1>
-        <h4>A cup of tea for you</h4>
-        <h4>清茶达人</h4>
+        <h1 className="title">{name}</h1>
+        <h4>{subtitle1}</h4>
+        <h4>{subtitle2}</h4>
       </div>
-      <img alt="Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
-      src="/img/hero-img.png"/>
+      <img alt={imageAlt}
+      src={image}/>
     </section>
   );
 }

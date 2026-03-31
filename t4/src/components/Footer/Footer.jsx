@@ -33,7 +33,7 @@ function Footer() {
                     </ul>
                 </div>
             </div>
-            <img className="baristas" src="https://www.t4.com.tw/en/image/join1_lgpic.png"/>
+            {/* <img className="baristas" src="https://www.t4.com.tw/en/image/contact_pic2.png"/> */}
         </div>
         
     );
