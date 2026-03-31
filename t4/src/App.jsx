@@ -7,7 +7,7 @@ import Philosophy from "./components/Philosophy/Philosophy.jsx";
 import Seasonal from "./components/Seasonal/Seasonal.jsx";
 import Map from "./components/Map/Map.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-import Reviews from "./components/Reviews/Reviews.jsx";
+// import Reviews from "./components/Reviews/Reviews.jsx";
 
 // Pages
 import OrderNow from "./components/OrderNow/OrderNow.jsx";
@@ -53,7 +53,8 @@ function App() {
               subtitle2=""
               imageAlt="Three beverage service (bobaristas), two holding drink shakers and one in the middle holding a yellow drink."
               image="https://www.t4.com.tw/en/image/join1_lgpic.png"
-              style={{marginRight: "14%"}} />
+              // style={{marginRight: "14%"}}
+              />
             <Contact />
             <Footer />
           </>

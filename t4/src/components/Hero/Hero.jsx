@@ -10,7 +10,8 @@ function Hero({name, subtitle1, subtitle2, image, imageAlt}) {
       </div>
       <img alt={imageAlt}
       src={image}
-      style={style}/>
+      // style={style}
+      />
     </section>
   );
 }
