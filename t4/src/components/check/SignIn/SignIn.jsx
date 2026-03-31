@@ -53,7 +53,7 @@ function SignIn() {
                         <div className="signin-field">
                             <label htmlFor="login-email">Email</label>
                             <input type="text" id="login-email" name="email" required
-                                placeholder="e.g. janedoe@gmail.com"
+                                placeholder="Enter your email"
                                 value={loginData.email} onChange={handleLoginChange} />
                         </div>
                         <div className="signin-field">
@@ -83,7 +83,7 @@ function SignIn() {
                         <div className="signin-field">
                             <label htmlFor="create-email">Email</label>
                             <input type="email" id="create-email" name="email" required
-                                placeholder="e.g. janedoe@gmail.com"
+                                placeholder="Enter your email"
                                 value={createData.email} onChange={handleCreateChange} />
                         </div>
                         <div className="signin-field">
@@ -100,11 +100,11 @@ function SignIn() {
                             </div>
                         </div>
                         <div className="signin-field">
-                            <label htmlFor="confirm-password">Repeat Password</label>
+                            <label htmlFor="confirm-password">Confirm Password</label>
                             <div className="signin-password-wrapper">
                                 <input type={showConfirmPass ? "text" : "password"}
                                     id="confirm-password" name="confirm" required
-                                    placeholder="Confirm your password"
+                                    placeholder="Re-enter your password"
                                     value={createData.confirm} onChange={handleCreateChange} />
                                 <button type="button" className="signin-eye-btn"
                                     onClick={() => setShowConfirmPass(p => !p)}>

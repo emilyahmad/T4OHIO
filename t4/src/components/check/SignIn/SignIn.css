@@ -1,5 +1,5 @@
 .signin-page {
-    min-height: 100vh;
+    min-height: 80vh;
     background-color: #4C3015;
     display: flex;
     flex-direction: column;
@@ -10,7 +10,7 @@
 .signin-page-title {
     font-size: 7rem;
     color: white;
-    font-weight: 900;
+    /* font-weight: 900; */
     letter-spacing: -0.02em;
     line-height: 1;
     text-align: center;
@@ -35,9 +35,9 @@
 }
 
 .signin-card-title {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: #4C3015;
-    font-weight: 800;
+    font-weight: 600;
     margin-bottom: 2rem;
 }
 
@@ -46,7 +46,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 1.5rem;
+    padding: 0 1.75rem;
     position: relative;
     flex-shrink: 0;
     align-self: stretch;
@@ -171,8 +171,8 @@
 }
 
 .signin-submit-btn:hover {
-    background-color: #1da0a4;
-    transform: translateY(-2px);
+    background-color: #00777E;
+    /* transform: translateY(-2px); */
 }
 
 .signin-submit-btn:active { transform: translateY(0); }
