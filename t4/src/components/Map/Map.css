@@ -19,9 +19,9 @@
 }
 
 .store-info-media iframe {
-    align-items: center;
     margin-top: -3.5rem;
-    margin-left: 1rem;
+    left: 50%;
+    transform: translateX(50%);
     width: 23rem;
     height: 20rem; 
 }
