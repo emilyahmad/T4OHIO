@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div className="navbar">
+
       <div className="white-circles">
         <div className="first-circle">
-          <img src="/img/navbar/logo-circle.png"
+          <img src="img/navbar/logo-circle.png"
           alt="the T4 Icon with a white border"/>
         </div>
         <div className="second-circle">
@@ -14,6 +15,7 @@ function Navbar() {
           alt="a small white circle"/>
         </div>
       </div>
+      
       <div className="page-name">
         <Link to="/">Home</Link>
         <Link to="/order-now">Order Now</Link>

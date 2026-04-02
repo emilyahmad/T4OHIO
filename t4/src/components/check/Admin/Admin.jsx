@@ -6,7 +6,7 @@ function Admin() {
 
     return (
         <div className="admin-page">
-            <h1 className="admin-page-title">Admin</h1>
+            {/* <h1 className="admin-page-title">Admin</h1> */}
             <div className="admin-card">
                 <h2 className="admin-welcome">Welcome back, Admin!</h2>
                 <p className="admin-subtitle">What would you like to manage today?</p>

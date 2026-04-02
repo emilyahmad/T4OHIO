@@ -1,3 +1,18 @@
+@media (max-width: 768px) {
+    .signin-wrapper {
+        margin-left: 6rem;
+}
+
+.signin-divider span {
+    margin-left: -10rem;
+}
+
+}
+
+@media (min-width: 768px) {
+
+}
+
 .signin-page {
     min-height: 80vh;
     background-color: #4C3015;

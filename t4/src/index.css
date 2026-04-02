@@ -5,5 +5,17 @@
     margin: 0;
     padding: 0;
     transition: 500ms ease;
-    font-weight: 400;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (max-width: 768px) {
+    html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
 }

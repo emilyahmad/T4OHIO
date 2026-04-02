@@ -1,4 +1,5 @@
-.seasonal {
+@media (min-width: 768px) {
+    .seasonal {
     background-color: #785231;
     color: white;
 
@@ -20,6 +21,10 @@
     justify-content: center;
     line-height: 1.25;
     gap: 6rem;
+}
+
+.seasonal-subtitle {
+    font-size: 1.5rem;
 }
 
 .seasonal-cards {
@@ -45,4 +50,63 @@
     padding: 1rem;
     font-size: 1.25rem;
     text-align: center;
+}
+
+}
+
+@media (max-width: 768px) {
+        .seasonal {
+    background-color: #785231;
+    color: white;
+
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.seasonal h1 {
+    font-size: 1.75rem;
+}
+
+.seasonal-header {
+    margin-left: 10%;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.25;
+    gap: 2.25rem;
+}
+
+.seasonal-subtitle {
+    font-size: 1rem;
+}
+
+.seasonal-cards {
+    display: flex;
+    padding-bottom: 3rem;
+    justify-content: center;
+    gap: .5rem;
+    
+}
+
+.card {
+    background-color: #AE9375;
+    width: 30%;
+}
+
+.card img {
+    width: 100%;
+}
+
+.card p {
+    color: #333333;
+    font-weight: 850;
+    padding: .25rem;
+    font-size: .8rem;
+    text-align: center;
+    line-height: 1;
+}
 }

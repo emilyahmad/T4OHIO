@@ -1,49 +1,106 @@
-.navbar {
-    background-color: white;
-    height: 10rem;
+@media (max-width: 768px) {
+    .white-circles {
+        display: none;
+    }
+
+    .navbar {
+        background-color: rgb(255, 255, 255);
+        height: 5rem;
+    }
+
+    /* .white-circles {
+        display: flex;
+        margin: 0;
+        position: absolute;
+    }
+
+    .white-circles img {
+        width: 30%;
+    }
+
+    .first-circle {
+        margin-top: 2rem;
+        margin-left: .25rem;
+        margin-right: -11.75rem;
+    }
+
+    .second-circle {
+        margin-top: 4.5rem;
+    }
+    */
+
+    .page-name a {
+        color: #333333;
+        text-decoration: none;
+        padding: .75rem .75rem;
+        border-radius: 1.25rem 1rem 0 0;
+        white-space: nowrap;
+    }
+
+    .page-name a:hover {
+        background-color: #25B8BC;
+    }
+
+    .page-name {
+        z-index: 2;
+        font-size: 1rem;
+        display: flex;
+        /* margin-left: 25%; */
+        /* margin-right: 10%; */
+        justify-content: space-evenly;
+        align-items: center;
+        padding-top: 2.5rem;
+    }
 }
 
-.white-circles {
-    display: flex;
-    margin: 0 0 0 1rem;
-    position: absolute;
-}
+@media (min-width: 768px) {
+    .navbar {
+        background-color: white;
+        height: 10rem;
+    }
 
-.white-circles img {
-    width: 75%;
-}
+    .white-circles {
+        display: flex;
+        margin: 0 0 0 1rem;
+        position: absolute;
+    }
 
-.first-circle {
-    margin-top: 2rem;
-    margin-left: 3rem;
-    margin-right: -3.5rem;
-}
+    .white-circles img {
+        width: 75%;
+    }
 
-.first-circle:hover {
-    transform: scale(1.125);
-    transition: all 500ms ease;
-}
+    .first-circle {
+        margin-top: 2rem;
+        margin-left: 3rem;
+        margin-right: -3.5rem;
+    }
 
-.second-circle {
-    margin-top: 8rem;
-}
+    .first-circle:hover {
+        transform: scale(1.125);
+        transition: all 500ms ease;
+    }
 
-.page-name a {
-    color: #333333;
-    text-decoration: none;
-    padding: .75rem 2rem;
-    border-radius: 1.25rem 1rem 0 0;
-}
+    .second-circle {
+        margin-top: 8rem;
+    }
 
-.page-name a:hover {
-    background-color: #25B8BC;
-}
+    .page-name a {
+        color: #333333;
+        text-decoration: none;
+        padding: .75rem 2rem;
+        border-radius: 1.25rem 1rem 0 0;
+    }
 
-.page-name {
-    font-size: 2rem;
-    display: flex;
-    margin-left: 25%;
-    justify-content: space-evenly;
-    align-items: center;
-    padding-top: 6.15rem;
+    .page-name a:hover {
+        background-color: #25B8BC;
+    }
+
+    .page-name {
+        font-size: 2rem;
+        display: flex;
+        margin-left: 25%;
+        justify-content: space-evenly;
+        align-items: center;
+        padding-top: 6.15rem;
+    }
 }

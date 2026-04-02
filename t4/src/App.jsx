@@ -48,6 +48,7 @@ function App() {
         <Route path="/contact-us" element={
           <>
             <Hero
+              showMobile="hide-mobile"
               name="Contact Us"
               subtitle1="Fill out the form below, we will get back to you shortly!"
               subtitle2=""
@@ -63,6 +64,7 @@ function App() {
         <Route path="/sign-in" element={
           <>
             <Hero
+              showMobile="hide-mobile"
               name="Sign In"
               subtitle1="For store owners & website admin"
               subtitle2=""

@@ -197,13 +197,17 @@ function OrderNow() {
         <div className="menu-container">
             <div className="menu-header">
                 <div className="menu-video-container">
+                    
+                    {/* <img className="menu-video-img" src="T4OHIO/public/img/menu-video-img.png" alt="The six steps of the tea making process"/> */}
+                    
                     <iframe className="menu-video" width="560" height="315"
                     src="https://www.youtube.com/embed/hiGIQ0xwrxo?autoplay=1&mute=1&controls=0&loop=1&playlist=hiGIQ0xwrxo&si=busjpJVvxQdNVQK1"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write;
                     encrypted-media; gyroscope; picture-in-picture;
                     web-share" referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen></iframe>
+                    allowfullscreen></iframe> 
+
                 </div>
                 <h1 className="menu-title" >Menu</h1>
             <div className="menu-explore-container">

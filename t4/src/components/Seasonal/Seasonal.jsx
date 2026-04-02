@@ -27,7 +27,7 @@ function Seasonal() {
         <div className="seasonal">
             <div className="seasonal-header">
                 <h1>Seasonal</h1>
-                <h2>Stay up-to-date with new and drinks, snacks, upcoming
+                <h2 className="seasonal-subtitle">Stay up-to-date with new and drinks, snacks, upcoming
                     <br></br>
                     events and promotions</h2>
             </div>

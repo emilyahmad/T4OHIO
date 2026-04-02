@@ -70,6 +70,7 @@ function Philosophy() {
       <p
       style={steps[currentStep].pStyle}
       >{steps[currentStep].description}</p>
+      {/* <img className="tea-video" src="/img/tea-video-img.png" alt="The six steps of the tea making process"/> */}
       <iframe className="tea-video" alt="A video of the tea making process, beginning with harvesting the leaves to serving the customer"
         // having the video loop & autoplay may hurt accessibility
         width="560" height="315" src="https://www.youtube.com/embed/fsqg5liM0bs?autoplay=1&mute=1&controls=0&loop=1&playlist=fsqg5liM0bs&si=kduHbUzAXSD8bLS1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -87,7 +88,7 @@ function Philosophy() {
         <img className="teacup" alt="A drawing of a tea cup filling up with tea" src={steps[currentStep].teacup}/>
       </div>
       <i className="fa-solid fa-angle-right" onClick={handleNext}/>
-      <h2>{steps[currentStep].key}</h2>
+      <h2 className="numbered-steps">{steps[currentStep].key}</h2>
     </div>
   );
 }
