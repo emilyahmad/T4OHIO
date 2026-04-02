@@ -15,13 +15,16 @@
 }
 
 .store-info-media {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
 .store-info-media iframe {
+    margin: 0 auto;
     margin-top: -3.5rem;
-    left: 50%;
-    transform: translateX(50%);
+    /* left: 50%;
+    transform: translateX(50%); */
     width: 23rem;
     height: 20rem; 
 }
@@ -41,13 +44,13 @@
     font-size: 1.15rem;
 }
 
-.map-image {
+/* .map-image {
     width: 12rem;
     height: 18.5rem;
     object-fit: cover;
     margin-left: 1rem;
     margin-top: -7rem;
-}
+} */
     
 }
 
