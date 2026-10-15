@@ -1,3 +1,4 @@
+import { asset } from "../../utils/asset.js";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 
@@ -7,11 +8,11 @@ function Navbar() {
 
       <div className="white-circles">
         <div className="first-circle">
-          <img src="img/navbar/logo-circle.png"
+          <img src={asset("img/navbar/logo-circle.png")}
           alt="the T4 Icon with a white border"/>
         </div>
         <div className="second-circle">
-          <img src="/img/navbar/circle2.png"
+          <img src={asset("img/navbar/circle2.png")}
           alt="a small white circle"/>
         </div>
       </div>

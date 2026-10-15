@@ -1,3 +1,4 @@
+import { asset } from "../../utils/asset.js";
 import "./Footer.css"
 import { Link } from "react-router-dom";
 
@@ -5,7 +6,7 @@ function Footer() {
     return (
         <div className="footer">
             <div className="logo-section">
-                <img className="footer-logo" src="/img/t4-footer.png"/>
+                <img className="footer-logo" src={asset("img/t4-footer.png")}/>
             </div>
             <div className="footer-sections">
                 <div className="left-footer-col">

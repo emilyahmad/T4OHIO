@@ -1,22 +1,23 @@
+import { asset } from "../../utils/asset.js";
 import "./Seasonal.css";
 
 function Seasonal() {
     const cards = [
         {
             key: 1,
-            image: "/img/posters/poster1.png",
+            image: asset("img/posters/poster1.png"),
             alt: "A poster of a tiramisu frappe boba drink",
             description: "A rich and creamy milk tea layered with soft cake textures and chewy boba for a perfectly indulgent treat."
         },
         {
             key: 2,
-            image: "/img/posters/poster2.png",
+            image: asset("img/posters/poster2.png"),
             alt: "A poster of a boba cake milk tea drink",
             description: "A smooth iced coffee topped with a velvety sea salt cream foam that creates the perfect balance of sweet and savory."
         },
         {
             key: 3,
-            image: "/img/posters/poster3.png",
+            image: asset("img/posters/poster3.png"),
             alt: "A poster of a cream crown sea salt coffee boba tea drink",
             description: "A smooth iced coffee topped with a velvety sea salt cream foam that creates the perfect balance of sweet and savory."
         },

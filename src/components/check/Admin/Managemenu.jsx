@@ -1,44 +1,44 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Managemenu.css";
+import { useMenu } from "../../../data/useMenu.js";
 
-const initialCategories = [
-    { name: "Classic", items: [
-        { id: 1, name: "Jadeite Royal Tea", price: "4.75" },
-        { id: 2, name: "Jasmine Green Tea", price: "4.75" },
-    ]},
-    { name: "Smoothie", items: [
-        { id: 1, name: "Lemon Smoothie", price: "5.75" },
-        { id: 2, name: "Lychee Smoothie", price: "5.75" },
-    ]},
-    { name: "Snacks", items: [
-        { id: 1, name: "French Fries", price: "5.00" },
-        { id: 2, name: "Popcorn Chicken", price: "10.00" },
-    ]},
-    { name: "Milkshake", items: [
-        { id: 1, name: "Chocolate Milkshake", price: "6.25" },
-        { id: 2, name: "Red Bean Milkshake", price: "6.25" },
-    ]},
-];
-
+// Loads the menu, then hands it to the editor (which keeps its own working copy)
 function ManageMenu() {
+    const { menu, loading, error } = useMenu();
+
+    if (loading || error) {
+        return (
+            <div className="mm-page">
+                <h1 className="mm-page-title">Manage Menu</h1>
+                <div className="mm-card">
+                    <p>{error ? "Couldn't load the menu. Refresh the page to try again." : "Loading menu…"}</p>
+                </div>
+            </div>
+        );
+    }
+
+    return <MenuEditor initialCategories={menu} />;
+}
+
+function MenuEditor({ initialCategories }) {
     const navigate = useNavigate();
     const [view, setView] = useState("select"); // "select" | "edit" | "add"
-    const [categories, setCategories] = useState(initialCategories);
+    const [categories, setCategories] = useState(initialCategories); // edits stay on this page until Phase 2 connects Save Changes to the database
     const [selectedCategory, setSelectedCategory] = useState("");
     const [newCategoryName, setNewCategoryName] = useState("");
     const [saveMsg, setSaveMsg] = useState("");
 
-    const currentCategory = categories.find(c => c.name === selectedCategory);
+    const currentCategory = categories.find(c => c.id === selectedCategory);
 
-    const handleSelectCategory = (name) => {
-        setSelectedCategory(name);
+    const handleSelectCategory = (id) => {
+        setSelectedCategory(id);
         setView("edit");
     };
 
     const handleItemChange = (itemId, field, value) => {
         setCategories(prev => prev.map(cat =>
-            cat.name === selectedCategory
+            cat.id === selectedCategory
                 ? { ...cat, items: cat.items.map(item =>
                     item.id === itemId ? { ...item, [field]: value } : item
                 )}
@@ -48,7 +48,7 @@ function ManageMenu() {
 
     const handleDeleteItem = (itemId) => {
         setCategories(prev => prev.map(cat =>
-            cat.name === selectedCategory
+            cat.id === selectedCategory
                 ? { ...cat, items: cat.items.filter(item => item.id !== itemId) }
                 : cat
         ));
@@ -56,21 +56,21 @@ function ManageMenu() {
 
     const handleAddItem = () => {
         setCategories(prev => prev.map(cat =>
-            cat.name === selectedCategory
-                ? { ...cat, items: [...cat.items, { id: Date.now(), name: "", price: "" }] }
+            cat.id === selectedCategory
+                ? { ...cat, items: [...cat.items, { id: `${cat.id}-${Date.now()}`, name: "", price: "", image: null, tags: [], modifiers: [] }] }
                 : cat
         ));
     };
 
     const handleDeleteCategory = () => {
-        setCategories(prev => prev.filter(c => c.name !== selectedCategory));
+        setCategories(prev => prev.filter(c => c.id !== selectedCategory));
         setView("select");
         setSelectedCategory("");
     };
 
     const handleAddCategory = () => {
         if (!newCategoryName.trim()) return;
-        setCategories(prev => [...prev, { name: newCategoryName.trim(), items: [] }]);
+        setCategories(prev => [...prev, { id: `category-${Date.now()}`, name: newCategoryName.trim(), items: [] }]);
         setNewCategoryName("");
         setView("select");
     };
@@ -96,9 +96,9 @@ function ManageMenu() {
                         <div className="mm-category-list">
                             {categories.map(cat => (
                                 <button
-                                    key={cat.name}
+                                    key={cat.id}
                                     className="mm-category-btn"
-                                    onClick={() => handleSelectCategory(cat.name)}>
+                                    onClick={() => handleSelectCategory(cat.id)}>
                                     {cat.name}
                                     <span className="mm-item-count">{cat.items.length} items</span>
                                 </button>
@@ -118,7 +118,7 @@ function ManageMenu() {
                             <button className="mm-back-btn" onClick={() => setView("select")}>
                                 ← Back
                             </button>
-                            <h2 className="mm-section-title">{selectedCategory}</h2>
+                            <h2 className="mm-section-title">{currentCategory.name}</h2>
                             <button className="mm-delete-category-btn" onClick={handleDeleteCategory}>
                                 Delete Category
                             </button>
@@ -142,10 +142,12 @@ function ManageMenu() {
                                     />
                                     <input
                                         className="mm-input mm-input-price"
-                                        type="text"
+                                        type="number"
+                                        min="0"
+                                        step="0.01"
                                         value={item.price}
                                         placeholder="0.00"
-                                        onChange={(e) => handleItemChange(item.id, "price", e.target.value)}
+                                        onChange={(e) => handleItemChange(item.id, "price", e.target.value === "" ? "" : Number(e.target.value))}
                                     />
                                     <button
                                         className="mm-delete-item-btn"

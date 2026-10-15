@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { asset } from "./utils/asset.js";
 
 // Landing page components
 import Hero from "./components/Hero/Hero.jsx";
@@ -15,10 +16,16 @@ import Contact from "./components/check/Contact/Contact.jsx";
 import SignIn from "./components/check/SignIn/SignIn.jsx";
 import Admin from "./components/check/Admin/Admin.jsx";
 import ManageMenu from "./components/check/Admin/Managemenu.jsx";
+import ResetPassword from "./components/check/SignIn/ResetPassword.jsx";
+
+// Auth
+import AuthProvider from "./auth/AuthProvider.jsx";
+import RequireAdmin from "./auth/RequireAdmin.jsx";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <AuthProvider>
       <Navbar />
       <Routes>
 
@@ -29,7 +36,7 @@ function App() {
               subtitle1="A cup of tea for you"
               subtitle2="清茶达人"
               imageAlt="Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
-              image="/img/hero-img.png"
+              image={asset("img/hero-img.png")}
             />
             <Philosophy />
             <Seasonal />
@@ -77,11 +84,19 @@ function App() {
           </>
         } />
 
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/reset-password" element={
+          <>
+            <ResetPassword />
+            <Footer />
+          </>
+        } />
 
-        <Route path="/admin/manage-menu" element={<ManageMenu />} />
+        <Route path="/admin" element={<RequireAdmin><Admin /></RequireAdmin>} />
+
+        <Route path="/admin/manage-menu" element={<RequireAdmin><ManageMenu /></RequireAdmin>} />
 
       </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

@@ -1,8 +1,15 @@
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../auth/AuthContext.js";
 import "./Admin.css";
 
 function Admin() {
     const navigate = useNavigate();
+    const { signOut } = useAuth();
+
+    const handleSignOut = async () => {
+        await signOut();
+        navigate("/sign-in");
+    };
 
     return (
         <div className="admin-page">
@@ -26,7 +33,7 @@ function Admin() {
                         <p>Update hero content and featured items</p>
                     </div>
                 </div>
-                <button className="admin-signout-btn" onClick={() => navigate("/sign-in")}>
+                <button className="admin-signout-btn" onClick={handleSignOut}>
                     Sign Out
                 </button>
             </div>

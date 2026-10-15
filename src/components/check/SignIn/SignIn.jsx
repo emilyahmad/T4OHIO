@@ -1,50 +1,61 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { supabase } from "../../../lib/supabase.js";
+import { useAuth } from "../../../auth/AuthContext.js";
 import "./SignIn.css";
 
+// Admin accounts are created by the owner in the Supabase dashboard, so there's no sign-up form.
 function SignIn() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { isAdmin, loading } = useAuth();
     const [loginData, setLoginData] = useState({ email: "", password: "" });
-    const [createData, setCreateData] = useState({ email: "", password: "", confirm: "" });
     const [showLoginPass, setShowLoginPass] = useState(false);
-    const [showCreatePass, setShowCreatePass] = useState(false);
-    const [showConfirmPass, setShowConfirmPass] = useState(false);
-    const [passwordError, setPasswordError] = useState("");
     const [loginError, setLoginError] = useState("");
+    const [infoMsg, setInfoMsg] = useState("");
+    const [submitting, setSubmitting] = useState(false);
+
+    // Where to go after signing in: the admin page they were sent here from, or the dashboard
+    const destination = location.state?.from ?? "/admin";
+
+    if (!loading && isAdmin) return <Navigate to={destination} replace />;
 
     const handleLoginChange = (e) => {
         setLoginError("");
+        setInfoMsg("");
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
     };
 
-    const handleCreateChange = (e) => {
-        setCreateData({ ...createData, [e.target.name]: e.target.value });
-        if (e.target.name === "confirm" || e.target.name === "password") {
-            setPasswordError("");
-        }
-    };
-
-    const handleLoginSubmit = (e) => {
+    const handleLoginSubmit = async (e) => {
         e.preventDefault();
-        if (loginData.email === "admin" && loginData.password === "pass") {
-            navigate("/admin");
+        setSubmitting(true);
+        const { error } = await supabase.auth.signInWithPassword(loginData);
+        setSubmitting(false);
+        if (error) {
+            setLoginError(error.message === "Invalid login credentials" ? "Invalid email or password." : error.message);
         } else {
-            setLoginError("Invalid email or password.");
+            navigate(destination, { replace: true });
         }
     };
 
-    const handleCreateSubmit = (e) => {
-        e.preventDefault();
-        if (createData.password !== createData.confirm) {
-            setPasswordError("Passwords do not match.");
+    const handleForgotPassword = async () => {
+        setLoginError("");
+        if (!loginData.email) {
+            setLoginError("Enter your email above, then click Forgot Password.");
             return;
         }
-        alert("Account created!");
+        const { error } = await supabase.auth.resetPasswordForEmail(loginData.email, {
+            redirectTo: `${window.location.origin}${import.meta.env.BASE_URL}reset-password`,
+        });
+        if (error) {
+            setLoginError(error.message);
+        } else {
+            setInfoMsg("If that email has an admin account, a reset link is on its way.");
+        }
     };
 
     return (
         <div className="signin-page">
-            {/* <h1 className="signin-page-title">Sign In</h1> */}
             <div className="signin-wrapper">
 
                 <div className="signin-card">
@@ -52,7 +63,8 @@ function SignIn() {
                     <form className="signin-form" onSubmit={handleLoginSubmit}>
                         <div className="signin-field">
                             <label htmlFor="login-email">Email</label>
-                            <input type="text" id="login-email" name="email" required
+                            <input type="email" id="login-email" name="email" required
+                                autoComplete="email"
                                 placeholder="Enter your email"
                                 value={loginData.email} onChange={handleLoginChange} />
                         </div>
@@ -61,6 +73,7 @@ function SignIn() {
                             <div className="signin-password-wrapper">
                                 <input type={showLoginPass ? "text" : "password"}
                                     id="login-password" name="password" required
+                                    autoComplete="current-password"
                                     placeholder="Enter your password"
                                     value={loginData.password} onChange={handleLoginChange} />
                                 <button type="button" className="signin-eye-btn"
@@ -69,51 +82,14 @@ function SignIn() {
                                 </button>
                             </div>
                             {loginError && <span className="signin-error">{loginError}</span>}
+                            {infoMsg && <span className="signin-info">{infoMsg}</span>}
                         </div>
-                        <a href="/reset-password" className="signin-forgot">Forgot Password?</a>
-                        <button className="signin-submit-btn" type="submit">Log In</button>
-                    </form>
-                </div>
-
-                <div className="signin-divider"><span>OR</span></div>
-
-                <div className="signin-card">
-                    <h2 className="signin-card-title">Create an Account</h2>
-                    <form className="signin-form" onSubmit={handleCreateSubmit}>
-                        <div className="signin-field">
-                            <label htmlFor="create-email">Email</label>
-                            <input type="email" id="create-email" name="email" required
-                                placeholder="Enter your email"
-                                value={createData.email} onChange={handleCreateChange} />
-                        </div>
-                        <div className="signin-field">
-                            <label htmlFor="create-password">Password</label>
-                            <div className="signin-password-wrapper">
-                                <input type={showCreatePass ? "text" : "password"}
-                                    id="create-password" name="password" required
-                                    placeholder="Create a password"
-                                    value={createData.password} onChange={handleCreateChange} />
-                                <button type="button" className="signin-eye-btn"
-                                    onClick={() => setShowCreatePass(p => !p)}>
-                                    <i className={`fa-regular ${showCreatePass ? "fa-eye-slash" : "fa-eye"}`} />
-                                </button>
-                            </div>
-                        </div>
-                        <div className="signin-field">
-                            <label htmlFor="confirm-password">Confirm Password</label>
-                            <div className="signin-password-wrapper">
-                                <input type={showConfirmPass ? "text" : "password"}
-                                    id="confirm-password" name="confirm" required
-                                    placeholder="Re-enter your password"
-                                    value={createData.confirm} onChange={handleCreateChange} />
-                                <button type="button" className="signin-eye-btn"
-                                    onClick={() => setShowConfirmPass(p => !p)}>
-                                    <i className={`fa-regular ${showConfirmPass ? "fa-eye-slash" : "fa-eye"}`} />
-                                </button>
-                            </div>
-                            {passwordError && <span className="signin-error">{passwordError}</span>}
-                        </div>
-                        <button className="signin-submit-btn" type="submit">Sign Up</button>
+                        <button type="button" className="signin-forgot" onClick={handleForgotPassword}>
+                            Forgot Password?
+                        </button>
+                        <button className="signin-submit-btn" type="submit" disabled={submitting}>
+                            {submitting ? "Logging In…" : "Log In"}
+                        </button>
                     </form>
                 </div>
 
