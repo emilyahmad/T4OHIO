@@ -1,8 +1,11 @@
 import { asset } from "../../utils/asset.js";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../auth/AuthContext.js";
 
 function Navbar() {
+  const { isAdmin } = useAuth();
+
   return (
     <div className="navbar">
 
@@ -21,7 +24,7 @@ function Navbar() {
         <Link to="/">Home</Link>
         <Link to="/order-now">Order Now</Link>
         <Link to="/contact-us">Contact</Link>
-        <Link to="/sign-in">Sign In</Link>
+        {isAdmin ? <Link to="/admin">Admin</Link> : <Link to="/sign-in">Sign In</Link>}
       </div>
 
     </div>

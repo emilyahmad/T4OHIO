@@ -25,6 +25,7 @@
 
 .seasonal-subtitle {
     font-size: 1.5rem;
+    max-width: 36rem;
 }
 
 .seasonal-cards {
