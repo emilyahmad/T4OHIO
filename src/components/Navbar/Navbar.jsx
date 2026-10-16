@@ -24,7 +24,8 @@ function Navbar() {
         <Link to="/">Home</Link>
         <Link to="/order-now">Order Now</Link>
         <Link to="/contact-us">Contact</Link>
-        {isAdmin ? <Link to="/admin">Admin</Link> : <Link to="/sign-in">Sign In</Link>}
+        {/* Customers never see a login link; the owner bookmarks /admin, which asks them to sign in */}
+        {isAdmin && <Link to="/admin">Admin</Link>}
       </div>
 
     </div>

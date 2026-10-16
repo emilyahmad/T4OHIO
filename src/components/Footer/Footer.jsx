@@ -20,7 +20,6 @@ function Footer() {
                     <ul>
                         <li><Link to="/order-now">Order Now</Link></li>
                         <li><Link to="/contact-us">Contact</Link></li>
-                        <li><Link to="/sign-in">Sign In</Link></li>
                         <li><a href="https://www.instagram.com/t4ohio/"><i className="fa-brands fa-instagram"></i></a></li>
                         <li><a href="https://www.facebook.com/T4DAYTON/"><i className="fa-brands fa-facebook"></i></a></li>
                     </ul>
