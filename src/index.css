@@ -1,12 +1,22 @@
-/* T4 brand palette: teal, grey and gold */
+/* Site color palette (T4 teal + warm sand). Every component's colors come from these variables.
+   teal / teal-dark: brand teal and its deep shade
+   gold / gold-dark: the warm sand accent (stars, icons, click effect, form borders)
+   ink: body text          charcoal: secondary text
+   dark: dark section backgrounds      dark-2: dark cards and the Seasonal section
+   light: light section backgrounds    mist: dividers, light tints, light text on dark
+   on-dark-muted: soft text on dark backgrounds */
 :root {
     --t4-teal: #25B8BC;
-    --t4-teal-dark: #00777E;
-    --t4-gold: #C3A05B;
-    --t4-gold-dark: #A8884A;
-    --t4-charcoal: #4D4D4F;
-    --t4-ink: #333333;
-    --t4-mist: #EDEDED;
+    --t4-teal-dark: #0F6F73;
+    --t4-gold: #D9B57E;
+    --t4-gold-dark: #B8925A;
+    --t4-ink: #26333A;
+    --t4-charcoal: #4E5B5F;
+    --t4-dark: #233A3F;
+    --t4-dark-2: #2F4A50;
+    --t4-light: #F6F4EF;
+    --t4-mist: #E6E0D4;
+    --t4-on-dark-muted: #DCD6CA;
 }
 
 * {

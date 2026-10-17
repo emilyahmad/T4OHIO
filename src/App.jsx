@@ -1,7 +1,7 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { asset } from "./utils/asset.js";
-import { useSiteContent } from "./data/siteContent.js";
+import { useSiteContent, DEFAULT_CONTENT } from "./data/siteContent.js";
+import { youtubeId } from "./utils/youtube.js";
 
 // Landing page components
 import Hero from "./components/Hero/Hero.jsx";
@@ -12,11 +12,11 @@ import Promotions from "./components/Promotions/Promotions.jsx";
 import Map from "./components/Map/Map.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import ScrollFade from "./components/ScrollFade/ScrollFade.jsx";
+import ClickBurst from "./components/ClickBurst/ClickBurst.jsx";
 import Reviews from "./components/Reviews/Reviews.jsx";
 
 // Pages
 import OrderNow from "./components/OrderNow/OrderNow.jsx";
-import Contact from "./components/check/Contact/Contact.jsx";
 import SignIn from "./components/check/SignIn/SignIn.jsx";
 import AdminLayout from "./components/check/Admin/AdminLayout.jsx";
 import Admin from "./components/check/Admin/Admin.jsx";
@@ -27,17 +27,6 @@ import ResetPassword from "./components/check/SignIn/ResetPassword.jsx";
 // Auth
 import AuthProvider from "./auth/AuthProvider.jsx";
 import RequireAdmin from "./auth/RequireAdmin.jsx";
-
-// The boba pearl that follows the cursor. Loaded separately (three.js is large) and only on
-// devices with a mouse, for people who haven't asked their device to reduce motion.
-const BobaCursor = lazy(() => import("./components/BobaCursor/BobaCursor.jsx"));
-const WANTS_BOBA = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches;
-
-function BobaLayer() {
-  const { pathname } = useLocation();
-  if (!WANTS_BOBA || pathname.startsWith("/admin")) return null;
-  return <Suspense fallback={null}><BobaCursor /></Suspense>;
-}
 
 // The hero and seasonal sections come from the database so the owner can edit them.
 function Home() {
@@ -52,8 +41,7 @@ function Home() {
           subtitle1={hero.subtitle1}
           subtitle2={hero.subtitle2}
           imageAlt={hero.alt}
-          image={asset(hero.image)}
-          video="tq-HzPabP3M"
+          video={youtubeId(hero.video) || youtubeId(DEFAULT_CONTENT.hero.video)}
         />
       )}
       {!loading && <Promotions title={promotions.title} images={promotions.images} />}
@@ -71,13 +59,21 @@ function App() {
       <AuthProvider>
       <Navbar />
       <ScrollFade />
-      <BobaLayer />
+      <ClickBurst />
       <Routes>
 
         <Route path="/" element={<Home />} />
 
         <Route path="/order-now" element={
           <>
+            <Hero
+              name="Our Menu"
+              subtitle1="Handcrafted teas, made just the way you like them."
+              subtitle2=""
+              imageAlt="A T4 team member holding out an iced milk tea with boba."
+              backgroundImage={asset("img/video.png")}
+              centered
+            />
             <OrderNow />
             <Footer />
           </>
@@ -86,34 +82,20 @@ function App() {
         <Route path="/philosophy" element={
           <>
             <Hero
-              showMobile="hide-mobile"
               name="Our Philosophy"
               subtitle1="From leaf to cup, every step is done with care."
               subtitle2=""
               imageAlt="Several T4 drinks with teal lids on a wooden tray, including a milk tea with boba."
-              image={asset("img/philo-video.png")}
-              style={{marginRight: "7rem", width: "32.5%"}}
+              backgroundImage={asset("img/philo-video.png")}
+              centered
             />
             <Philosophy />
             <Footer />
           </>
         } />
 
-        <Route path="/contact-us" element={
-          <>
-            <Hero
-              showMobile="hide-mobile"
-              name="Contact Us"
-              subtitle1="Fill out the form below, we will get back to you shortly!"
-              subtitle2=""
-              imageAlt="Three beverage service (bobaristas), two holding drink shakers and one in the middle holding a yellow drink."
-              image="https://www.t4.com.tw/en/image/join1_lgpic.png"
-              style={{marginRight: "7rem", width: "32.5%"}}
-              />
-            <Contact />
-            <Footer />
-          </>
-        } />
+        {/* The contact page was removed; old links go to the home page */}
+        <Route path="/contact-us" element={<Navigate to="/" replace />} />
 
         <Route path="/sign-in" element={
           <>

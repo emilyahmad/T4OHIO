@@ -589,21 +589,35 @@ textarea.adm-input { resize: vertical; line-height: 1.35; }
     letter-spacing: 0.06em;
 }
 
+/* A small copy of the home page header: video thumbnail, dark tint, white text bottom-right */
 .fp-hero-preview {
-    background-color: white;
-    border: 1px solid var(--line);
+    position: relative;
+    aspect-ratio: 16 / 9;
     border-radius: 0.75rem;
-    padding: 1.5rem;
+    overflow: hidden;
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    min-height: 12rem;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 1.25rem 1.5rem;
+    background-color: var(--t4-dark);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: right;
 }
 
-.fp-hero-preview > div { flex: 1; }
-.fp-hero-preview h3 { font-size: 2rem; font-weight: 800; color: #333; }
-.fp-hero-preview p { font-size: 1.05rem; color: #555; }
-.fp-hero-preview img { width: 45%; max-height: 14rem; object-fit: contain; }
+.fp-hero-preview::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.fp-hero-preview > div { position: relative; }
+.fp-hero-preview h3 { font-size: 2rem; font-weight: 800; }
+.fp-hero-preview p { font-size: 1.05rem; }
+
+.fp-field-error { color: var(--red); }
 
 .fp-seasonal-text { display: grid; grid-template-columns: 1fr 2fr; gap: 1rem; margin-bottom: 1.5rem; }
 

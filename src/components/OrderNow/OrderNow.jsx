@@ -4,18 +4,35 @@ import { FILTER_TAGS, itemImage } from "../../data/menu.js";
 import { useMenu } from "../../data/useMenu.js";
 import ItemModal from "./ItemModal.jsx";
 
+const formatPrice = (n) => `$${n.toFixed(2)}`;
+
+// One menu item: photo, name, iced/hot, price and an add button. The whole card opens the item.
 function DrinkCard({ item, onSelect }) {
+    const temperature = [item.tags.includes("Cold") && "Iced", item.tags.includes("Hot") && "Hot"].filter(Boolean).join(" · ");
+    const isNew = item.tags.includes("New");
+
     return (
-        <div className="drink-card" onClick={() => onSelect(item)}>
-            <div className="drink-card-image-container">
-                <img src={itemImage(item)} alt={item.alt || item.name} />
+        <button type="button" className="drink-card" onClick={() => onSelect(item)}>
+            <div className={item.image ? "drink-card-image" : "drink-card-image is-logo"}>
+                <img src={itemImage(item)} alt={item.alt || item.name} loading="lazy" />
+                {isNew && <span className="drink-card-badge">New</span>}
             </div>
-            <h3>{item.name}</h3>
-        </div>
+            <div className="drink-card-body">
+                <h3>{item.name}</h3>
+                {temperature && <span className="drink-card-meta">{temperature}</span>}
+                <div className="drink-card-footer">
+                    <span className="drink-card-price">{formatPrice(item.price)}</span>
+                    <span className="drink-card-add" aria-hidden="true"><i className="fa-solid fa-plus"></i></span>
+                </div>
+            </div>
+        </button>
     );
 }
 
 const statusStyle = { color: "var(--t4-mist)", fontSize: "1.25rem" };
+
+// Lowercase without accents, so "tiramisu" finds "Tiramisù Frappé"
+const normalize = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
 function OrderNow() {
     const { menu: fullMenu, loading, error } = useMenu();
@@ -26,6 +43,15 @@ function OrderNow() {
         .map(category => ({ ...category, items: category.items.filter(item => item.available) }))
         .filter(category => category.items.length > 0);
     const [activeFilters, setActiveFilters] = useState([]);
+    const [query, setQuery] = useState("");
+    // Categories start open; clicking a category's heading folds it away
+    const [collapsed, setCollapsed] = useState(() => new Set());
+    const toggleCategory = (id) => setCollapsed(prev => {
+        const next = new Set(prev);
+        if (next.has(id)) next.delete(id);
+        else next.add(id);
+        return next;
+    });
 
     const toggleFilter = (filter) => {
         setActiveFilters((prev) =>
@@ -33,46 +59,60 @@ function OrderNow() {
         );
     };
 
-    // Some items are listed under two categories; show each only once when filtering
-    const filteredMenu = activeFilters.length === 0 ? null : menu
-        .flatMap(category => category.items)
-        .filter(item => activeFilters.every(f => item.tags.includes(f)))
+    // A search matches when every word appears in the drink's name, its category or its tags
+    const words = normalize(query).split(/\s+/).filter(Boolean);
+    const matchesSearch = (item, category) => {
+        const haystack = normalize([item.name, category.name, ...item.tags].join(" "));
+        return words.every(word => haystack.includes(word));
+    };
+
+    // Some items are listed under two categories; show each only once when searching or filtering
+    const filteredMenu = activeFilters.length === 0 && words.length === 0 ? null : menu
+        .flatMap(category => category.items.map(item => ({ item, category })))
+        .filter(({ item, category }) => activeFilters.every(f => item.tags.includes(f)) && matchesSearch(item, category))
+        .map(({ item }) => item)
         .filter((item, i, items) => items.findIndex(other => other.name === item.name) === i);
-    const filterTitle = activeFilters.length === 1 ? `${activeFilters[0]}` : `${activeFilters.join(" & ")} Items`;
+    const filterLabel = activeFilters.length === 1 ? `${activeFilters[0]}` : `${activeFilters.join(" & ")} Items`;
+    const filterTitle = words.length === 0 ? filterLabel
+        : `Results for “${query.trim()}”${activeFilters.length ? ` · ${activeFilters.join(" & ")}` : ""}`;
 
     // TODO (Phase 4): put the line item in the cart
     const handleAdd = () => setSelectedDrink(null);
 
     return (
         <div className="menu-container">
-            <div className="menu-header">
-                <div className="menu-video-container">
-                    <iframe className="menu-video" width="560" height="315"
-                    src="https://www.youtube.com/embed/hiGIQ0xwrxo?autoplay=1&mute=1&controls=0&loop=1&playlist=hiGIQ0xwrxo&si=busjpJVvxQdNVQK1"
-                    title="YouTube video player" frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write;
-                    encrypted-media; gyroscope; picture-in-picture;
-                    web-share" referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen></iframe>
-                </div>
-                <h1 className="menu-title" >Menu</h1>
             <div className="menu-explore-container">
                 <div className="filter-menu-options">
                     <div className="filters">
-                        <h2>Filters</h2>
-                        <br></br>
-                        {FILTER_TAGS.map((filter => (
-                                <li
-                                key={filter}
-                                className={activeFilters.includes(filter) ? "filter-pill-active" : "filter-pill"}
-                                onClick={() => toggleFilter(filter)}>
-                                    {filter}
-                                    {activeFilters.includes(filter) && (
-                                        <i className="fa-solid fa-circle-check"></i>
-                                    )}
-                                </li>
-                            )))
-                        }
+                        <div className="filter-bar">
+                            <div className="menu-search">
+                                <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                <input type="search" placeholder="Search the menu"
+                                    aria-label="Search the menu"
+                                    value={query} onChange={(e) => setQuery(e.target.value)} />
+                                {query && (
+                                    <button type="button" onClick={() => setQuery("")} aria-label="Clear search">
+                                        <i className="fa-solid fa-xmark" aria-hidden="true"></i>
+                                    </button>
+                                )}
+                            </div>
+                        <ul className="filter-list">
+                            {FILTER_TAGS.map((filter) => {
+                                const active = activeFilters.includes(filter);
+                                return (
+                                    <li key={filter}>
+                                        <button type="button"
+                                            className={active ? "filter-pill-active" : "filter-pill"}
+                                            aria-pressed={active}
+                                            onClick={() => toggleFilter(filter)}>
+                                            {filter}
+                                            {active && <i className="fa-solid fa-circle-check" aria-hidden="true"></i>}
+                                        </button>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                        </div>
                     </div>
                 </div>
                 <div className="menu-items">
@@ -88,26 +128,38 @@ function OrderNow() {
                                     <DrinkCard key={item.id} item={item} onSelect={setSelectedDrink} />
                                 )) : (
                                     <p style={statusStyle}>
-                                        No items match these filters.
+                                        {words.length ? `Nothing on the menu matches “${query.trim()}”${activeFilters.length ? " with these filters" : ""}.` : "No items match these filters."}
                                     </p>
                                 )}
                             </div>
                         </div>
                     ) : (
-                        menu.map((category) => (
-                            <div className="classic" key={category.id}>
-                                <h1>{category.name}</h1>
-                                <div className="classic-drinks">
-                                    {category.items.map((item) => (
-                                        <DrinkCard key={item.id} item={item} onSelect={setSelectedDrink} />
-                                    ))}
+                        menu.map((category) => {
+                            const open = !collapsed.has(category.id);
+                            const listId = `category-${category.id}`;
+                            return (
+                                <div className={open ? "classic" : "classic is-collapsed"} key={category.id}>
+                                    <h1>
+                                        <button type="button" className="category-toggle"
+                                            aria-expanded={open} aria-controls={listId}
+                                            onClick={() => toggleCategory(category.id)}>
+                                            {category.name}
+                                            <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                                        </button>
+                                    </h1>
+                                    {open && (
+                                        <div className="classic-drinks" id={listId}>
+                                            {category.items.map((item) => (
+                                                <DrinkCard key={item.id} item={item} onSelect={setSelectedDrink} />
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
-                            </div>
-                        ))
+                            );
+                        })
                     )}
                 </div>
 
-            </div>
             </div>
 
             {selectedDrink && (

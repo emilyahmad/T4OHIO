@@ -1,5 +1,5 @@
 .map {
-    background-color: #F4F4F4;
+    background-color: var(--t4-light);
     color: var(--t4-ink);
     padding: 5rem 8rem;
 }
@@ -89,7 +89,7 @@
 }
 
 .store-status.open {
-    background-color: rgba(37, 184, 188, 0.15);
+    background-color: color-mix(in srgb, var(--t4-teal) 15%, transparent);
     color: var(--t4-teal-dark);
 }
 

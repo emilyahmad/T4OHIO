@@ -6,6 +6,7 @@ import { useEditHistory } from "./useEditHistory.js";
 import { SaveBar, Toggle, ImageField, MoveButtons } from "./AdminParts.jsx";
 import { moveInList, shortId, useReportDirty } from "./adminUtils.js";
 import { PromotionsGrid } from "../../Promotions/Promotions.jsx";
+import { youtubeId, youtubeThumbnail } from "../../../utils/youtube.js";
 
 function ManageFrontPage() {
     const { content, updatedAt, loading, error } = useSiteContent();
@@ -66,7 +67,7 @@ function FrontPageEditor({ initial, updatedAt }) {
         reviews: { ...d.reviews, reviews: d.reviews.reviews.map(r => r.id === id ? { ...r, ...changes } : r) },
     }), mergeKey);
 
-    const addReview = () => setReviewList(list => [...list, { id: `review-${shortId()}`, name: "", rating: 5, text: "", visible: true }]);
+    const addReview = () => setReviewList(list => [...list, { id: `review-${shortId()}`, name: "", rating: 5, text: "", image: null, photo: null, visible: true }]);
     const removeReview = (review) => {
         setReviewList(list => list.filter(r => r.id !== review.id));
         notify("Review removed", { action: { label: "Undo", onClick: undo } });
@@ -81,6 +82,10 @@ function FrontPageEditor({ initial, updatedAt }) {
     const handleSave = async () => {
         if (!hero.title.trim()) {
             notify("The hero needs a title.", { type: "error" });
+            return;
+        }
+        if (!youtubeId(hero.video)) {
+            notify("The hero video needs a YouTube link, like https://youtu.be/…", { type: "error" });
             return;
         }
         if (seasonal.cards.some(c => c.visible && !c.image)) {
@@ -112,6 +117,7 @@ function FrontPageEditor({ initial, updatedAt }) {
     };
 
     const visibleCards = seasonal.cards.filter(c => c.visible);
+    const heroVideoId = youtubeId(hero.video);
 
     return (
         <div className="adm-page">
@@ -141,24 +147,28 @@ function FrontPageEditor({ initial, updatedAt }) {
                         <span className="adm-label">Second subtitle <span className="adm-hint">(optional)</span></span>
                         <input className="adm-input" value={hero.subtitle2} onChange={(e) => setHero({ subtitle2: e.target.value }, "hero:subtitle2")} />
                     </label>
-                    <div className="adm-field">
-                        <span className="adm-label">Image</span>
-                        <ImageField value={hero.image} folder="hero" allowEmpty={false} onChange={(image) => setHero({ image })} />
-                    </div>
                     <label className="adm-field">
-                        <span className="adm-label">Image description <span className="adm-hint">(for screen readers)</span></span>
+                        <span className="adm-label">Background video <span className="adm-hint">(paste a YouTube link)</span></span>
+                        <input className="adm-input" type="url" placeholder="https://youtu.be/…"
+                            value={hero.video ?? ""} onChange={(e) => setHero({ video: e.target.value }, "hero:video")} />
+                        {hero.video && !heroVideoId && <span className="adm-hint fp-field-error">That doesn't look like a YouTube link.</span>}
+                        <span className="adm-hint">It plays muted and on a loop behind the text, with YouTube's buttons hidden.</span>
+                    </label>
+                    <label className="adm-field">
+                        <span className="adm-label">Video description <span className="adm-hint">(for screen readers)</span></span>
                         <input className="adm-input" value={hero.alt} onChange={(e) => setHero({ alt: e.target.value }, "hero:alt")} />
                     </label>
                 </div>
                 <div className="fp-preview">
                     <span className="fp-preview-label">Preview</span>
-                    <div className="fp-hero-preview">
+                    {/* Mirrors the real header: the video's thumbnail behind a dark tint, text in the bottom-right corner */}
+                    <div className="fp-hero-preview"
+                        style={heroVideoId ? { backgroundImage: `url(${youtubeThumbnail(heroVideoId)})` } : undefined}>
                         <div>
                             <h3>{hero.title || "Title"}</h3>
                             {hero.subtitle1 && <p>{hero.subtitle1}</p>}
                             {hero.subtitle2 && <p>{hero.subtitle2}</p>}
                         </div>
-                        {hero.image && <img src={asset(hero.image)} alt="" />}
                     </div>
                 </div>
             </section>
@@ -298,6 +308,14 @@ function FrontPageEditor({ initial, updatedAt }) {
                                 <button className="adm-icon-btn adm-icon-btn-danger" onClick={() => removeReview(review)} title="Delete review">
                                     <i className="fa-regular fa-trash-can" />
                                 </button>
+                            </div>
+                            <div className="adm-field">
+                                <span className="adm-label">Food or drink photo <span className="adm-hint">(optional: what they ordered; shown across the top of the card)</span></span>
+                                <ImageField value={review.photo ?? null} folder="reviews" onChange={(photo) => setReview(review.id, { photo })} />
+                            </div>
+                            <div className="adm-field">
+                                <span className="adm-label">Reviewer photo <span className="adm-hint">(optional: their profile picture; otherwise their initial is shown)</span></span>
+                                <ImageField value={review.image ?? null} folder="reviews" onChange={(image) => setReview(review.id, { image })} />
                             </div>
                             <label className="adm-field">
                                 <span className="adm-label">Customer name</span>

@@ -1,32 +1,91 @@
 .reviews {
     background-color: white;
     color: var(--t4-ink);
-    padding: 5rem 8rem;
+    padding: 5rem 0;
     text-align: center;
+    overflow: hidden;
 }
 
 .reviews h1 {
     font-size: 3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 0.75rem;
+    padding: 0 1.5rem;
 }
 
-/* Up to 3 cards per row */
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: 1.5rem;
+.reviews-subheading {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: var(--t4-charcoal);
+    margin: 0 auto 2.75rem;
+    padding: 0 1.5rem;
+    max-width: 48rem;
+}
+
+.reviews-sample-note {
+    margin: -2rem 0 2rem;
+    font-size: 0.95rem;
+    color: var(--t4-charcoal);
+}
+
+/* ── Carousel ── */
+/* Cards fade out at both edges as they scroll on and off */
+.reviews-carousel {
     margin-bottom: 3rem;
-    text-align: left;
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.reviews-track {
+    display: flex;
+    width: max-content;
+    animation: reviews-scroll var(--loop-duration) linear infinite;
+}
+
+/* Hover (or press and hold on a phone) stops the cards so they can be read */
+.reviews-track:hover,
+.reviews-track:active,
+.reviews-track:focus-within {
+    animation-play-state: paused;
+}
+
+.reviews-loop {
+    display: flex;
+    gap: 1.5rem;
+    padding-right: 1.5rem; /* same as the gap, so the seam between the two halves matches */
+}
+
+@keyframes reviews-scroll {
+    to { transform: translateX(-50%); }
 }
 
 .review-card {
-    background-color: #F7F7F7;
+    flex: 0 0 22rem;
+    margin: 0.5rem 0;
+    background-color: var(--t4-light);
     border-top: 4px solid var(--t4-teal);
     border-radius: 0.75rem;
     padding: 1.75rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    overflow: hidden; /* keeps the food photo inside the rounded corners */
+}
+
+/* Food/drink photo: bleeds to the card's edges (cancelling its padding), under the teal top border */
+.review-photo {
+    display: block;
+    width: calc(100% + 3.5rem);
+    margin: -1.75rem -1.75rem 0;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 }
 
 .review-stars {
@@ -36,20 +95,54 @@
 }
 
 .review-card blockquote {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     line-height: 1.5;
     flex: 1;
 }
 
 .review-card figcaption {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     font-weight: 700;
     font-size: 1.05rem;
     color: var(--t4-teal-dark);
 }
 
-.reviews-empty {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
+.review-avatar {
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px var(--t4-mist);
+}
+
+.review-avatar.is-initial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--t4-teal);
+    color: white;
+    font-size: 1.15rem;
+}
+
+/* For people who've asked their device to reduce motion: no auto-scroll, swipe or scroll sideways instead */
+@media (prefers-reduced-motion: reduce) {
+    .reviews-carousel {
+        overflow-x: auto;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
+    .reviews-track {
+        animation: none;
+        padding: 0 1.5rem;
+    }
+
+    .reviews-loop[aria-hidden] {
+        display: none;
+    }
 }
 
 .reviews-google {
@@ -70,11 +163,34 @@
 
 @media (max-width: 768px) {
     .reviews {
-        padding: 3rem 1.5rem;
+        padding: 3rem 0;
     }
 
     .reviews h1 {
         font-size: 2.25rem;
+    }
+
+    .reviews-subheading {
+        font-size: 1.2rem;
         margin-bottom: 2rem;
+    }
+
+    .review-card {
+        flex-basis: 17rem;
+        padding: 1.4rem;
+    }
+
+    .review-photo {
+        width: calc(100% + 2.8rem);
+        margin: -1.4rem -1.4rem 0;
+    }
+
+    .review-card blockquote {
+        font-size: 1.05rem;
+    }
+
+    .reviews-loop {
+        gap: 1rem;
+        padding-right: 1rem;
     }
 }

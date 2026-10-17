@@ -44,7 +44,6 @@ function Navbar() {
         <Link to="/">Home</Link>
         <Link to="/philosophy">Philosophy</Link>
         <Link to="/order-now">Order Now</Link>
-        <Link to="/contact-us">Contact</Link>
         {/* Customers never see a login link; the owner bookmarks /admin, which asks them to sign in */}
         {isAdmin && <Link to="/admin">Admin</Link>}
       </div>

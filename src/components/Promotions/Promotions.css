@@ -1,6 +1,6 @@
 .promotions {
     background-color: white;
-    color: #333333;
+    color: var(--t4-ink);
     padding: 5rem 8rem;
 }
 

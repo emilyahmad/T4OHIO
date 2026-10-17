@@ -9,6 +9,7 @@ export const FILTER_TAGS = ["New", "Hot", "Cold", "Coffee", "No Caffeine", "Snac
 
 // Customization groups an item can offer. min/max are how many options the customer may pick.
 // An option with `onlyForTag` only appears on items that have that tag (e.g. no "Hot" on iced-only drinks).
+// `display: "slider"` shows a single-choice group as a slider, one stop per option, in the order listed.
 export const modifierGroups = {
     customized: {
         title: "Customized",
@@ -23,18 +24,13 @@ export const modifierGroups = {
         ],
     },
     ice: {
-        title: "Ice / Hot",
+        title: "Iced or Hot",
         min: 1,
         max: 1,
-        default: "100%",
+        default: "Iced",
         options: [
-            { label: "100%", price: 0, onlyForTag: "Cold" },
-            { label: "120%", price: 0, onlyForTag: "Cold" },
-            { label: "80%", price: 0, onlyForTag: "Cold" },
-            { label: "30%", price: 0, onlyForTag: "Cold" },
-            { label: "0%", price: 0, onlyForTag: "Cold" },
-            { label: "HOT", price: 0, onlyForTag: "Hot" },
-            { label: "WARM", price: 0, onlyForTag: "Hot" },
+            { label: "Iced", price: 0, onlyForTag: "Cold" },
+            { label: "Hot", price: 0, onlyForTag: "Hot" },
         ],
     },
     sizeUp: {
@@ -48,7 +44,8 @@ export const modifierGroups = {
         min: 1,
         max: 1,
         default: "100%",
-        options: ["80%", "30%", "50%", "0%", "100%", "120%"].map((label) => ({ label, price: 0 })),
+        display: "slider",
+        options: ["0%", "30%", "50%", "80%", "100%", "120%"].map((label) => ({ label, price: 0 })),
     },
     toppings: {
         title: "Toppings",

@@ -20,6 +20,10 @@ function loadYouTubeApi() {
   return apiPromise;
 }
 
+// How long (ms) to keep the thumbnail up after playback starts. YouTube shows its pause button for
+// about 3.5s after autoplay begins, then hides it; this covers that.
+const REVEAL_DELAY = 4000;
+
 // A YouTube video that behaves like a background: muted, looping, and only shown while it's
 // actually playing. Any other time (loading, paused, autoplay blocked) the thumbnail shows
 // instead, so YouTube's play/pause buttons and black loading screen never appear.
@@ -30,6 +34,7 @@ function HeroVideo({ video, title }) {
   useEffect(() => {
     let player;
     let loopTimer;
+    let revealTimer;
     let cancelled = false;
 
     loadYouTubeApi().then((YT) => {
@@ -41,9 +46,15 @@ function HeroVideo({ video, title }) {
             player.playVideo();
           },
           onStateChange: ({ data }) => {
-            // Buffering keeps whatever is showing; the video only appears once it's really playing
-            if (data === YT.PlayerState.PLAYING) setPlaying(true);
-            else if (data !== YT.PlayerState.BUFFERING) setPlaying(false);
+            // Buffering keeps whatever is showing; the video only appears once it's really playing,
+            // and only after YouTube has hidden the pause button it shows when playback starts
+            if (data === YT.PlayerState.PLAYING) {
+              clearTimeout(revealTimer);
+              revealTimer = setTimeout(() => setPlaying(true), REVEAL_DELAY);
+            } else if (data !== YT.PlayerState.BUFFERING) {
+              clearTimeout(revealTimer);
+              setPlaying(false);
+            }
             // Never let it sit paused or on the end screen
             if (data === YT.PlayerState.ENDED) player.seekTo(0);
             if (data === YT.PlayerState.PAUSED || data === YT.PlayerState.ENDED) player.playVideo();
@@ -62,6 +73,7 @@ function HeroVideo({ video, title }) {
       cancelled = true;
       // No player.destroy(): it removes the iframe, which React still owns
       clearInterval(loopTimer);
+      clearTimeout(revealTimer);
     };
   }, [video]);
 

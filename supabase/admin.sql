@@ -47,6 +47,7 @@ insert into public.site_content (key, content) values
         "title": "T4 Ohio",
         "subtitle1": "A cup of tea for you",
         "subtitle2": "清茶达人",
+        "video": "https://youtu.be/tq-HzPabP3M",
         "image": "img/hero-img.png",
         "alt": "Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
     }'),

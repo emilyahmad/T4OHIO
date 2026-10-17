@@ -1,0 +1,35 @@
+/* A zero-size anchor at the click point; the lines fan out above it */
+.click-burst {
+    position: fixed;
+    width: 0;
+    height: 0;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.click-burst span {
+    position: absolute;
+    left: -2px;
+    bottom: 0;
+    width: 4px;
+    height: 14px;
+    border-radius: 2px;
+    background-color: var(--t4-gold);
+    transform-origin: 50% 100%;
+    animation: click-burst-pop 450ms cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+/* Each line shoots outward along its angle, grows, then fades */
+@keyframes click-burst-pop {
+    from {
+        opacity: 1;
+        transform: rotate(var(--angle)) translateY(-8px) scaleY(0.3);
+    }
+    60% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: rotate(var(--angle)) translateY(-26px) scaleY(1);
+    }
+}

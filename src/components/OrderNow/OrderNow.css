@@ -9,40 +9,8 @@
         z-index: 5;
     }
 
-    .menu-video-container {
-        position: relative;
-        padding: 0;
-        z-index: 0;
-
-        width: 100vw;
-        height: 38.65rem;
-        
-        overflow: hidden;
-    }
-
     .white-circles {
         z-index: 5;
-    }
-
-    .menu-video {
-        margin-top: 10rem;
-        width: 100%;
-        height: 100%;
-        transform: scale(1.975);
-        transform-origin: center;
-    }
-
-    /* .menu-header {
-        margin-bottom: 2rem;
-    } */
-
-    .menu-title {
-        position: absolute;
-        font-size: 8rem;
-        color: white;
-        mix-blend-mode: difference;
-        margin-top: -10rem;
-        margin-left: 5rem;
     }
 
     /* reset styling from another page */
@@ -51,17 +19,16 @@
         background-color: rgba(255, 255, 255, 0);
     }
 
+    /* Filters in a centered row on top, the menu underneath */
     .menu-explore-container {
         display: flex;
-        background-color: var(--t4-ink);
+        flex-direction: column;
+        background-color: var(--t4-dark);
     }
 
     .filter-menu-options {
-        margin: 2rem;
-
-        background-color: var(--t4-ink);
-        width: 22%;
-
+        margin: 2.5rem 1rem 0;
+        background-color: var(--t4-dark);
     }
 
     .fa-brands {
@@ -69,12 +36,89 @@
     }
 
     .filters {
-        margin-top: 1rem;
-        text-align: left;
-        list-style: none;
+        text-align: center;
         color: var(--t4-mist);
     }
 
+    /* Search box and filter pills in one centered row */
+    .filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem 1rem;
+        max-width: 72rem;
+        margin: 0 auto;
+    }
+
+    /* Sits after the filter pills, on the right of the row */
+    .menu-search {
+        position: relative;
+        width: 15rem;
+        order: 1;
+    }
+
+    .menu-search > i {
+        position: absolute;
+        left: .85rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--t4-charcoal);
+        font-size: .9rem;
+        pointer-events: none;
+    }
+
+    .menu-search input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: .4rem 2.2rem .4rem 2.3rem;
+        border: 2px solid transparent;
+        border-radius: 999px;
+        background-color: var(--t4-light);
+        color: var(--t4-ink);
+        font-family: inherit;
+        font-size: 1rem;
+    }
+
+    .menu-search input:focus {
+        outline: none;
+        border-color: var(--t4-gold);
+    }
+
+    /* The browser's own clear "x" is replaced by our button */
+    .menu-search input::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+    }
+
+    .menu-search button {
+        position: absolute;
+        right: .3rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.8rem;
+        height: 1.8rem;
+        border: none;
+        border-radius: 50%;
+        background: none;
+        color: var(--t4-charcoal);
+        cursor: pointer;
+    }
+
+    .menu-search button:hover {
+        background-color: var(--t4-mist);
+    }
+
+    .filter-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: .5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Each pill hugs its label, centered, so the highlight stays compact */
     .filter-pill,
     .filter-pill-active {
         border: none;
@@ -82,90 +126,55 @@
         font-weight: 600;
         cursor: pointer;
 
-        padding-left: 1.5rem;
-        padding-top: .75rem;
-        padding-bottom: .75rem;
+        padding: .3rem 1rem;
+        margin: 0;
+        border-radius: 999px;
+        background: none;
+        color: inherit;
+        font-family: inherit;
 
-        margin: .5rem 0 .5rem 0;
-        border-radius: 20px;
-        
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        gap: .5rem;
         box-sizing: border-box;
-
-        width: 100%;
+        width: fit-content;
     }
 
     .filter-pill-active {
         transition: ease-in-out;
         font-weight: 900;
         background-color: var(--t4-gold);
-        color: #333333;
+        color: var(--t4-ink);
     }
 
     .fa-circle-check {
-        position: relative;
-        font-size: 1.5rem;
-        padding: 0;
-        left: -5%;
+        font-size: 1.1rem;
     }
 
     .fa-circle-check:hover {
         background-color: rgba(255, 255, 255, 0);
     }
 
+    /* Category heading, lined up with the grid below it */
     .classic h1 {
-        margin-top: 3rem;
-        margin-left: 2rem;
+        max-width: 75rem;
+        margin: 3rem auto 0;
+        padding: 0 2rem;
         font-size: 3rem;
         color: var(--t4-mist);
     }
 
+    /* As many columns as fit; cards stretch to fill them */
     .classic-drinks {
-        color: #333333;
-        margin-left: 2rem;
-        margin-right: 2rem;
-        margin-top: 2rem;
+        color: var(--t4-ink);
+        max-width: 75rem;
+        margin: 2rem auto 0;
+        padding: 0 2rem 5rem;
 
         display: grid;
-
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
         gap: 1.5rem;
-        padding-bottom: 5rem;
-
-        /* background-color: var(--t4-charcoal); */
-    }
-
-    .drink-card {
-        background-color: var(--t4-mist);
-
-        justify-content: center;
-        text-align: center;
-
-        width: 14rem;
-    }
-
-    .drink-card:hover {
-        background-color: #25B8BC;
-        cursor: pointer;
-    }
-
-    .drink-card-image-container {
-        width: 100%;
-        height: 250px;
-        overflow: hidden;
-    }
-
-    .drink-card-image-container img {
-        width: 224px;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .drink-card h3 {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
     }
 
     /* 
@@ -178,13 +187,13 @@
 
     .drink-card {
         width: 100%;
-        background-color: var(--t4-charcoal);
+        background-color: var(--t4-dark-2);
         text-align: center;
     }
 
     .drink-card:hover {
         cursor: pointer;
-        background-color: var(--t4-ink);
+        background-color: var(--t4-dark);
     }
 
     .drink-card img {
@@ -194,35 +203,8 @@
     /* 
 
     .filter-pill:hover {
-        background-color: var(--t4-charcoal);
+        background-color: var(--t4-dark-2);
         color: var(--t4-mist);
-    }
-
-    .menu-header img {
-        position: absolute;
-        width: 35rem;
-        z-index: 0;
-        left: 57%;
-        top: 50%;
-    }
-
-    .modal {
-        top: 5%;
-        width: 75%;
-        height: 90%;
-
-        position: fixed;
-        z-index: 100;
-        background-color: rgb(142, 194, 142);
-
-        display: flex;
-    }
-
-    .modal img {
-        width: 620%;
-        height: auto;
-        object-fit: contain;
-        object-fit: cover;
     }
 
     .fa-circle-xmark {
@@ -263,7 +245,7 @@
     }
 
     .tags p {
-        background-color: var(--t4-charcoal);
+        background-color: var(--t4-dark-2);
         padding: .15rem .35rem;
         border-radius: 50%;
         margin-bottom: .2rem;
@@ -273,7 +255,7 @@
     .second-tag:hover,
     .third-tag:hover {
         transform: scale(1.15);
-        background-color: #25B8BC;
+        background-color: var(--t4-teal);
 
     } */
 }
@@ -284,42 +266,8 @@
         z-index: 5;
     }
 
-    .menu-video-container {
-        position: relative;
-        top: 0;
-        padding: 0;
-        z-index: 0;
-
-        width: 100vw;
-        height: 38.65rem;
-        
-        overflow: hidden;
-
-        background-color: #25B8BC;
-    }
-
     .white-circles {
         z-index: 5;
-    }
-
-    .menu-video {
-        width: 100%;
-        height: 100%;
-        transform: scale(2.75);
-        transform-origin: center;
-    }
-
-    /* .menu-header {
-        margin-bottom: 2rem;
-    } */
-
-    .menu-title {
-        position: absolute;
-        font-size: 6rem;
-        color: white;
-        mix-blend-mode: difference;
-        margin-top: -6.5rem;
-        margin-left: 1rem;
     }
 
     /* reset styling from another page */
@@ -328,17 +276,16 @@
         background-color: rgba(255, 255, 255, 0);
     }
 
+    /* Filters in a centered row on top, the menu underneath */
     .menu-explore-container {
         display: flex;
-        background-color: var(--t4-ink);
+        flex-direction: column;
+        background-color: var(--t4-dark);
     }
 
     .filter-menu-options {
-        margin: 2rem;
-
-        background-color: var(--t4-ink);
-        width: 22%;
-
+        margin: 2.5rem 1rem 0;
+        background-color: var(--t4-dark);
     }
 
     .fa-brands {
@@ -346,10 +293,74 @@
     }
 
     .filters {
-        margin-top: 1rem;
-        text-align: left;
-        list-style: none;
+        text-align: center;
         color: var(--t4-mist);
+    }
+
+    .filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: .75rem;
+    }
+
+    .menu-search {
+        position: relative;
+        flex-basis: 100%;
+    }
+
+    .menu-search > i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--t4-charcoal);
+        pointer-events: none;
+    }
+
+    .menu-search input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: .7rem 2.75rem .7rem 2.6rem;
+        border: 2px solid transparent;
+        border-radius: 999px;
+        background-color: var(--t4-light);
+        color: var(--t4-ink);
+        font-family: inherit;
+        font-size: 1rem;
+    }
+
+    .menu-search input:focus {
+        outline: none;
+        border-color: var(--t4-gold);
+    }
+
+    .menu-search input::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+    }
+
+    .menu-search button {
+        position: absolute;
+        right: .4rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2rem;
+        height: 2rem;
+        border: none;
+        border-radius: 50%;
+        background: none;
+        color: var(--t4-charcoal);
+        cursor: pointer;
+    }
+
+    .filter-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: .5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
 
     .filter-pill,
@@ -359,33 +370,30 @@
         font-weight: 600;
         cursor: pointer;
 
-        padding-left: .5rem;
-        padding-top: .5rem;
-        padding-bottom: .5rem;
-        padding-right: 7rem;
+        padding: .25rem .8rem;
+        margin: 0;
+        border-radius: 999px;
+        background: none;
+        color: inherit;
+        font-family: inherit;
 
-        margin: .5rem 0 .5rem -1rem;
-        border-radius: 17.5px;
-        
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        gap: .4rem;
         box-sizing: border-box;
-
-        width: 100%;
+        width: fit-content;
     }
 
     .filter-pill-active {
         transition: ease-in-out;
         font-weight: 900;
         background-color: var(--t4-gold);
-        color: #333333;
+        color: var(--t4-ink);
     }
 
     .fa-circle-check {
-        position: relative;
-        font-size: 1.25rem;
-        padding-left: 1rem;
+        font-size: 1rem;
     }
 
     .fa-circle-check:hover {
@@ -393,56 +401,209 @@
     }
 
     .classic h1 {
-        margin-top: 3rem;
-        margin-right: 1rem;
-        margin-left: 2rem;
+        margin: 2.5rem 0 0;
+        padding: 0 1rem;
         font-size: 2rem;
         color: var(--t4-mist);
     }
 
+    /* Two columns on phones */
     .classic-drinks {
-        color: #333333;
-        margin-left: .75rem;
-        margin-right: 2rem;
-        margin-top: 2rem;
+        color: var(--t4-ink);
+        margin: 1.5rem 0 0;
+        padding: 0 1rem 4rem;
 
         display: grid;
-
-        grid-template-columns: repeat(1, 1fr);
-        gap: 1.5rem;
-        padding-bottom: 5rem;
-
-        /* background-color: var(--t4-charcoal); */
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
     }
 
-    .drink-card {
-        background-color: var(--t4-mist);
+}
 
-        justify-content: center;
-        text-align: center;
+/* ── Menu item cards ── */
+.drink-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    border: none;
+    border-radius: 0.6rem;
+    overflow: hidden;
+    background-color: white;
+    color: var(--t4-ink);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+}
 
-        width: 14rem;
+.drink-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.drink-card:focus-visible {
+    outline: 3px solid var(--t4-gold);
+    outline-offset: 3px;
+}
+
+.drink-card-image {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background-color: var(--t4-light);
+}
+
+.drink-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 300ms ease;
+}
+
+.drink-card:hover .drink-card-image img {
+    transform: scale(1.05);
+}
+
+/* Items without a photo show a small T4 logo instead of a cropped, full-bleed one */
+.drink-card-image.is-logo img {
+    object-fit: contain;
+    padding: 22%;
+    box-sizing: border-box;
+}
+
+.drink-card-badge {
+    position: absolute;
+    top: 0.65rem;
+    left: 0.65rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background-color: var(--t4-gold);
+    color: var(--t4-ink);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.drink-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.85rem 0.95rem 0.9rem;
+}
+
+/* Long names wrap to two lines at most */
+.drink-card-body h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.drink-card-meta {
+    font-size: 0.85rem;
+    color: var(--t4-charcoal);
+}
+
+.drink-card-footer {
+    margin-top: auto;
+    padding-top: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.drink-card-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--t4-teal-dark);
+}
+
+.drink-card-add {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--t4-teal);
+    color: white;
+    font-size: 0.85rem;
+    transition: background-color 200ms ease;
+}
+
+.drink-card:hover .drink-card-add {
+    background-color: var(--t4-teal-dark);
+}
+
+@media (max-width: 768px) {
+    .drink-card-body {
+        padding: 0.65rem 0.7rem 0.75rem;
     }
 
-    .drink-card:hover {
-        background-color: #25B8BC;
-        cursor: pointer;
+    .drink-card-body h3 {
+        font-size: 0.98rem;
     }
 
-    .drink-card-image-container {
-        width: 100%;
-        height: 250px;
-        overflow: hidden;
+    .drink-card-add {
+        width: 1.75rem;
+        height: 1.75rem;
     }
+}
 
-    .drink-card-image-container img {
-        width: 224px;
-        height: 100%;
-        object-fit: cover;
-    }
+/* ── Collapsible categories ── */
+/* The category heading is a button: the name and a chevron that flips when folded */
+.category-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
 
-    .drink-card h3 {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+.category-toggle:focus-visible {
+    outline: 3px solid var(--t4-gold);
+    outline-offset: 6px;
+    border-radius: 0.4rem;
+}
+
+.category-toggle i {
+    font-size: 0.45em;
+    color: var(--t4-on-dark-muted);
+    transition: transform 200ms ease;
+}
+
+.classic.is-collapsed .category-toggle i {
+    transform: rotate(-90deg);
+}
+
+.category-toggle:hover i {
+    color: var(--t4-gold);
+}
+
+/* A folded category is just its heading, with a divider so the list stays easy to scan */
+.classic.is-collapsed h1 {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--t4-dark-2);
+}
+
+/* When the last category (Coffee) is folded, keep the same breathing room above the footer
+   that its open grid of cards would have had */
+.classic.is-collapsed:last-child {
+    padding-bottom: 5rem;
+}
+
+@media (max-width: 768px) {
+    .classic.is-collapsed:last-child {
+        padding-bottom: 4rem;
     }
 }

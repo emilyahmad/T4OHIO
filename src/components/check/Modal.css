@@ -1,265 +1,594 @@
-.modal-container {
+/* Item customization dialog on the Order Now page.
+   Desktop: a centered card, photo on the left. Phones: a sheet that slides up from the bottom. */
+
+.item-modal-backdrop {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.55);
+    inset: 0;
     z-index: 200;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.55);
+    animation: item-modal-fade 200ms ease;
 }
 
-.modal {
-    display: flex;
-    width: 75%;
-    max-width: 900px;
-    height: 88vh;
-    background-color: white;
-    border-radius: 1rem;
-    overflow: hidden;
+.item-modal {
     position: relative;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    width: min(960px, 100%);
+    height: min(88vh, 760px);
+    background-color: white;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: item-modal-pop 220ms cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
-/* ── LEFT COLUMN ── */
-.modal-left-column {
-    width: 55%;
+/* The site sets a slow 500ms transition on everything; keep this dialog snappy */
+.item-modal,
+.item-modal * {
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+}
+
+@keyframes item-modal-fade {
+    from { opacity: 0; }
+}
+
+@keyframes item-modal-pop {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+}
+
+/* ── PHOTO ── */
+.item-modal-image {
+    background-color: var(--t4-light);
+    min-height: 0;
+}
+
+.item-modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Items without a photo show the T4 logo, which shouldn't be cropped */
+.item-modal-image.is-logo img {
+    object-fit: contain;
+    padding: 20%;
+}
+
+.item-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    color: var(--t4-ink);
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.item-modal-close:hover {
+    background-color: var(--t4-mist);
+}
+
+/* ── DETAILS ── */
+.item-modal-body {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    min-height: 0;
 }
 
-.modal-scrollable {
-    overflow-y: auto;
+.item-modal-scroll {
     flex: 1;
-    padding: 2rem 2rem 0 2rem;
+    overflow-y: auto;
+    padding: 2rem 2rem 1rem;
 }
 
-.modal-scrollable::-webkit-scrollbar {
-    width: 4px;
-}
-.modal-scrollable::-webkit-scrollbar-thumb {
-    background: #ddd;
-    border-radius: 4px;
+.item-modal-header {
+    padding-right: 2.5rem; /* room for the close button */
+    margin-bottom: 0.5rem;
 }
 
-.modal-drink-name {
-    font-size: 2rem;
+.item-modal-header h2 {
+    font-size: 2.1rem;
     font-weight: 800;
-    color: #1a1a1a;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
+    line-height: 1.15;
+    color: var(--t4-ink);
 }
 
-/* ── SECTIONS ── */
-.modal-section {
-    border-top: 1px solid #eee;
-    padding: 1.25rem 0;
-}
-
-.modal-section-header {
+.item-modal-meta {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
-    margin-bottom: 1rem;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
 }
 
-.modal-section-title {
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    color: #1a1a1a;
-    text-transform: uppercase;
-}
-
-.modal-section-badge {
-    font-size: 0.75rem;
+.item-modal-price {
+    font-size: 1.35rem;
     font-weight: 700;
-    padding: 0.25rem 0.75rem;
+    color: var(--t4-teal-dark);
+    margin-right: 0.25rem;
+}
+
+.item-modal-tag {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.65rem;
     border-radius: 999px;
+    background-color: var(--t4-light);
+    color: var(--t4-charcoal);
 }
 
-.badge-optional {
-    background-color: #e8f5e9;
-    color: #2e7d32;
+.item-modal-tag.is-badge {
+    background-color: var(--t4-gold);
+    color: white;
+    font-weight: 700;
 }
 
-.badge-required {
-    background-color: #f0f0f0;
-    color: #555;
+/* ── OPTION GROUPS ── */
+.item-modal-group {
+    border: none;
+    margin: 0;
+    padding: 1.25rem 0;
+    min-width: 0;
+    border-top: 1px solid var(--t4-mist);
 }
 
-/* ── OPTIONS ── */
-.modal-option {
+/* Legends don't lay out like normal elements; floating it lets it act as a full-width row */
+.item-modal-group-header {
+    float: left;
+    width: 100%;
+    padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #f5f5f5;
-    cursor: pointer;
+    margin-bottom: 0.85rem;
 }
 
-.modal-option:last-child {
-    border-bottom: none;
+.item-modal-group-header + * {
+    clear: both;
 }
 
-.modal-option-left {
+/* A collapsed group is just its header, so drop the gap under it */
+.item-modal-group.is-collapsed .item-modal-group-header {
+    margin-bottom: 0;
+}
+
+.item-modal-group.is-collapsed::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* Optional groups: the whole header is a button that opens and closes the group */
+.item-modal-group-toggle {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 0.75rem;
-}
-
-/* checkbox */
-.modal-option input[type="checkbox"],
-.modal-option input[type="radio"] {
-    width: 1.1rem;
-    height: 1.1rem;
-    accent-color: #25B8BC;
+    padding: 0.25rem 0;
+    border: none;
+    background: none;
+    font: inherit;
+    text-align: left;
+    color: var(--t4-ink);
     cursor: pointer;
-    flex-shrink: 0;
 }
 
-.modal-option-label {
-    font-size: 1rem;
-    color: #333;
+.item-modal-group-toggle:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--t4-teal) 45%, transparent);
+    outline-offset: 4px;
+    border-radius: 0.4rem;
 }
 
-.modal-option-price {
+.item-modal-group-toggle > i {
+    color: var(--t4-charcoal);
+    font-size: 0.9rem;
+}
+
+.item-modal-group-heading {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.item-modal-group-summary {
     font-size: 0.95rem;
-    color: #555;
+    color: var(--t4-teal-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* special instructions */
-.modal-instructions {
+.item-modal-group-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--t4-ink);
+}
+
+.item-modal-pill {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    background-color: var(--t4-light);
+    color: var(--t4-charcoal);
+    white-space: nowrap;
+}
+
+.item-modal-pill.is-required {
+    background-color: color-mix(in srgb, var(--t4-teal) 15%, transparent);
+    color: var(--t4-teal-dark);
+}
+
+/* Native inputs stay in place for keyboards and screen readers, just invisible */
+.item-modal-chip input,
+.item-modal-option input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+}
+
+/* Quick-pick chips (ice, sweetness) */
+.item-modal-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.item-modal-chip {
+    position: relative;
+    min-width: 4rem;
+    padding: 0.55rem 1rem;
+    border: 1.5px solid var(--t4-mist);
+    border-radius: 999px;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--t4-ink);
+    cursor: pointer;
+}
+
+.item-modal-chip:hover {
+    border-color: var(--t4-teal);
+}
+
+.item-modal-chip.is-selected {
+    background-color: var(--t4-teal);
+    border-color: var(--t4-teal);
+    color: white;
+    font-weight: 700;
+}
+
+/* Slider (sweetness): one stop per option. --thumb is the handle size, used to line the labels up
+   under each stop; --fill is how far along the chosen stop is (set from ItemModal.jsx). */
+.item-modal-slider {
+    --thumb: 1.5rem;
+    /* side padding leaves room for the end labels (0%, 120%), which are centred on the end stops */
+    padding: 0.25rem 0.75rem 0;
+}
+
+.item-modal-slider input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: var(--thumb);
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.item-modal-slider input[type="range"]::-webkit-slider-runnable-track {
+    height: 0.4rem;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--t4-teal) var(--fill), var(--t4-mist) var(--fill));
+}
+
+.item-modal-slider input[type="range"]::-moz-range-track {
+    height: 0.4rem;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--t4-teal) var(--fill), var(--t4-mist) var(--fill));
+}
+
+.item-modal-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: var(--thumb);
+    height: var(--thumb);
+    margin-top: calc((0.4rem - var(--thumb)) / 2);
+    border-radius: 50%;
+    background-color: white;
+    border: 3px solid var(--t4-teal);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.item-modal-slider input[type="range"]::-moz-range-thumb {
+    width: var(--thumb);
+    height: var(--thumb);
+    box-sizing: border-box;
+    border-radius: 50%;
+    background-color: white;
+    border: 3px solid var(--t4-teal);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.item-modal-slider input[type="range"]:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--t4-teal) 45%, transparent);
+    outline-offset: 4px;
+    border-radius: 999px;
+}
+
+/* Each label sits under its stop: the handle's centre travels from thumb/2 to (100% - thumb/2) */
+.item-modal-slider-stops {
+    position: relative;
+    height: 2rem;
+    margin-top: 0.35rem;
+}
+
+.item-modal-slider-stops button {
+    position: absolute;
+    top: 0;
+    left: calc(var(--thumb) / 2 + (100% - var(--thumb)) * var(--at));
+    transform: translateX(-50%);
+    padding: 0.2rem 0.3rem;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--t4-charcoal);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.item-modal-slider-stops button.is-selected {
+    color: var(--t4-teal-dark);
+    font-weight: 700;
+}
+
+/* Add-on rows (customizations, toppings) */
+.item-modal-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.item-modal-option {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 0 1.5rem;
-    color: #25B8BC;
-    font-size: 1rem;
-    font-weight: 600;
+    gap: 0.85rem;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--t4-mist);
+    border-radius: 0.75rem;
     cursor: pointer;
-    border: none;
-    border-top: 1px solid #eee;
-    background: none;
-    width: 100%;
-    font-family: inherit;
 }
 
-.modal-instructions-input {
-    width: 100%;
-    min-height: 5rem;
-    margin-bottom: 1.5rem;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    font-family: inherit;
-    font-size: 0.95rem;
-    resize: vertical;
-    box-sizing: border-box;
+.item-modal-option:hover {
+    border-color: var(--t4-teal);
 }
 
-.modal-option-disabled {
+.item-modal-option.is-selected {
+    border-color: var(--t4-teal);
+    background-color: color-mix(in srgb, var(--t4-teal) 8%, white);
+}
+
+.item-modal-option.is-disabled {
     opacity: 0.45;
     cursor: not-allowed;
 }
 
-.modal-option-disabled input[type="checkbox"] {
-    cursor: not-allowed;
+.item-modal-option.is-disabled:hover {
+    border-color: var(--t4-mist);
 }
 
-/* ── STICKY FOOTER ── */
-.modal-footer {
-    border-top: 1px solid #eee;
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: white;
+.item-modal-check {
     flex-shrink: 0;
-}
-
-.modal-quantity {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    background-color: #f0f0f0;
-    border-radius: 999px;
-    padding: 0.4rem 0.75rem;
-}
-
-.modal-qty-btn {
-    background: none;
-    border: none;
-    font-size: 1.25rem;
-    cursor: pointer;
-    color: #333;
-    width: 1.5rem;
-    text-align: center;
-    line-height: 1;
-}
-
-.modal-qty-count {
-    font-size: 1rem;
-    font-weight: 700;
-    min-width: 1.25rem;
-    text-align: center;
-}
-
-.modal-add-btn {
-    flex: 1;
-    background-color: #25B8BC;
-    color: white;
-    border: none;
-    border-radius: 999px;
-    padding: 0.85rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 700;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 200ms ease;
-}
-
-.modal-add-btn:hover {
-    background-color: #00777E;
-}
-
-/* ── RIGHT COLUMN (image) ── */
-.modal-image-column {
-    width: 45%;
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.modal-image-column img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* ── CLOSE BUTTON ── */
-.modal-close-btn {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    background: rgba(255,255,255,0.85);
-    border: none;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    font-size: 1rem;
-    cursor: pointer;
+    width: 1.3rem;
+    height: 1.3rem;
+    border: 1.5px solid #bbb;
+    border-radius: 0.35rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10;
-    color: #333;
+    color: white;
+    font-size: 0.7rem;
 }
 
-.modal-close-btn:hover {
-    background: white;
+.item-modal-check i {
+    visibility: hidden;
+}
+
+.item-modal-option.is-selected .item-modal-check {
+    background-color: var(--t4-teal);
+    border-color: var(--t4-teal);
+}
+
+.item-modal-option.is-selected .item-modal-check i {
+    visibility: visible;
+}
+
+.item-modal-option-label {
+    flex: 1;
+    font-size: 1.05rem;
+    color: var(--t4-ink);
+}
+
+.item-modal-option-price {
+    font-size: 0.95rem;
+    color: var(--t4-charcoal);
+}
+
+/* Keyboard focus shows on the chip or row around the hidden input */
+.item-modal-chip:has(input:focus-visible),
+.item-modal-option:has(input:focus-visible) {
+    outline: 3px solid color-mix(in srgb, var(--t4-teal) 45%, transparent);
+    outline-offset: 2px;
+}
+
+/* Special instructions */
+.item-modal-instructions-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--t4-teal-dark);
+    font: inherit;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.item-modal-instructions {
+    width: 100%;
+    min-height: 5rem;
+    margin-top: 0.85rem;
+    padding: 0.75rem;
+    border: 1.5px solid var(--t4-mist);
+    border-radius: 0.75rem;
+    font: inherit;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+.item-modal-instructions:focus {
+    outline: none;
+    border-color: var(--t4-teal);
+}
+
+/* ── FOOTER (always visible) ── */
+.item-modal-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    border-top: 1px solid var(--t4-mist);
+    background-color: white;
+}
+
+.item-modal-quantity {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border-radius: 999px;
+    background-color: var(--t4-light);
+}
+
+.item-modal-quantity button {
+    width: 2.25rem;
+    height: 2.25rem;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    color: var(--t4-ink);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.item-modal-quantity button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.item-modal-quantity span {
+    min-width: 1.75rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.item-modal-add {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 1.5rem;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--t4-teal);
+    color: white;
+    font: inherit;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.item-modal-add:hover:not(:disabled) {
+    background-color: var(--t4-teal-dark);
+}
+
+.item-modal-add:disabled {
+    justify-content: center;
+    background-color: var(--t4-mist);
+    color: var(--t4-charcoal);
+    cursor: not-allowed;
+}
+
+/* ── PHONES: bottom sheet ── */
+@media (max-width: 768px) {
+    .item-modal-backdrop {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .item-modal {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 92dvh;
+        border-radius: 1.25rem 1.25rem 0 0;
+        animation-name: item-modal-slide-up;
+    }
+
+    @keyframes item-modal-slide-up {
+        from { transform: translateY(100%); }
+    }
+
+    .item-modal-image {
+        flex-shrink: 0;
+        height: 28dvh;
+    }
+
+    .item-modal-body {
+        flex: 1;
+    }
+
+    .item-modal-scroll {
+        padding: 1.25rem 1.25rem 0.5rem;
+    }
+
+    .item-modal-header {
+        padding-right: 0;
+    }
+
+    .item-modal-header h2 {
+        font-size: 1.7rem;
+    }
+
+    .item-modal-footer {
+        padding: 0.85rem 1.25rem calc(0.85rem + env(safe-area-inset-bottom));
+        gap: 0.75rem;
+    }
+
+    .item-modal-add {
+        padding: 0.85rem 1.25rem;
+        font-size: 1rem;
+    }
+}
+
+.item-modal-close:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--t4-teal) 45%, transparent);
+    outline-offset: 2px;
 }

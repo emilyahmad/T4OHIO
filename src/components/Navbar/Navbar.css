@@ -30,7 +30,7 @@
     */
 
     .page-name a {
-        color: #333333;
+        color: var(--t4-ink);
         text-decoration: none;
         padding: .75rem .75rem;
         border-radius: 1.25rem 1rem 0 0;
@@ -38,7 +38,7 @@
     }
 
     .page-name a:hover {
-        background-color: #25B8BC;
+        background-color: var(--t4-teal);
     }
 
     .page-name {
@@ -85,14 +85,14 @@
     }
 
     .page-name a {
-        color: #333333;
+        color: var(--t4-ink);
         text-decoration: none;
         padding: .75rem 2rem;
         border-radius: 1.25rem 1rem 0 0;
     }
 
     .page-name a:hover {
-        background-color: #25B8BC;
+        background-color: var(--t4-teal);
     }
 
     .page-name {

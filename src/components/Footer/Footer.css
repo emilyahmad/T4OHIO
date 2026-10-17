@@ -1,6 +1,6 @@
 @media (max-width: 768px) {
     .footer {
-    background-color: #25B8BC;
+    background-color: var(--t4-teal);
     color: white;
 }
 
@@ -69,7 +69,7 @@ ul {
 .footer-col1 a:has(i):hover,
 .footer-col2 a:has(i):hover {
     border-bottom: none;
-    color: #00777E;
+    color: var(--t4-teal-dark);
 }
 
 .button-top:hover {
@@ -93,7 +93,7 @@ ul {
 
 @media (min-width: 768px) {
     .footer {
-    background-color: #25B8BC;
+    background-color: var(--t4-teal);
     color: white;
 }
 
@@ -160,7 +160,7 @@ ul {
 .footer-col1 a:has(i):hover,
 .footer-col2 a:has(i):hover {
     border-bottom: none;
-    color: #00777E;
+    color: var(--t4-teal-dark);
 }
 
 .button-top:hover {

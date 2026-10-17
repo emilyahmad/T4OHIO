@@ -4,7 +4,7 @@
     }
     
     .hero-container {
-        background-color: #25B8BC;
+        background-color: var(--t4-teal);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -43,7 +43,7 @@
 
 @media (min-width: 768px) {
     .hero-container {
-    background-color: #25B8BC;
+    background-color: var(--t4-teal);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -139,4 +139,15 @@
     .hero-has-video .hero-text-container {
         margin: 0 1.5rem 2rem 0;
     }
+}
+
+/* Centered text, for full-bleed heroes like the Philosophy page */
+.hero-has-video.hero-centered {
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-has-video.hero-centered .hero-text-container {
+    text-align: center;
+    margin: 0 1.5rem;
 }
