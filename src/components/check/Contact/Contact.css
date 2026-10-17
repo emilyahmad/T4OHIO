@@ -1,6 +1,6 @@
 .contact-page {
     min-height: 100vh;
-    background-color: #4C3015;
+    background-color: var(--t4-ink);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +21,7 @@
 } */
 
 .contact-card {
-    background-color: #ead6bf;
+    background-color: var(--t4-mist);
     border-radius: 2rem;
     padding: 3.5rem 4rem;
     width: 100%;
@@ -31,7 +31,7 @@
 
 .contact-card h2 {
     font-size: 3rem;
-    color: #4C3015;
+    color: var(--t4-ink);
     /* font-weight: 800; */
     margin-bottom: 2.5rem;
     letter-spacing: 0.01em;
@@ -58,7 +58,7 @@
 .contact-field label {
     font-size: 0.85rem;
     font-weight: 800;
-    color: #785231;
+    color: var(--t4-charcoal);
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
@@ -66,10 +66,10 @@
 .contact-field input,
 .contact-field textarea {
     padding: 0.9rem 1.25rem;
-    border: 2px solid #AE9375;
+    border: 2px solid var(--t4-gold);
     border-radius: 0.75rem;
-    background-color: #fffcf8;
-    color: #4C3015;
+    background-color: #FFFFFF;
+    color: var(--t4-ink);
     font-size: 1rem;
     font-family: inherit;
     transition: border-color 200ms ease, box-shadow 200ms ease;
@@ -84,7 +84,7 @@
 
 .contact-field input::placeholder,
 .contact-field textarea::placeholder {
-    color: #b8977a;
+    color: var(--t4-gold-dark);
 }
 
 .contact-field textarea {
@@ -140,7 +140,7 @@
 
 .contact-success h2 {
     font-size: 1.4rem;
-    color: #4C3015;
+    color: var(--t4-ink);
     font-weight: 800;
     margin: 0;
     line-height: 1.4;
@@ -148,7 +148,7 @@
 
 .contact-success p {
     font-size: 1rem;
-    color: #785231;
+    color: var(--t4-charcoal);
     font-weight: 500;
     line-height: 1.6;
     margin: 0;
@@ -158,8 +158,8 @@
     margin-top: 0.5rem;
     padding: 0.85rem 2rem;
     background-color: transparent;
-    color: #4C3015;
-    border: 2px solid #AE9375;
+    color: var(--t4-ink);
+    border: 2px solid var(--t4-gold);
     border-radius: 999px;
     font-size: 0.95rem;
     font-weight: 700;
@@ -168,14 +168,14 @@
 }
 
 .contact-submit-another-btn:hover {
-    background-color: #4C3015;
-    color: #ead6bf;
-    border-color: #4C3015;
+    background-color: var(--t4-ink);
+    color: var(--t4-mist);
+    border-color: var(--t4-ink);
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px #fffcf8 inset;
-    -webkit-text-fill-color: #4C3015;
+    -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
+    -webkit-text-fill-color: var(--t4-ink);
 }
 
 @media (max-width: 600px) {

@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { asset } from "./utils/asset.js";
 import { useSiteContent } from "./data/siteContent.js";
 
@@ -7,9 +8,11 @@ import Hero from "./components/Hero/Hero.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Philosophy from "./components/Philosophy/Philosophy.jsx";
 import Seasonal from "./components/Seasonal/Seasonal.jsx";
+import Promotions from "./components/Promotions/Promotions.jsx";
 import Map from "./components/Map/Map.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-// import Reviews from "./components/Reviews/Reviews.jsx";
+import ScrollFade from "./components/ScrollFade/ScrollFade.jsx";
+import Reviews from "./components/Reviews/Reviews.jsx";
 
 // Pages
 import OrderNow from "./components/OrderNow/OrderNow.jsx";
@@ -25,10 +28,21 @@ import ResetPassword from "./components/check/SignIn/ResetPassword.jsx";
 import AuthProvider from "./auth/AuthProvider.jsx";
 import RequireAdmin from "./auth/RequireAdmin.jsx";
 
+// The boba pearl that follows the cursor. Loaded separately (three.js is large) and only on
+// devices with a mouse, for people who haven't asked their device to reduce motion.
+const BobaCursor = lazy(() => import("./components/BobaCursor/BobaCursor.jsx"));
+const WANTS_BOBA = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches;
+
+function BobaLayer() {
+  const { pathname } = useLocation();
+  if (!WANTS_BOBA || pathname.startsWith("/admin")) return null;
+  return <Suspense fallback={null}><BobaCursor /></Suspense>;
+}
+
 // The hero and seasonal sections come from the database so the owner can edit them.
 function Home() {
   const { content, loading } = useSiteContent();
-  const { hero, seasonal } = content;
+  const { hero, seasonal, promotions, reviews } = content;
 
   return (
     <>
@@ -39,10 +53,12 @@ function Home() {
           subtitle2={hero.subtitle2}
           imageAlt={hero.alt}
           image={asset(hero.image)}
+          video="tq-HzPabP3M"
         />
       )}
-      <Philosophy />
-      {!loading && <Seasonal title={seasonal.title} subtitle={seasonal.subtitle} cards={seasonal.cards} />}
+      {!loading && <Promotions title={promotions.title} images={promotions.images} />}
+      {!loading && <Seasonal title={seasonal.title} cards={seasonal.cards} />}
+      {!loading && <Reviews title={reviews.title} reviews={reviews.reviews} />}
       <Map />
       <Footer />
     </>
@@ -54,6 +70,8 @@ function App() {
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AuthProvider>
       <Navbar />
+      <ScrollFade />
+      <BobaLayer />
       <Routes>
 
         <Route path="/" element={<Home />} />
@@ -61,6 +79,22 @@ function App() {
         <Route path="/order-now" element={
           <>
             <OrderNow />
+            <Footer />
+          </>
+        } />
+
+        <Route path="/philosophy" element={
+          <>
+            <Hero
+              showMobile="hide-mobile"
+              name="Our Philosophy"
+              subtitle1="From leaf to cup, every step is done with care."
+              subtitle2=""
+              imageAlt="Several T4 drinks with teal lids on a wooden tray, including a milk tea with boba."
+              image={asset("img/philo-video.png")}
+              style={{marginRight: "7rem", width: "32.5%"}}
+            />
+            <Philosophy />
             <Footer />
           </>
         } />

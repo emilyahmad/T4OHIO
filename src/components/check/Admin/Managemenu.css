@@ -29,7 +29,7 @@
 }
 
 .mm-category:hover { background-color: var(--paper); }
-.mm-category.active { background-color: var(--cream); }
+.mm-category.active { background-color: var(--mist); }
 
 .mm-category-name {
     flex: 1;
@@ -41,7 +41,7 @@
     padding: 0.5rem 0.6rem;
     background: none;
     border: none;
-    color: var(--brown);
+    color: var(--ink);
     font-family: inherit;
     font-size: 1.02rem;
     font-weight: 700;
@@ -56,7 +56,7 @@
     align-items: center;
     gap: 0.3rem;
     font-size: 0.85rem;
-    color: var(--brown-mid);
+    color: var(--charcoal);
     font-weight: 600;
 }
 
@@ -116,10 +116,10 @@
 }
 
 .mm-item-name { flex: 1; min-width: 8rem; display: flex; flex-direction: column; gap: 0.1rem; }
-.mm-item-category { font-size: 0.8rem; color: var(--brown-mid); font-weight: 700; padding-left: 0.2rem; }
+.mm-item-category { font-size: 0.8rem; color: var(--charcoal); font-weight: 700; padding-left: 0.2rem; }
 
 .mm-price { display: flex; align-items: center; gap: 0.2rem; width: 6.5rem; flex-shrink: 0; }
-.mm-price span { color: var(--brown-mid); font-weight: 700; }
+.mm-price span { color: var(--charcoal); font-weight: 700; }
 .mm-price .adm-input { text-align: right; padding-right: 0.5rem; }
 
 .mm-item-actions { display: flex; gap: 0.1rem; flex-shrink: 0; }
@@ -139,17 +139,17 @@
 .mm-add-item {
     margin-top: 0.25rem;
     padding: 0.8rem;
-    border: 2px dashed var(--tan);
+    border: 2px dashed var(--gold);
     border-radius: 0.75rem;
     background: none;
-    color: var(--brown-mid);
+    color: var(--charcoal);
     font-family: inherit;
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
 }
 
-.mm-add-item:hover { background-color: var(--cream); color: var(--brown); }
+.mm-add-item:hover { background-color: var(--mist); color: var(--ink); }
 
 @media (max-width: 900px) {
     .mm-layout { grid-template-columns: minmax(0, 1fr); }

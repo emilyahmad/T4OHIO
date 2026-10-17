@@ -15,7 +15,7 @@
 
 .signin-page {
     min-height: 80vh;
-    background-color: #4C3015;
+    background-color: var(--t4-ink);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,7 +42,7 @@
 }
 
 .signin-card {
-    background-color: #ead6bf;
+    background-color: var(--t4-mist);
     border-radius: 2rem;
     padding: 3rem 3.5rem;
     flex: 1;
@@ -51,7 +51,7 @@
 
 .signin-card-title {
     font-size: 1.75rem;
-    color: #4C3015;
+    color: var(--t4-ink);
     font-weight: 600;
     margin-bottom: 2rem;
 }
@@ -78,7 +78,7 @@
 }
 
 .signin-divider span {
-    background-color: #4C3015;
+    background-color: var(--t4-ink);
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.8rem;
     font-weight: 800;
@@ -103,17 +103,17 @@
 .signin-field label {
     font-size: 0.82rem;
     font-weight: 800;
-    color: #785231;
+    color: var(--t4-charcoal);
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
 
 .signin-field input {
     padding: 0.9rem 1.25rem;
-    border: 2px solid #AE9375;
+    border: 2px solid var(--t4-gold);
     border-radius: 0.75rem;
-    background-color: #fffcf8;
-    color: #4C3015;
+    background-color: #FFFFFF;
+    color: var(--t4-ink);
     font-size: 1rem;
     font-family: inherit;
     transition: border-color 200ms ease, box-shadow 200ms ease;
@@ -128,7 +128,7 @@
 }
 
 .signin-field input::placeholder {
-    color: #b8977a;
+    color: var(--t4-gold-dark);
 }
 
 .signin-password-wrapper {
@@ -147,7 +147,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: #AE9375;
+    color: var(--t4-gold);
     font-size: 1.1rem;
     padding: 0;
     display: flex;
@@ -155,12 +155,12 @@
     transition: color 150ms ease;
 }
 
-.signin-eye-btn:hover { color: #4C3015; }
+.signin-eye-btn:hover { color: var(--t4-ink); }
 
 .signin-forgot {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #785231;
+    color: var(--t4-charcoal);
     text-decoration: underline;
     text-underline-offset: 3px;
     align-self: flex-end;
@@ -173,7 +173,7 @@
     cursor: pointer;
 }
 
-.signin-forgot:hover { color: #4C3015; }
+.signin-forgot:hover { color: var(--t4-ink); }
 
 .signin-submit-btn {
     margin-top: 0.5rem;
@@ -217,8 +217,8 @@
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px #fffcf8 inset;
-    -webkit-text-fill-color: #4C3015;
+    -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
+    -webkit-text-fill-color: var(--t4-ink);
 }
 
 @media (max-width: 700px) {

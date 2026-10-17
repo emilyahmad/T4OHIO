@@ -1,0 +1,42 @@
+.promotions {
+    background-color: white;
+    color: #333333;
+    padding: 5rem 8rem;
+}
+
+.promotions h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Promotions.jsx works out where each image goes from its shape, so every image shows in full */
+.promotions-grid {
+    position: relative;
+    width: 100%;
+}
+
+.promotions-grid > * {
+    position: absolute;
+    display: block;
+    object-fit: cover;
+}
+
+.promo-missing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.08);
+    color: #777;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .promotions {
+        padding: 3rem 1.5rem;
+    }
+
+    .promotions h1 {
+        margin-bottom: 2rem;
+    }
+}

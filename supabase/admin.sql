@@ -51,12 +51,24 @@ insert into public.site_content (key, content) values
         "alt": "Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
     }'),
     ('seasonal', '{
-        "title": "Seasonal",
+        "title": "Seasonal Flavors",
         "subtitle": "Stay up-to-date with new drinks, snacks, upcoming events and promotions",
         "cards": [
             {"id": "poster-1", "image": "img/posters/poster1.png", "alt": "A poster of a tiramisu frappe boba drink", "description": "A rich and creamy milk tea layered with soft cake textures and chewy boba for a perfectly indulgent treat.", "visible": true},
             {"id": "poster-2", "image": "img/posters/poster2.png", "alt": "A poster of a boba cake milk tea drink", "description": "A smooth iced coffee topped with a velvety sea salt cream foam that creates the perfect balance of sweet and savory.", "visible": true},
             {"id": "poster-3", "image": "img/posters/poster3.png", "alt": "A poster of a cream crown sea salt coffee boba tea drink", "description": "A smooth iced coffee topped with a velvety sea salt cream foam that creates the perfect balance of sweet and savory.", "visible": true}
+        ]
+    }')
+on conflict (key) do nothing;
+
+-- The Promotions section (added later; safe to run on its own). Up to 4 images.
+insert into public.site_content (key, content) values
+    ('promotions', '{
+        "title": "Promotions",
+        "images": [
+            {"id": "promo-1", "image": "img/menu-video-img.png", "alt": "Several T4 drinks with teal lids on a wooden tray"},
+            {"id": "promo-2", "image": "img/video.png", "alt": "Promotion placeholder"},
+            {"id": "promo-3", "image": "img/tea-video-img.png", "alt": "An aerial view of Taipei, Taiwan"}
         ]
     }')
 on conflict (key) do nothing;

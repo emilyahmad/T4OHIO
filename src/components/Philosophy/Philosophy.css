@@ -1,144 +1,32 @@
-@media (max-width: 768px) {
-    .philosophy-section {
-        display: none;
-    }
-}
-
-@media (min-width: 768px) {
-    .philosophy-section {
-    background-color: #4C3015;
+.philosophy-section {
+    background-color: var(--t4-ink);
     color: white;
     text-align: center;
+    padding: 5rem 2rem 6rem;
+}
+
+.philosophy-section h1 {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 3rem;
+}
+
+/* A large 16:9 video that scales with the screen */
+.tea-video {
+    position: relative;
+    overflow: hidden;
+    width: min(100%, 75rem);
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 768px) {
+    .philosophy-section {
+        padding: 3rem 1rem 4rem;
     }
 
     .philosophy-section h1 {
-        font-size: 3rem;
-        color: white;
-        padding-top: 6rem;
-        padding-bottom: 7rem;
-    }
-
-
-    iframe {
-        padding-top: 1rem;
-        transform: scale(1.25);
-        padding-bottom: 12rem;
-    }
-
-    .tea-video {
-        position: relative;
-        z-index: 10;
-        width: 560px;
-        height: 525px;
-        margin-top: -2rem;
-        padding-bottom: 12rem;
-        object-fit: cover;
-    }
-
-    /* .tea-video img {
-        z-index: 2;
-    } */
-
-    .leaf-images img {
-        z-index: 10;
-        width: 6.5rem;
-    }
-
-    .leaf-images {
-        margin: 0;
-        padding: 0;
-    }
-
-    .leaf1 {
-        position: absolute;
-        top: 123%;
-        left: 26%;
-    }
-
-    .leaf2 {
-        position: absolute;
-        top: 137%;
-        left: 21%;
-        transform: rotate(90deg);
-    }
-
-    .teacup {
-        margin: 0;
-        padding: 0;
-
-        position: absolute;
-        width: 16rem;
-
-        transform: rotate(3deg);
-        top: 158%;
-        left: 61%;
-        z-index: 10;
-
-    }
-
-    .teacup:hover {
-        transform: rotate(-1.3deg);
-    }
-
-    .steps-shapes {
-        margin: 0;
-        padding: 0;
-        z-index: 10;
-        position: absolute;
-        width: 16rem;
-
-        transform: rotate(-80deg);
-        top: 158%;
-        left: 20%;
-    }
-
-    .fa-angle-right {
-        background-color: #AE9375;
-        font-size: 2rem;
-        padding: .75rem;
-        border-radius: 50%;
-        z-index: 11;
-        position: absolute;
-        top: 178%;
-        left: 34.5%;
-    }
-
-    .numbered-steps {
-        background-color: #AE9375;
-        font-size: 3em;
-        padding: .5rem 1.5rem;
-        border-radius: 2.5rem;
-
-        position: absolute;
-        top: 144%;
-        left: 88%;
-    }
-
-    h2:hover, .fa-solid:hover {
-        background-color: #785231;
-    }
-    .fa-angle-right {
-        font-size: 2rem;
-        padding: 4px;
-    }
-
-    .fa-angle-right:hover {
-        cursor: pointer;
-    }
-
-    .spilled-tea {
-        position: absolute;
-        top: 114%;
-        left: 43%;
-        transform: rotate(-5deg);
-    }
-
-    .philosophy-section p {
-        position: absolute;
-        text-align: left;
-        margin-top: -4%;
-        margin-left: 75.5%;
-        margin-right: 13.5%;
-        font-size: 1.35rem;
+        font-size: 2.25rem;
+        margin-bottom: 2rem;
     }
 }

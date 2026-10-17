@@ -1,113 +1,47 @@
-@media (min-width: 768px) {
-    .seasonal {
-    background-color: #785231;
+.seasonal {
+    background-color: var(--t4-charcoal);
     color: white;
-
     margin: 0;
-    padding: 0;
+    padding: 5rem 2rem 5rem;
     position: relative;
 }
 
 .seasonal h1 {
     font-size: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
-.seasonal-header {
-    padding-top: 6rem;
-    padding-bottom: 4.5rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1.25;
-    gap: 6rem;
-}
-
-.seasonal-subtitle {
-    font-size: 1.5rem;
-    max-width: 36rem;
-}
-
+/* Up to 3 posters per row; more wrap onto the next row */
 .seasonal-cards {
     display: flex;
-    padding-bottom: 4.4rem;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
-    
 }
 
 .card {
-    background-color: #AE9375;
-    width: 20%;
+    width: 28%;
+    max-width: 26rem;
+    display: block;
 }
 
-.card img {
-    width: 100%;
-}
-
-.card p {
-    color: #333333;
-    font-weight: 850;
-    padding: 1rem;
-    font-size: 1.25rem;
-    text-align: center;
-}
-
-}
-
+/* On phones, 2 posters per row */
 @media (max-width: 768px) {
-        .seasonal {
-    background-color: #785231;
-    color: white;
+    .seasonal {
+        padding: 3rem 1rem;
+    }
 
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
+    .seasonal h1 {
+        font-size: 2.25rem;
+        margin-bottom: 2rem;
+    }
 
-.seasonal h1 {
-    font-size: 1.75rem;
-}
+    .seasonal-cards {
+        gap: 1rem;
+    }
 
-.seasonal-header {
-    margin-left: 10%;
-    padding-top: 3rem;
-    padding-bottom: 2rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1.25;
-    gap: 2.25rem;
-}
-
-.seasonal-subtitle {
-    font-size: 1rem;
-}
-
-.seasonal-cards {
-    display: flex;
-    padding-bottom: 3rem;
-    justify-content: center;
-    gap: .5rem;
-    
-}
-
-.card {
-    background-color: #AE9375;
-    width: 30%;
-}
-
-.card img {
-    width: 100%;
-}
-
-.card p {
-    color: #333333;
-    font-weight: 850;
-    padding: .25rem;
-    font-size: .8rem;
-    text-align: center;
-    line-height: 1;
-}
+    .card {
+        width: calc(50% - 0.5rem);
+    }
 }

@@ -32,6 +32,12 @@
         margin-top: 11.5rem;
         width: 35vw;
     }
+
+    /* Fill the rest of the screen under the 5rem navbar (dvh accounts for mobile browser bars) */
+    .hero-has-video {
+        height: calc(100vh - 5rem);
+        height: calc(100dvh - 5rem);
+    }
         
 }
 
@@ -63,5 +69,74 @@
     .hero-container img {
         margin-top: 11.5rem;
         width: 35vw;
+    }
+
+    /* Fill the rest of the screen under the 10rem navbar */
+    .hero-has-video {
+        height: calc(100vh - 10rem);
+        height: calc(100dvh - 10rem);
+    }
+}
+
+/* Video hero: the video covers the whole section and the text sits on top */
+.hero-has-video {
+    position: relative;
+    overflow: hidden;
+}
+
+/* The background image is the video's thumbnail, shown until the video is playing */
+.hero-video-bg {
+    position: absolute;
+    inset: 0;
+    container-type: size;
+    pointer-events: none;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Scale the 16:9 video so it always covers the section, cropping the edges like background-size: cover.
+   It's zoomed in a further 35% (plus 100px) so YouTube's title bar, logo and any black edges fall outside the visible area,
+   and nudged down a little (the -45% below) to push the bottom-right captions and controls further out of view. */
+.hero-video-bg iframe {
+    --video-height: calc(max(100cqh, 56.25cqw) * 1.35 + 100px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: var(--video-height);
+    width: calc(var(--video-height) * 16 / 9);
+    transform: translate(-50%, -45%);
+    border: none;
+    opacity: 0;
+    transition: opacity 600ms ease;
+}
+
+.hero-video-bg iframe.hero-video-playing {
+    opacity: 1;
+}
+
+/* Darkens the hero video a little so the white text on top stays readable */
+.hero-has-video .hero-video-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+/* Text sits in the bottom-right corner of the video */
+.hero-has-video {
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.hero-has-video .hero-text-container {
+    position: relative;
+    z-index: 1;
+    text-align: right;
+    margin: 0 4rem 4rem 0;
+}
+
+@media (max-width: 768px) {
+    .hero-has-video .hero-text-container {
+        margin: 0 1.5rem 2rem 0;
     }
 }

@@ -104,3 +104,29 @@
         padding-top: 6.15rem;
     }
 }
+/* The navbar is fixed so it can slide away; the spacer keeps its spot in the page */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    transition: transform 300ms ease;
+}
+
+.navbar-hidden {
+    /* extra room so the logo circles hanging below the bar slide away too */
+    transform: translateY(calc(-100% - 5rem));
+}
+
+@media (max-width: 768px) {
+    .navbar-spacer {
+        height: 5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar-spacer {
+        height: 10rem;
+    }
+}

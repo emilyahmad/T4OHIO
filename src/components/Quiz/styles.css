@@ -1,6 +1,6 @@
 /*
 body {
-    background-image: linear-gradient(to bottom, #AE9275, #795231, #4C3015);
+    background-image: linear-gradient(to bottom, var(--t4-gold), var(--t4-charcoal), var(--t4-ink));
     background-repeat: no-repeat;
 }
 
@@ -29,11 +29,11 @@ body {
 
 .options {
   cursor: pointer;
-  border: 2px solid #36220f;
+  border: 2px solid #222222;
   border-radius: 15px;
   width: 95%;
   height: 90%;
-  background-color: #4C3015;
+  background-color: var(--t4-ink);
 }
 
 .options:hover {

@@ -1,0 +1,18 @@
+/* Uses `translate` instead of `transform` so it doesn't clash with transforms already on the text */
+.fade-text {
+    opacity: 0;
+    translate: 0 1.5rem;
+    transition: opacity 800ms ease, translate 800ms ease;
+}
+
+.fade-text-visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fade-text {
+        translate: none;
+        transition: opacity 400ms ease;
+    }
+}

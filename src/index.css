@@ -1,3 +1,14 @@
+/* T4 brand palette: teal, grey and gold */
+:root {
+    --t4-teal: #25B8BC;
+    --t4-teal-dark: #00777E;
+    --t4-gold: #C3A05B;
+    --t4-gold-dark: #A8884A;
+    --t4-charcoal: #4D4D4F;
+    --t4-ink: #333333;
+    --t4-mist: #EDEDED;
+}
+
 * {
     font-family: "Abhaya Libre", serif;
     font-weight: 400;

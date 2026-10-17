@@ -15,7 +15,7 @@ function DrinkCard({ item, onSelect }) {
     );
 }
 
-const statusStyle = { color: "#ead6bf", fontSize: "1.25rem" };
+const statusStyle = { color: "var(--t4-mist)", fontSize: "1.25rem" };
 
 function OrderNow() {
     const { menu: fullMenu, loading, error } = useMenu();
