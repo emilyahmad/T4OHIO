@@ -70,14 +70,15 @@
     position: relative;
     /* A fixed size, so the dialog doesn't jump around between questions and the result */
     width: min(34rem, 100%);
-    height: min(34rem, 92vh);
+    min-height: min(32rem, 92dvh);
+    max-height: 96dvh;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     background-color: white;
     color: var(--t4-ink);
     border-radius: 1.25rem;
-    padding: 2.25rem 1.75rem 1.25rem;
+    padding: 1.1rem 1.75rem 1.25rem;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     animation: quiz-pop 220ms cubic-bezier(0.2, 0.8, 0.3, 1);
 }
@@ -118,10 +119,17 @@
     from { opacity: 0; transform: translateY(10px); }
 }
 
+.quiz-top {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
 .quiz-close {
-    position: absolute;
-    top: 0.9rem;
-    right: 0.9rem;
+    flex-shrink: 0;
     width: 2.4rem;
     height: 2.4rem;
     border: none;
@@ -185,8 +193,8 @@
 }
 
 .quiz-progress {
+    flex: 1;
     height: 0.4rem;
-    margin-right: 2.5rem;
     border-radius: 999px;
     background-color: var(--t4-mist);
     overflow: hidden;
@@ -357,8 +365,8 @@
 @media (max-width: 768px) {
     /* Phone text wraps onto more lines, so the dialog is taller there (but never taller than the screen) */
     .quiz-modal {
-        height: min(38rem, 92vh);
-        padding: 1.75rem 1.25rem 1rem;
+        min-height: min(34rem, 96dvh);
+        padding: 1rem 1.25rem 1rem;
     }
 
     .quiz-step:not(.quiz-result) h2 {
@@ -379,8 +387,8 @@
 /* Short screens (small phones, landscape): a little taller dialog and tighter spacing so nothing scrolls */
 @media (max-height: 700px) {
     .quiz-modal {
-        height: 95vh;
-        padding-top: 2rem;
+        min-height: 0;
+        padding-top: 0.75rem;
         padding-bottom: 0.75rem;
     }
 
@@ -423,17 +431,13 @@
    against its answers at the top and Back pinned to the bottom */
 @media (max-width: 768px) {
     .quiz-modal {
-        height: min(30rem, 95dvh);
-        padding: 1.1rem 1rem 0.5rem;
+        min-height: min(30rem, 96dvh);
+        padding: 0.75rem 1rem 0.5rem;
     }
 
     .quiz-close {
-        top: 0.6rem;
-        right: 0.6rem;
-    }
-
-    .quiz-progress {
-        margin-right: 2.75rem;
+        width: 2.1rem;
+        height: 2.1rem;
     }
 
     .quiz-step:not(.quiz-result) h2 {
@@ -455,7 +459,8 @@
 /* Short phones (or a browser with big toolbars): tighter text and spacing so the longest question still fits without scrolling */
 @media (max-width: 768px) and (max-height: 640px) {
     .quiz-modal {
-        padding: 0.9rem 0.85rem 0.4rem;
+        min-height: 0;
+        padding: 0.6rem 0.85rem 0.4rem;
     }
 
     .quiz-step:not(.quiz-result) h2 {

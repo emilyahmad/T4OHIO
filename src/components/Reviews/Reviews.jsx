@@ -21,11 +21,11 @@ const SAMPLE_REVIEWS = !import.meta.env.DEV ? [] : Array.from({ length: 8 }, (_,
 }));
 
 // The reviews fill the section's background in this many rows, scrolling in opposite directions
-const ROWS = 2;
+const ROWS = 3;
 // Each row repeats its reviews so the loop is seamless; make sure one copy is at least this long
 const MIN_CARDS_PER_LOOP = 10;
 // Seconds each card takes to scroll past; more cards means a longer loop at the same speed
-const SECONDS_PER_CARD = 6;
+const SECONDS_PER_CARD = 16;
 // A review without photos and with no more than this many characters is "short":
 // two short ones share a column, stacked, so together they're as tall as a regular card
 const SHORT_REVIEW_CHARS = 120;

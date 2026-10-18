@@ -21,6 +21,27 @@
     --t4-on-dark-muted: #DCD6CA;
 }
 
+/* Short pages still push the footer to the bottom of the screen, and the teal footer
+   color shows if the page is pulled past its end, so there's never a white strip under it */
+html {
+    background-color: var(--t4-teal);
+}
+
+body {
+    min-height: 100dvh;
+    background-color: white;
+}
+
+#root {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+#root > .footer {
+    margin-top: auto;
+}
+
 * {
     font-family: "Abhaya Libre", serif;
     font-weight: 400;

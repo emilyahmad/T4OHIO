@@ -120,15 +120,6 @@ function App() {
 
         <Route path="/sign-in" element={
           <>
-            <Hero
-              showMobile="hide-mobile"
-              name="Sign In"
-              subtitle1="For store owners & website admin"
-              subtitle2=""
-              imageAlt="Two hands adjusting a set up of four tea cups on a wooden basket with a brown plant on the right side."
-              image="https://www.t4.com.tw/en/image/contact_pic2.png"
-              style={{marginRight: "12rem", width: "25%"}}
-            />
             <SignIn />
             <Footer />
           </>

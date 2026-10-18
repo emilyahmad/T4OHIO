@@ -1,25 +1,13 @@
-@media (max-width: 768px) {
-    .signin-wrapper {
-        margin-left: 6rem;
-}
-
-.signin-divider span {
-    margin-left: -10rem;
-}
-
-}
-
-@media (min-width: 768px) {
-
-}
-
+/* Fills the space between the navbar and footer, with the card centered in it */
 .signin-page {
-    min-height: 80vh;
-    background-color: var(--t4-dark);
+    flex: 1;
+    background-color: var(--t4-light);
+    color: var(--t4-ink);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 4rem 1.5rem;
 }
 
 .signin-page-title {
@@ -38,21 +26,17 @@
     align-items: flex-start;
     gap: 0;
     width: 100%;
-    max-width: 900px;
+    max-width: 44rem;
 }
 
+/* No box: the title, fields and button sit straight on the page */
 .signin-card {
-    background-color: var(--t4-mist);
-    border-radius: 2rem;
-    padding: 3rem 3.5rem;
     flex: 1;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
 .signin-card-title {
-    font-size: 1.75rem;
+    font-size: 3rem;
     color: var(--t4-ink);
-    font-weight: 600;
     margin-bottom: 2rem;
 }
 
@@ -91,7 +75,7 @@
 .signin-form {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.5rem;
 }
 
 .signin-field {
@@ -109,12 +93,12 @@
 }
 
 .signin-field input {
-    padding: 0.9rem 1.25rem;
+    padding: 1.1rem 1.25rem;
     border: 2px solid var(--t4-gold);
     border-radius: 0.75rem;
     background-color: #FFFFFF;
     color: var(--t4-ink);
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-family: inherit;
     transition: border-color 200ms ease, box-shadow 200ms ease;
     outline: none;
@@ -222,10 +206,6 @@ input:-webkit-autofill {
 }
 
 @media (max-width: 700px) {
-    .signin-page { padding: 5rem 1.25rem 4rem; }
-    .signin-page-title { font-size: 4rem; }
-    .signin-wrapper { flex-direction: column; gap: 1.5rem; }
-    .signin-divider { flex-direction: row; min-height: unset; padding: 0; width: 100%; }
-    .signin-divider::before { top: 50%; bottom: unset; left: 0; right: 0; width: 100%; height: 2px; }
-    .signin-card { padding: 2.5rem 1.75rem; }
+    .signin-page { padding: 2.5rem 1.25rem; }
+    .signin-card-title { font-size: 2.25rem; margin-bottom: 1.5rem; }
 }

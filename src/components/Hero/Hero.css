@@ -171,3 +171,9 @@
     text-align: center;
     margin: 0 1.5rem;
 }
+
+/* Menu and Philosophy titles: even, open letter spacing (the default tightens it) */
+.hero-centered .title {
+    letter-spacing: 0.04em;
+    font-kerning: none;
+}

@@ -8,6 +8,7 @@
     position: relative;
     background-color: white;
     color: var(--t4-ink);
+    min-height: 40rem;
     padding: 2rem 0;
     text-align: center;
     overflow: hidden;
@@ -15,12 +16,17 @@
 
 /* No reviews yet: just the heading and button, at a comfortable height */
 .reviews.is-empty {
+    min-height: 0;
     padding: 5rem 0;
 }
 
+/* Fills the whole section; the rows are spread evenly from top to bottom */
 .reviews-backdrop {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     gap: var(--card-gap);
     opacity: 0.4;
 }
@@ -247,6 +253,7 @@
         --card-width: 12rem;
         --card-pad: 0.9rem;
         --card-gap: 0.75rem;
+        min-height: 34rem;
         padding: 1.5rem 0;
     }
 

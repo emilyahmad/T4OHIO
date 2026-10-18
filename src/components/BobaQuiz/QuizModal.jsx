@@ -89,17 +89,18 @@ function QuizModal({ onClose, onPick }) {
             <div className="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quiz-title"
                 onClick={(e) => e.stopPropagation()}>
 
-                <button ref={closeRef} className="quiz-close" onClick={onClose} aria-label="Close">
-                    <i className="fa-solid fa-xmark" aria-hidden="true" />
-                </button>
-
-                {/* Outside the sliding step so the bar fills smoothly instead of restarting */}
-                {!finished && (
-                    <div className="quiz-progress" role="progressbar" aria-label="Quiz progress"
-                        aria-valuemin={1} aria-valuemax={QUESTIONS.length} aria-valuenow={step + 1}>
-                        <span style={{ width: `${((step + 1) / QUESTIONS.length) * 100}%` }} />
-                    </div>
-                )}
+                {/* Progress bar and close button share a row, so the button never sits on top of the question */}
+                <div className="quiz-top">
+                    {!finished && (
+                        <div className="quiz-progress" role="progressbar" aria-label="Quiz progress"
+                            aria-valuemin={1} aria-valuemax={QUESTIONS.length} aria-valuenow={step + 1}>
+                            <span style={{ width: `${((step + 1) / QUESTIONS.length) * 100}%` }} />
+                        </div>
+                    )}
+                    <button ref={closeRef} className="quiz-close" onClick={onClose} aria-label="Close">
+                        <i className="fa-solid fa-xmark" aria-hidden="true" />
+                    </button>
+                </div>
 
                 {!finished ? (
                     <div className={stepClass} key={step}>
