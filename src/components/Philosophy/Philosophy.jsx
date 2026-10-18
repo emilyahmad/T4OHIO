@@ -2,7 +2,7 @@ import { asset } from "../../utils/asset.js";
 import HeroVideo from "../Hero/HeroVideo.jsx";
 import "./Philosophy.css";
 
-// Image blocks under the video, one per step of the tea making process (content from public/PHILOSOPHY.md).
+// Image blocks under the video, one per step of the tea making process.
 // Their headings alternate between the bottom-left and bottom-right corner.
 const FEATURES = [
   {

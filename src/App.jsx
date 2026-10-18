@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { asset } from "./utils/asset.js";
 import { useSiteContent, DEFAULT_CONTENT } from "./data/siteContent.js";
 import { youtubeId } from "./utils/youtube.js";
+import { trackVisit } from "./lib/analytics.js";
 
 // Landing page components
 import Hero from "./components/Hero/Hero.jsx";
@@ -14,6 +16,7 @@ import Footer from "./components/Footer/Footer.jsx";
 import ScrollFade from "./components/ScrollFade/ScrollFade.jsx";
 import ClickBurst from "./components/ClickBurst/ClickBurst.jsx";
 import Reviews from "./components/Reviews/Reviews.jsx";
+import BobaQuiz from "./components/BobaQuiz/BobaQuiz.jsx";
 
 // Pages
 import OrderNow from "./components/OrderNow/OrderNow.jsx";
@@ -22,6 +25,7 @@ import AdminLayout from "./components/check/Admin/AdminLayout.jsx";
 import Admin from "./components/check/Admin/Admin.jsx";
 import ManageMenu from "./components/check/Admin/Managemenu.jsx";
 import ManageFrontPage from "./components/check/Admin/ManageFrontPage.jsx";
+import Insights from "./components/check/Admin/Insights.jsx";
 import ResetPassword from "./components/check/SignIn/ResetPassword.jsx";
 
 // Auth
@@ -45,6 +49,7 @@ function Home() {
         />
       )}
       {!loading && <Promotions title={promotions.title} images={promotions.images} />}
+      {!loading && <BobaQuiz />}
       {!loading && <Seasonal title={seasonal.title} cards={seasonal.cards} />}
       {!loading && <Reviews title={reviews.title} reviews={reviews.reviews} />}
       <Map />
@@ -54,6 +59,11 @@ function Home() {
 }
 
 function App() {
+  // Count the visit, but not the owner signing in or working in the admin
+  useEffect(() => {
+    if (!/\/(admin|sign-in|reset-password)/.test(location.pathname)) trackVisit();
+  }, []);
+
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AuthProvider>
@@ -124,6 +134,7 @@ function App() {
           <Route index element={<Admin />} />
           <Route path="menu" element={<ManageMenu />} />
           <Route path="front-page" element={<ManageFrontPage />} />
+          <Route path="insights" element={<Insights />} />
           <Route path="manage-menu" element={<Navigate to="/admin/menu" replace />} />
         </Route>
 

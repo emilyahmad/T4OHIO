@@ -9,6 +9,7 @@ const NAV = [
     { to: "/admin", end: true, icon: "fa-gauge", label: "Dashboard" },
     { to: "/admin/menu", icon: "fa-utensils", label: "Menu" },
     { to: "/admin/front-page", icon: "fa-house", label: "Front Page" },
+    { to: "/admin/insights", icon: "fa-chart-simple", label: "Insights" },
 ];
 
 // Shell around every admin page. Pages get { setDirty, notify } through useOutletContext().

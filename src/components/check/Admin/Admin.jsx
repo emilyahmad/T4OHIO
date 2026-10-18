@@ -80,7 +80,10 @@ function Admin() {
             </div>
 
             <section className="adm-panel">
-                <h2 className="adm-panel-title">Sold out right now</h2>
+                <h2 className="adm-panel-title">
+                    Sold out right now{" "}
+                    <span className="adm-title-note">(Not currently shown on the menu page, but appeared on the menu in the past)</span>
+                </h2>
                 {loading ? (
                     <p className="adm-empty"><i className="fa-solid fa-spinner fa-spin" /> Loading…</p>
                 ) : soldOut.length === 0 ? (

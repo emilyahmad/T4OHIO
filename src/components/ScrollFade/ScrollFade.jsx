@@ -5,7 +5,7 @@ import "./ScrollFade.css";
 // Text that fades in as it scrolls into view
 const TEXT = "h1, h2, h3, h4, p";
 // Places where text should just show up normally
-const SKIP = ".navbar, .adm-shell, .modal-container, .map, .footer";
+const SKIP = ".navbar, .adm-shell, .modal-container, .quiz-backdrop, .map, .footer";
 
 // Renders nothing; it watches the page and tags text so ScrollFade.css can fade it in
 function ScrollFade() {

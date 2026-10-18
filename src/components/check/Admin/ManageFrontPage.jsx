@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { asset } from "../../../utils/asset.js";
 import { useSiteContent, saveSiteContent, reviewPhotos, MAX_PROMOTION_IMAGES } from "../../../data/siteContent.js";
 import { useEditHistory } from "./useEditHistory.js";
-import { SaveBar, Toggle, ImageField, MoveButtons } from "./AdminParts.jsx";
+import { SaveBar, Toggle, ImageField, MoveButtons, CollapsiblePanel } from "./AdminParts.jsx";
 import { moveInList, shortId, useReportDirty } from "./adminUtils.js";
 import { PromotionsGrid } from "../../Promotions/Promotions.jsx";
 import { youtubeId, youtubeThumbnail } from "../../../utils/youtube.js";
@@ -14,7 +14,7 @@ function ManageFrontPage() {
     if (loading || error) {
         return (
             <div className="adm-page">
-                <h1 className="adm-title">Front Page</h1>
+                <h1 className="adm-title">Front Page <span className="adm-title-note">(Home)</span></h1>
                 <div className="adm-panel adm-empty">
                     {error ? "Couldn't load the front page content. If you haven't yet, run supabase/admin.sql in the Supabase SQL editor, then refresh."
                         : <><i className="fa-solid fa-spinner fa-spin" /> Loading…</>}
@@ -123,7 +123,7 @@ function FrontPageEditor({ initial, updatedAt }) {
         <div className="adm-page">
             <header className="adm-header">
                 <div>
-                    <h1 className="adm-title">Front Page</h1>
+                    <h1 className="adm-title">Front Page <span className="adm-title-note">(Home)</span></h1>
                     <p className="adm-subtitle">
                         Edit the banner at the top of the home page and the Promotions, Seasonal and Reviews sections.
                         {lastSaved && <> Last saved {lastSaved.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })}.</>}
@@ -132,50 +132,50 @@ function FrontPageEditor({ initial, updatedAt }) {
             </header>
 
             {/* ── HERO ── */}
-            <section className="adm-panel fp-section">
-                <div className="fp-form">
-                    <h2 className="adm-panel-title">Hero banner</h2>
-                    <label className="adm-field">
-                        <span className="adm-label">Title</span>
-                        <input className="adm-input" value={hero.title} onChange={(e) => setHero({ title: e.target.value }, "hero:title")} />
-                    </label>
-                    <label className="adm-field">
-                        <span className="adm-label">Subtitle</span>
-                        <input className="adm-input" value={hero.subtitle1} onChange={(e) => setHero({ subtitle1: e.target.value }, "hero:subtitle1")} />
-                    </label>
-                    <label className="adm-field">
-                        <span className="adm-label">Second subtitle <span className="adm-hint">(optional)</span></span>
-                        <input className="adm-input" value={hero.subtitle2} onChange={(e) => setHero({ subtitle2: e.target.value }, "hero:subtitle2")} />
-                    </label>
-                    <label className="adm-field">
-                        <span className="adm-label">Background video <span className="adm-hint">(paste a YouTube link)</span></span>
-                        <input className="adm-input" type="url" placeholder="https://youtu.be/…"
-                            value={hero.video ?? ""} onChange={(e) => setHero({ video: e.target.value }, "hero:video")} />
-                        {hero.video && !heroVideoId && <span className="adm-hint fp-field-error">That doesn't look like a YouTube link.</span>}
-                        <span className="adm-hint">It plays muted and on a loop behind the text, with YouTube's buttons hidden.</span>
-                    </label>
-                    <label className="adm-field">
-                        <span className="adm-label">Video description <span className="adm-hint">(for screen readers)</span></span>
-                        <input className="adm-input" value={hero.alt} onChange={(e) => setHero({ alt: e.target.value }, "hero:alt")} />
-                    </label>
-                </div>
-                <div className="fp-preview">
-                    <span className="fp-preview-label">Preview</span>
-                    {/* Mirrors the real header: the video's thumbnail behind a dark tint, text in the bottom-right corner */}
-                    <div className="fp-hero-preview"
-                        style={heroVideoId ? { backgroundImage: `url(${youtubeThumbnail(heroVideoId)})` } : undefined}>
-                        <div>
-                            <h3>{hero.title || "Title"}</h3>
-                            {hero.subtitle1 && <p>{hero.subtitle1}</p>}
-                            {hero.subtitle2 && <p>{hero.subtitle2}</p>}
+            <CollapsiblePanel id="fp-hero" title="Hero banner">
+                <div className="fp-section">
+                    <div className="fp-form">
+                        <label className="adm-field">
+                            <span className="adm-label">Title</span>
+                            <input className="adm-input" value={hero.title} onChange={(e) => setHero({ title: e.target.value }, "hero:title")} />
+                        </label>
+                        <label className="adm-field">
+                            <span className="adm-label">Subtitle</span>
+                            <input className="adm-input" value={hero.subtitle1} onChange={(e) => setHero({ subtitle1: e.target.value }, "hero:subtitle1")} />
+                        </label>
+                        <label className="adm-field">
+                            <span className="adm-label">Second subtitle <span className="adm-hint">(optional)</span></span>
+                            <input className="adm-input" value={hero.subtitle2} onChange={(e) => setHero({ subtitle2: e.target.value }, "hero:subtitle2")} />
+                        </label>
+                        <label className="adm-field">
+                            <span className="adm-label">Background video <span className="adm-hint">(paste a YouTube link)</span></span>
+                            <input className="adm-input" type="url" placeholder="https://youtu.be/…"
+                                value={hero.video ?? ""} onChange={(e) => setHero({ video: e.target.value }, "hero:video")} />
+                            {hero.video && !heroVideoId && <span className="adm-hint fp-field-error">That doesn't look like a YouTube link.</span>}
+                            <span className="adm-hint">It plays muted and on a loop behind the text, with YouTube's buttons hidden.</span>
+                        </label>
+                        <label className="adm-field">
+                            <span className="adm-label">Video description <span className="adm-hint">(for screen readers)</span></span>
+                            <input className="adm-input" value={hero.alt} onChange={(e) => setHero({ alt: e.target.value }, "hero:alt")} />
+                        </label>
+                    </div>
+                    <div className="fp-preview">
+                        <span className="fp-preview-label">Preview</span>
+                        {/* Mirrors the real header: the video's thumbnail behind a dark tint, text in the bottom-right corner */}
+                        <div className="fp-hero-preview"
+                            style={heroVideoId ? { backgroundImage: `url(${youtubeThumbnail(heroVideoId)})` } : undefined}>
+                            <div>
+                                <h3>{hero.title || "Title"}</h3>
+                                {hero.subtitle1 && <p>{hero.subtitle1}</p>}
+                                {hero.subtitle2 && <p>{hero.subtitle2}</p>}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </CollapsiblePanel>
 
             {/* ── PROMOTIONS ── */}
-            <section className="adm-panel">
-                <h2 className="adm-panel-title">Promotions section</h2>
+            <CollapsiblePanel id="fp-promotions" title="Promotions section">
                 <div className="fp-seasonal-text">
                     <label className="adm-field">
                         <span className="adm-label">Heading</span>
@@ -223,11 +223,10 @@ function FrontPageEditor({ initial, updatedAt }) {
                             : <p className="fp-preview-empty">No images, so the section is hidden on the site.</p>}
                     </div>
                 </div>
-            </section>
+            </CollapsiblePanel>
 
             {/* ── SEASONAL ── */}
-            <section className="adm-panel">
-                <h2 className="adm-panel-title">Seasonal section</h2>
+            <CollapsiblePanel id="fp-seasonal" title="Seasonal section">
                 <div className="fp-seasonal-text">
                     <label className="adm-field">
                         <span className="adm-label">Heading</span>
@@ -280,11 +279,10 @@ function FrontPageEditor({ initial, updatedAt }) {
                         </div>
                     </div>
                 </div>
-            </section>
+            </CollapsiblePanel>
 
             {/* ── REVIEWS ── */}
-            <section className="adm-panel">
-                <h2 className="adm-panel-title">Reviews section</h2>
+            <CollapsiblePanel id="fp-reviews" title="Reviews section">
                 <div className="fp-seasonal-text">
                     <label className="adm-field">
                         <span className="adm-label">Heading</span>
@@ -357,7 +355,7 @@ function FrontPageEditor({ initial, updatedAt }) {
                         Add a review
                     </button>
                 </div>
-            </section>
+            </CollapsiblePanel>
 
             <SaveBar history={history} saving={saving} onSave={handleSave} />
         </div>

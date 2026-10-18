@@ -137,3 +137,30 @@ export function MoveButtons({ index, count, onMove, label = "item" }) {
         </div>
     );
 }
+
+// A panel whose body folds away under its title. Each panel remembers whether it was open (per browser),
+// keyed by `id`. The body stays mounted while closed, so nothing typed in it is lost.
+export function CollapsiblePanel({ id, title, children }) {
+    const storageKey = `adm-panel-open:${id}`;
+    const [open, setOpen] = useState(() => {
+        try { return localStorage.getItem(storageKey) !== "false"; } catch { return true; }
+    });
+
+    const toggle = () => {
+        setOpen(!open);
+        try { localStorage.setItem(storageKey, String(!open)); } catch { /* not saved; still toggles */ }
+    };
+
+    return (
+        <section className={open ? "adm-panel adm-collapsible open" : "adm-panel adm-collapsible"}>
+            <h2 className="adm-panel-title">
+                <button type="button" className="adm-collapsible-toggle" aria-expanded={open}
+                    aria-controls={`${id}-body`} onClick={toggle}>
+                    <span>{title}</span>
+                    <i className="fa-solid fa-chevron-down" aria-hidden="true" />
+                </button>
+            </h2>
+            <div id={`${id}-body`} hidden={!open}>{children}</div>
+        </section>
+    );
+}

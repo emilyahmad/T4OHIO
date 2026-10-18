@@ -1,8 +1,14 @@
 import "./OrderNow.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { FILTER_TAGS, itemImage } from "../../data/menu.js";
 import { useMenu } from "../../data/useMenu.js";
 import ItemModal from "./ItemModal.jsx";
+import QuizModal from "../BobaQuiz/QuizModal.jsx";
+import { CartButton, CartDrawer } from "../Cart/Cart.jsx";
+import { useCart } from "../Cart/useCart.js";
+import { CART_ENABLED } from "../Cart/cartConfig.js";
+import { track } from "../../lib/analytics.js";
 
 const formatPrice = (n) => `$${n.toFixed(2)}`;
 
@@ -46,7 +52,12 @@ function OrderNow() {
         .map(category => ({ ...category, items: category.items.filter(item => item.available) }))
         .filter(category => category.items.length > 0);
     const [activeFilters, setActiveFilters] = useState([]);
-    const [query, setQuery] = useState("");
+    // The boba quiz sends people here with ?q=their drink, so the menu opens already searching for it
+    const [searchParams] = useSearchParams();
+    const [query, setQuery] = useState(searchParams.get("q") ?? "");
+    const [quizOpen, setQuizOpen] = useState(false);
+    const cart = useCart();
+    const [cartOpen, setCartOpen] = useState(false);
     // Categories start open; clicking a category's heading folds it away
     const [collapsed, setCollapsed] = useState(() => new Set());
     const toggleCategory = (id) => setCollapsed(prev => {
@@ -57,6 +68,7 @@ function OrderNow() {
     });
 
     const toggleFilter = (filter) => {
+        if (!activeFilters.includes(filter)) track("filter", { name: filter });
         setActiveFilters((prev) =>
             prev.includes(filter) ? prev.filter(f => f !== filter) : [...prev, filter]
         );
@@ -79,6 +91,20 @@ function OrderNow() {
     const filterTitle = words.length === 0 ? filterLabel
         : `Results for “${query.trim()}”${activeFilters.length ? ` · ${activeFilters.join(" & ")}` : ""}`;
 
+    // Log what people search for once they stop typing. Searches the quiz filled in aren't the visitor's own.
+    const typedSearch = useRef(false);
+    useEffect(() => {
+        if (!typedSearch.current || words.length === 0) return;
+        const timer = setTimeout(() => track("search", { query: words.join(" ").slice(0, 60), results: filteredMenu ? filteredMenu.length : 0 }), 1200);
+        return () => clearTimeout(timer);
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- `words` is rebuilt every render; `query` is what changes
+    }, [query]);
+
+    const openItem = (item) => {
+        track("item_view", { item: item.name });
+        setSelectedDrink(item);
+    };
+
     const renderFilters = (filters) => (
         <ul className="filter-list">
             {filters.map((filter) => {
@@ -99,7 +125,18 @@ function OrderNow() {
     );
 
     // TODO (Phase 4): put the line item in the cart
-    const handleAdd = () => setSelectedDrink(null);
+    const handleAdd = (order) => {
+        const { sweetness, ice, toppings, customized, sizeUp } = order.selections;
+        track("order_add", {
+            item: order.name,
+            quantity: order.quantity,
+            sweetness: sweetness?.[0] ?? null,
+            ice: ice?.[0] ?? null,
+            toppings: toppings ?? [],
+            extras: [...(customized ?? []), ...(sizeUp ?? [])],
+        });
+        setSelectedDrink(null);
+    };
 
     return (
         <div className="menu-container">
@@ -115,7 +152,7 @@ function OrderNow() {
                                 <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                                 <input type="search" placeholder="Search the menu"
                                     aria-label="Search the menu"
-                                    value={query} onChange={(e) => setQuery(e.target.value)} />
+                                    value={query} onChange={(e) => { typedSearch.current = true; setQuery(e.target.value); }} />
                                 {query && (
                                     <button type="button" onClick={() => setQuery("")} aria-label="Clear search">
                                         <i className="fa-solid fa-xmark" aria-hidden="true"></i>
@@ -135,7 +172,7 @@ function OrderNow() {
                             <h1>{filterTitle}</h1>
                             <div className="classic-drinks">
                                 {filteredMenu.length > 0 ? filteredMenu.map((item) => (
-                                    <DrinkCard key={item.id} item={item} onSelect={setSelectedDrink} />
+                                    <DrinkCard key={item.id} item={item} onSelect={openItem} />
                                 )) : (
                                     <p style={statusStyle}>
                                         {words.length ? `Nothing on the menu matches “${query.trim()}”${activeFilters.length ? " with these filters" : ""}.` : "No items match these filters."}
@@ -160,7 +197,7 @@ function OrderNow() {
                                     {open && (
                                         <div className="classic-drinks" id={listId}>
                                             {category.items.map((item) => (
-                                                <DrinkCard key={item.id} item={item} onSelect={setSelectedDrink} />
+                                                <DrinkCard key={item.id} item={item} onSelect={openItem} />
                                             ))}
                                         </div>
                                     )}
@@ -168,9 +205,24 @@ function OrderNow() {
                             );
                         })
                     )}
+                    {/* After the last category (Snacks), or the last search/filter result */}
+                    {!loading && !error && (
+                        <button type="button" className="quiz-prompt" onClick={() => setQuizOpen(true)}>
+                            Not sure what to get? <span>Take the quiz to find out</span>
+                        </button>
+                    )}
                 </div>
 
             </div>
+
+            {quizOpen && (
+                <QuizModal
+                    onClose={() => setQuizOpen(false)}
+                    onPick={(drinkName) => { typedSearch.current = false; setQuery(drinkName); setQuizOpen(false); }} />
+            )}
+
+            {CART_ENABLED && <CartButton count={cart.count} onClick={() => setCartOpen(true)} />}
+            {CART_ENABLED && cartOpen && <CartDrawer cart={cart} onClose={() => setCartOpen(false)} />}
 
             {selectedDrink && (
                 <ItemModal

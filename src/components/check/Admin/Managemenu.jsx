@@ -48,7 +48,7 @@ function ManageMenu() {
     if (loading || error) {
         return (
             <div className="adm-page">
-                <h1 className="adm-title">Menu</h1>
+                <h1 className="adm-title">Menu <span className="adm-title-note">(Order Now)</span></h1>
                 <div className="adm-panel adm-empty">
                     {error ? "Couldn't load the menu. Refresh the page to try again." : <><i className="fa-solid fa-spinner fa-spin" /> Loading menu…</>}
                 </div>
@@ -205,7 +205,7 @@ function MenuEditor({ initialMenu }) {
         <div className="adm-page">
             <header className="adm-header">
                 <div>
-                    <h1 className="adm-title">Menu</h1>
+                    <h1 className="adm-title">Menu <span className="adm-title-note">(Order Now)</span></h1>
                     <p className="adm-subtitle">
                         {categories.length} categories · {itemCount} items
                         {soldOutCount > 0 && <> · <span className="adm-text-warn">{soldOutCount} sold out</span></>}

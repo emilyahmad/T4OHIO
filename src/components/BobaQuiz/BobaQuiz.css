@@ -1,0 +1,387 @@
+/* ── Home page banner ── */
+.boba-quiz {
+    background-color: var(--t4-teal);
+    color: white;
+    padding: 4.5rem 1.5rem;
+    text-align: center;
+}
+
+.boba-quiz h1 {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+}
+
+.boba-quiz p {
+    font-size: 1.5rem;
+    margin: 0 auto 2rem;
+    max-width: 36rem;
+}
+
+.boba-quiz-button {
+    border: none;
+    border-radius: 999px;
+    padding: 0.85rem 2.25rem;
+    background-color: white;
+    color: var(--t4-teal-dark);
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.boba-quiz-button:hover {
+    background-color: var(--t4-light);
+    transform: translateY(-2px);
+}
+
+.boba-quiz-button:focus-visible {
+    outline: 3px solid var(--t4-ink);
+    outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+    .boba-quiz {
+        padding: 3rem 1rem;
+    }
+
+    .boba-quiz h1 {
+        font-size: 2.25rem;
+    }
+
+    .boba-quiz p {
+        font-size: 1.2rem;
+    }
+}
+
+/* ── Quiz dialog ── */
+.quiz-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.55);
+    animation: quiz-fade 200ms ease;
+}
+
+.quiz-modal {
+    position: relative;
+    /* A fixed size, so the dialog doesn't jump around between questions and the result */
+    width: min(34rem, 100%);
+    height: min(34rem, 92vh);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color: white;
+    color: var(--t4-ink);
+    border-radius: 1.25rem;
+    padding: 2.25rem 1.75rem 1.25rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: quiz-pop 220ms cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+/* The site sets a slow 500ms transition on everything; keep this dialog snappy */
+.quiz-modal,
+.quiz-modal * {
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+@keyframes quiz-fade {
+    from { opacity: 0; }
+}
+
+@keyframes quiz-pop {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+}
+
+@keyframes quiz-slide {
+    from { opacity: 0; transform: translateX(16px); }
+}
+
+.quiz-close {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--t4-light);
+    color: var(--t4-ink);
+    font-size: 1.05rem;
+    cursor: pointer;
+}
+
+.quiz-close:hover {
+    background-color: var(--t4-mist);
+}
+
+/* Each question (and the result) slides in as the step changes */
+.quiz-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    animation: quiz-slide 260ms ease;
+}
+
+/* The question gets all the room above the answers and sits in the middle of it;
+   the answers are kept down near the bottom of the dialog */
+.quiz-step:not(.quiz-result) h2 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0.5rem 0;
+    font-size: 1.6rem;
+    line-height: 1.3;
+}
+
+.quiz-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 3rem;
+    margin-top: 0.4rem;
+}
+
+.quiz-footer .quiz-link {
+    align-self: auto;
+    margin: 0;
+}
+
+.quiz-progress {
+    height: 0.4rem;
+    margin-right: 2.5rem;
+    border-radius: 999px;
+    background-color: var(--t4-mist);
+    overflow: hidden;
+}
+
+.quiz-progress span {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background-color: var(--t4-teal);
+    transition: width 300ms ease;
+}
+
+.quiz-count {
+    margin: 1.25rem 0 0.4rem;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--t4-teal-dark);
+}
+
+.quiz-modal h2 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.quiz-option {
+    padding: 0.7rem 1rem;
+    border: 2px solid var(--t4-mist);
+    border-radius: 0.9rem;
+    background-color: white;
+    color: var(--t4-ink);
+    font-size: 1.05rem;
+    line-height: 1.3;
+    text-align: left;
+    cursor: pointer;
+}
+
+.quiz-option:hover {
+    border-color: var(--t4-teal);
+    background-color: rgba(37, 184, 188, 0.1);
+    transform: translateY(-1px);
+}
+
+.quiz-option:focus-visible,
+.quiz-primary:focus-visible,
+.quiz-link:focus-visible,
+.quiz-close:focus-visible {
+    outline: 3px solid var(--t4-gold);
+    outline-offset: 2px;
+}
+
+.quiz-link {
+    align-self: center;
+    margin-top: 1.25rem;
+    padding: 0.4rem 0.75rem;
+    border: none;
+    background: none;
+    color: var(--t4-charcoal);
+    font-size: 1.1rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+.quiz-link:hover {
+    color: var(--t4-teal-dark);
+}
+
+/* ── Result ── */
+.quiz-result {
+    justify-content: center;
+}
+
+.quiz-result .quiz-count {
+    margin: 0 0 1.5rem;
+}
+
+/* The drink's photo, name and price */
+.quiz-drink {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.quiz-modal .quiz-drink h2 {
+    margin: 0;
+    font-size: 1.7rem;
+}
+
+/* A paragraph about the drink's personality, then a tip for ordering it */
+.quiz-blurb {
+    font-size: 1.05rem;
+    line-height: 1.45;
+    color: var(--t4-charcoal);
+    margin-bottom: 0.75rem;
+}
+
+.quiz-tip {
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--t4-teal-dark);
+    margin-bottom: 1.25rem;
+}
+
+.quiz-drink img {
+    flex-shrink: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 0.6rem;
+    object-fit: cover;
+}
+
+.quiz-drink img.is-logo {
+    object-fit: contain;
+    padding: 0.75rem;
+    background-color: white;
+}
+
+.quiz-drink div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.quiz-drink-price {
+    font-size: 1.1rem;
+    color: var(--t4-charcoal);
+}
+
+.quiz-primary {
+    display: block;
+    width: 100%;
+    padding: 0.85rem 1.5rem;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--t4-teal);
+    color: var(--t4-ink);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.quiz-primary:hover {
+    background-color: var(--t4-teal-dark);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    /* Phone text wraps onto more lines, so the dialog is taller there (but never taller than the screen) */
+    .quiz-modal {
+        height: min(38rem, 92vh);
+        padding: 1.75rem 1.25rem 1rem;
+    }
+
+    .quiz-step:not(.quiz-result) h2 {
+        font-size: 1.3rem;
+    }
+
+    .quiz-modal .quiz-drink h2 {
+        font-size: 1.45rem;
+    }
+
+    .quiz-option,
+    .quiz-blurb,
+    .quiz-tip {
+        font-size: 1rem;
+    }
+}
+
+/* Short screens (small phones, landscape): a little taller dialog and tighter spacing so nothing scrolls */
+@media (max-height: 700px) {
+    .quiz-modal {
+        height: 95vh;
+        padding-top: 2rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .quiz-options {
+        gap: 0.5rem;
+    }
+
+    .quiz-option {
+        padding: 0.6rem 0.9rem;
+    }
+
+    .quiz-footer {
+        min-height: 2.75rem;
+    }
+
+    .quiz-result .quiz-count {
+        margin-bottom: 1.1rem;
+    }
+
+    .quiz-drink img {
+        width: 3.75rem;
+        height: 3.75rem;
+    }
+
+    .quiz-blurb {
+        line-height: 1.4;
+        margin-bottom: 0.6rem;
+    }
+
+    .quiz-tip {
+        margin-bottom: 1rem;
+    }
+
+    .quiz-result .quiz-link {
+        margin-top: 0.75rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .quiz-backdrop,
+    .quiz-modal,
+    .quiz-step {
+        animation: none;
+    }
+}
