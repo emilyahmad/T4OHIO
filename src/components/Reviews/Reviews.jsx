@@ -20,8 +20,10 @@ const SAMPLE_REVIEWS = !import.meta.env.DEV ? [] : Array.from({ length: 8 }, (_,
     visible: true,
 }));
 
-// The track repeats the reviews so the loop is seamless; make sure one copy is at least this long
-const MIN_CARDS_PER_LOOP = 8;
+// The reviews fill the section's background in this many rows, scrolling in opposite directions
+const ROWS = 2;
+// Each row repeats its reviews so the loop is seamless; make sure one copy is at least this long
+const MIN_CARDS_PER_LOOP = 10;
 // Seconds each card takes to scroll past; more cards means a longer loop at the same speed
 const SECONDS_PER_CARD = 6;
 // A review without photos and with no more than this many characters is "short":
@@ -105,46 +107,59 @@ function toColumns(reviews) {
     return columns;
 }
 
+// One row of the background: its columns repeated until long enough, in two identical halves.
+// The track slides by exactly one half, then starts over.
+function ReviewRow({ columns, reverse }) {
+    const loop = [];
+    while (columns.length && loop.length < MIN_CARDS_PER_LOOP) loop.push(...columns);
+
+    return (
+        <div className="reviews-carousel">
+            <div className={reverse ? "reviews-track is-reverse" : "reviews-track"}
+                style={{ "--loop-duration": `${loop.length * SECONDS_PER_CARD}s` }}>
+                {[0, 1].map((copy) => (
+                    <div className="reviews-loop" key={copy} aria-hidden={copy === 1 || undefined}>
+                        {loop.map((column, i) => column.length === 1
+                            ? <ReviewCard key={`${column[0].id}-${i}`} review={column[0]} index={i}/>
+                            : (
+                                <div className="review-stack" key={`${column[0].id}-${i}`}>
+                                    {column.map((review) => <ReviewCard key={review.id} review={review} index={i}/>)}
+                                </div>
+                            ))}
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 // The owner adds real reviews from Admin → Front Page (see data/siteContent.js).
-// They scroll past on their own in a loop; hovering (or pressing and holding) pauses them.
+// Faded review cards scroll past behind the section's heading and Google button; hovering one pauses its row.
 function Reviews({ title, reviews }) {
     let shown = reviews.filter((review) => review.visible && review.text.trim());
     const usingSamples = shown.length === 0 && import.meta.env.DEV;
     if (usingSamples) shown = SAMPLE_REVIEWS;
 
-    // One loop: the columns repeated until there are enough to fill wide screens
+    // Columns are dealt out to the rows in turn, so each row keeps the newest-first order
     const columns = toColumns(shown);
-    const loop = [];
-    while (columns.length && loop.length < MIN_CARDS_PER_LOOP) loop.push(...columns);
+    const rows = Array.from({ length: Math.min(ROWS, columns.length) }, (_, r) => columns.filter((_, i) => i % ROWS === r));
 
     return (
-        <section className="reviews">
-            <h1>{title}</h1>
-            <p className="reviews-subheading">See what our customers are saying</p>
-            {usingSamples && <p className="reviews-sample-note">Sample cards, only shown while developing locally.</p>}
-
-            {shown.length > 0 && (
-                <div className="reviews-carousel">
-                    {/* Two identical halves: the track slides left by exactly one half, then starts over */}
-                    <div className="reviews-track" style={{ "--loop-duration": `${loop.length * SECONDS_PER_CARD}s` }}>
-                        {[0, 1].map((copy) => (
-                            <div className="reviews-loop" key={copy} aria-hidden={copy === 1 || undefined}>
-                                {loop.map((column, i) => column.length === 1
-                                    ? <ReviewCard key={`${column[0].id}-${i}`} review={column[0]} index={i}/>
-                                    : (
-                                        <div className="review-stack" key={`${column[0].id}-${i}`}>
-                                            {column.map((review) => <ReviewCard key={review.id} review={review} index={i}/>)}
-                                        </div>
-                                    ))}
-                            </div>
-                        ))}
-                    </div>
+        <section className={rows.length ? "reviews" : "reviews is-empty"}>
+            {rows.length > 0 && (
+                <div className="reviews-backdrop">
+                    {rows.map((row, r) => <ReviewRow key={r} columns={row} reverse={r % 2 === 1}/>)}
                 </div>
             )}
 
-            <a className="reviews-google" href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer">
-                <i className="fa-brands fa-google" aria-hidden="true"/> Read &amp; leave reviews on Google
-            </a>
+            <div className="reviews-overlay">
+                <h1>{title}</h1>
+                <p className="reviews-subheading">See what our customers are saying</p>
+                {usingSamples && <p className="reviews-sample-note">Sample cards, only shown while developing locally.</p>}
+                <a className="reviews-google" href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer">
+                    <i className="fa-brands fa-google" aria-hidden="true"/> Read &amp; leave reviews on Google
+                </a>
+            </div>
         </section>
     );
 }
