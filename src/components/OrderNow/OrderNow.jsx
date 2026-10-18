@@ -29,6 +29,9 @@ function DrinkCard({ item, onSelect }) {
     );
 }
 
+// These filters share the second row with the search box; the rest go on the first row
+const SECOND_ROW_FILTERS = ["Gluten Free", "Vegetarian"];
+
 const statusStyle = { color: "var(--t4-mist)", fontSize: "1.25rem" };
 
 // Lowercase without accents, so "tiramisu" finds "Tiramisù Frappé"
@@ -76,6 +79,25 @@ function OrderNow() {
     const filterTitle = words.length === 0 ? filterLabel
         : `Results for “${query.trim()}”${activeFilters.length ? ` · ${activeFilters.join(" & ")}` : ""}`;
 
+    const renderFilters = (filters) => (
+        <ul className="filter-list">
+            {filters.map((filter) => {
+                const active = activeFilters.includes(filter);
+                return (
+                    <li key={filter}>
+                        <button type="button"
+                            className={active ? "filter-pill filter-pill-active" : "filter-pill"}
+                            aria-pressed={active}
+                            onClick={() => toggleFilter(filter)}>
+                            {filter}
+                            {active && <i className="fa-solid fa-check" aria-hidden="true"></i>}
+                        </button>
+                    </li>
+                );
+            })}
+        </ul>
+    );
+
     // TODO (Phase 4): put the line item in the cart
     const handleAdd = () => setSelectedDrink(null);
 
@@ -85,6 +107,10 @@ function OrderNow() {
                 <div className="filter-menu-options">
                     <div className="filters">
                         <div className="filter-bar">
+                            {renderFilters(FILTER_TAGS.filter(f => !SECOND_ROW_FILTERS.includes(f)))}
+                        </div>
+                        <div className="filter-bar">
+                            {renderFilters(FILTER_TAGS.filter(f => SECOND_ROW_FILTERS.includes(f)))}
                             <div className="menu-search">
                                 <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                                 <input type="search" placeholder="Search the menu"
@@ -96,22 +122,6 @@ function OrderNow() {
                                     </button>
                                 )}
                             </div>
-                        <ul className="filter-list">
-                            {FILTER_TAGS.map((filter) => {
-                                const active = activeFilters.includes(filter);
-                                return (
-                                    <li key={filter}>
-                                        <button type="button"
-                                            className={active ? "filter-pill-active" : "filter-pill"}
-                                            aria-pressed={active}
-                                            onClick={() => toggleFilter(filter)}>
-                                            {filter}
-                                            {active && <i className="fa-solid fa-circle-check" aria-hidden="true"></i>}
-                                        </button>
-                                    </li>
-                                );
-                            })}
-                        </ul>
                         </div>
                     </div>
                 </div>

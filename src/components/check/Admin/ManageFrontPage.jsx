@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { asset } from "../../../utils/asset.js";
-import { useSiteContent, saveSiteContent, MAX_PROMOTION_IMAGES } from "../../../data/siteContent.js";
+import { useSiteContent, saveSiteContent, reviewPhotos, MAX_PROMOTION_IMAGES } from "../../../data/siteContent.js";
 import { useEditHistory } from "./useEditHistory.js";
 import { SaveBar, Toggle, ImageField, MoveButtons } from "./AdminParts.jsx";
 import { moveInList, shortId, useReportDirty } from "./adminUtils.js";
@@ -67,7 +67,7 @@ function FrontPageEditor({ initial, updatedAt }) {
         reviews: { ...d.reviews, reviews: d.reviews.reviews.map(r => r.id === id ? { ...r, ...changes } : r) },
     }), mergeKey);
 
-    const addReview = () => setReviewList(list => [...list, { id: `review-${shortId()}`, name: "", rating: 5, text: "", image: null, photo: null, visible: true }]);
+    const addReview = () => setReviewList(list => [...list, { id: `review-${shortId()}`, name: "", location: "", date: "", rating: 5, text: "", photos: [], visible: true }]);
     const removeReview = (review) => {
         setReviewList(list => list.filter(r => r.id !== review.id));
         notify("Review removed", { action: { label: "Undo", onClick: undo } });
@@ -310,12 +310,17 @@ function FrontPageEditor({ initial, updatedAt }) {
                                 </button>
                             </div>
                             <div className="adm-field">
-                                <span className="adm-label">Food or drink photo <span className="adm-hint">(optional: what they ordered; shown across the top of the card)</span></span>
-                                <ImageField value={review.photo ?? null} folder="reviews" onChange={(photo) => setReview(review.id, { photo })} />
-                            </div>
-                            <div className="adm-field">
-                                <span className="adm-label">Reviewer photo <span className="adm-hint">(optional: their profile picture; otherwise their initial is shown)</span></span>
-                                <ImageField value={review.image ?? null} folder="reviews" onChange={(image) => setReview(review.id, { image })} />
+                                <span className="adm-label">Food or drink photos <span className="adm-hint">(optional: what they ordered; shown across the top of the card, rotating if there are several)</span></span>
+                                {/* One field per photo, plus an empty one at the end for adding another */}
+                                {[...reviewPhotos(review), null].map((photo, i, list) => (
+                                    <ImageField key={photo ?? "new"} value={photo} folder="reviews"
+                                        onChange={(next) => {
+                                            const photos = list.slice(0, -1);
+                                            if (photo === null) photos.push(next);
+                                            else photos[i] = next;
+                                            setReview(review.id, { photos: photos.filter(Boolean), photo: null });
+                                        }} />
+                                ))}
                             </div>
                             <label className="adm-field">
                                 <span className="adm-label">Customer name</span>
@@ -323,10 +328,21 @@ function FrontPageEditor({ initial, updatedAt }) {
                                     onChange={(e) => setReview(review.id, { name: e.target.value }, `${review.id}:name`)} />
                             </label>
                             <label className="adm-field">
+                                <span className="adm-label">Location <span className="adm-hint">(optional, e.g. Centerville, OH)</span></span>
+                                <input className="adm-input" value={review.location ?? ""}
+                                    onChange={(e) => setReview(review.id, { location: e.target.value }, `${review.id}:location`)} />
+                            </label>
+                            <label className="adm-field">
+                                <span className="adm-label">Date <span className="adm-hint">(optional, e.g. Jun 30, 2026)</span></span>
+                                <input className="adm-input" value={review.date ?? ""}
+                                    onChange={(e) => setReview(review.id, { date: e.target.value }, `${review.id}:date`)} />
+                            </label>
+                            <label className="adm-field">
                                 <span className="adm-label">Stars</span>
-                                <select className="adm-input" value={review.rating}
-                                    onChange={(e) => setReview(review.id, { rating: Number(e.target.value) })}>
+                                <select className="adm-input" value={review.rating ?? ""}
+                                    onChange={(e) => setReview(review.id, { rating: e.target.value ? Number(e.target.value) : null })}>
                                     {[5, 4, 3, 2, 1].map(n => <option key={n} value={n}>{"★".repeat(n)} ({n})</option>)}
+                                    <option value="">No stars shown</option>
                                 </select>
                             </label>
                             <label className="adm-field">

@@ -5,7 +5,7 @@ import { asset } from "../utils/asset.js";
 export const itemImage = (item) => item.image || asset("img/logo.png");
 
 // Every filter tag the order page offers.
-export const FILTER_TAGS = ["New", "Hot", "Cold", "Coffee", "No Caffeine", "Snacks", "Gluten Free", "Vegan"];
+export const FILTER_TAGS = ["New", "Hot", "Cold", "Coffee", "No Caffeine", "Snacks", "Gluten Free", "Vegetarian"];
 
 // Customization groups an item can offer. min/max are how many options the customer may pick.
 // An option with `onlyForTag` only appears on items that have that tag (e.g. no "Hot" on iced-only drinks).
@@ -19,6 +19,7 @@ export const modifierGroups = {
             { label: "PF/STR Jam", price: 1.0 },
             { label: "Other Flavor Added", price: 1.0 },
             { label: "Oat Milk", price: 0.75 },
+            { label: "Coconut Milk", price: 0.75 },
             { label: "Cream Crown(Cheese)", price: 1.0 },
             { label: "Coffee (A Shot)", price: 3.5 },
         ],
@@ -52,11 +53,11 @@ export const modifierGroups = {
         min: 0,
         max: 4,
         options: [
-            "Amber Pearl", "Boba", "Mini Boba", "Lychee CJ",
-            "Mixed Boba w/ Mini", "Blueberry Popping", "Kiwi Pop'n",
-            "Honeydew Pop'n Boba", "Strawberry Pop'n", "Green TJ",
-            "Coconut J", "Pudding (Flan)", "Rainbow J", "Grass J",
-            "Cream Crown", "Coffee J", "Aloe", "Agar P", "Red Bean",
+            "Pearls (Bouncy)", "Amber Pearls (Softer/Sweeter)", "Mini Pearls (Bouncy Miniature)",
+            "Coffee Jelly", "Rainbow Jelly", "Coconut Jelly", "Lychee Coconut Jelly",
+            "Red Beans", "Grass Jelly (Herbal)", "Pudding (Egg Custard)", "Green Tea Jelly",
+            "Aloe Vera Cubes", "Agar (Crystal Boba)", "Kiwi Popn'", "Honeydew Popn'",
+            "Blueberry Popn'", "Strawberry Popn'", "Energy Blackcurrant Popn'", "Energy Redbull Popn'",
         ].map((label) => ({ label, price: 0.75 })),
     },
 };

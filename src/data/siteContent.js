@@ -40,6 +40,9 @@ export const DEFAULT_CONTENT = {
 
 export const MAX_PROMOTION_IMAGES = 4;
 
+// A review's food/drink photos. Older reviews saved a single `photo` instead of a `photos` list.
+export const reviewPhotos = (review) => review.photos?.filter(Boolean) ?? (review.photo ? [review.photo] : []);
+
 // T4 Ohio's Google listing, opened on its reviews
 export const GOOGLE_REVIEWS_URL = "https://www.google.com/maps/place/T4+(Tea+For+U)+Bubble+Tea+Cafe+SnackBar/@39.6114373,-84.1621521,17z/data=!4m8!3m7!1s0x88408f83aaac65af:0xa78426d198186c18!8m2!3d39.6114373!4d-84.1595772!9m1!1b1!16s%2Fg%2F11t639bf79";
 

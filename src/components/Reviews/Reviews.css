@@ -74,13 +74,73 @@
     overflow: hidden; /* keeps the food photo inside the rounded corners */
 }
 
-/* Food/drink photo: bleeds to the card's edges (cancelling its padding), under the teal top border */
+/* Food/drink photos: bleed to the card's edges (cancelling its padding), under the teal top border.
+   They're stacked on top of each other and the current one fades in. */
 .review-photo {
-    display: block;
+    position: relative;
+    flex-shrink: 0;
     width: calc(100% + 3.5rem);
     margin: -1.75rem -1.75rem 0;
     aspect-ratio: 16 / 10;
+    background-color: var(--t4-mist);
+}
+
+.review-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    opacity: 0;
+    transition: opacity 700ms ease;
+}
+
+.review-photo img.is-current {
+    opacity: 1;
+}
+
+/* One dot per photo, the current one filled */
+.review-photo-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 0.6rem;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.35rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.review-photo-dots span {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: background-color 300ms ease;
+}
+
+.review-photo-dots span.is-current {
+    background-color: white;
+}
+
+/* Two short reviews stacked in one column, together as tall as a regular card */
+.review-stack {
+    flex: 0 0 22rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.review-stack .review-card {
+    flex: 1 1 0;
+    margin: 0;
+}
+
+.review-stack .review-card blockquote {
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
 }
 
 .review-card:hover {
@@ -94,37 +154,34 @@
     gap: 0.2rem;
 }
 
+/* Long reviews are cut off after a few lines so every card in the row stays a similar height */
 .review-card blockquote {
     font-size: 1.15rem;
     line-height: 1.5;
-    flex: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    line-clamp: 7;
+    overflow: hidden;
 }
 
+/* Pushed to the bottom of the card, so names line up across cards */
 .review-card figcaption {
+    margin-top: auto;
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.review-name {
     font-weight: 700;
     font-size: 1.05rem;
     color: var(--t4-teal-dark);
 }
 
-.review-avatar {
-    flex-shrink: 0;
-    width: 2.75rem;
-    height: 2.75rem;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 0 0 2px white, 0 0 0 3px var(--t4-mist);
-}
-
-.review-avatar.is-initial {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--t4-teal);
-    color: white;
-    font-size: 1.15rem;
+.review-details {
+    font-size: 0.95rem;
+    color: var(--t4-charcoal);
 }
 
 /* For people who've asked their device to reduce motion: no auto-scroll, swipe or scroll sideways instead */
@@ -178,6 +235,11 @@
     .review-card {
         flex-basis: 17rem;
         padding: 1.4rem;
+    }
+
+    .review-stack {
+        flex-basis: 17rem;
+        gap: 1rem;
     }
 
     .review-photo {

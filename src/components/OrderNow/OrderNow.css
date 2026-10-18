@@ -40,7 +40,11 @@
         color: var(--t4-mist);
     }
 
-    /* Search box and filter pills in one centered row */
+    /* Two centered rows: the main filters, then dietary filters with the search box */
+    .filter-bar + .filter-bar {
+        margin-top: .75rem;
+    }
+
     .filter-bar {
         display: flex;
         flex-wrap: wrap;
@@ -51,11 +55,10 @@
         margin: 0 auto;
     }
 
-    /* Sits after the filter pills, on the right of the row */
+    /* Sits after Gluten Free and Vegetarian, on the second row */
     .menu-search {
         position: relative;
         width: 15rem;
-        order: 1;
     }
 
     .menu-search > i {
@@ -139,21 +142,6 @@
         gap: .5rem;
         box-sizing: border-box;
         width: fit-content;
-    }
-
-    .filter-pill-active {
-        transition: ease-in-out;
-        font-weight: 900;
-        background-color: var(--t4-gold);
-        color: var(--t4-ink);
-    }
-
-    .fa-circle-check {
-        font-size: 1.1rem;
-    }
-
-    .fa-circle-check:hover {
-        background-color: rgba(255, 255, 255, 0);
     }
 
     /* Category heading, lined up with the grid below it */
@@ -385,19 +373,8 @@
         width: fit-content;
     }
 
-    .filter-pill-active {
-        transition: ease-in-out;
-        font-weight: 900;
-        background-color: var(--t4-gold);
-        color: var(--t4-ink);
-    }
-
-    .fa-circle-check {
-        font-size: 1rem;
-    }
-
-    .fa-circle-check:hover {
-        background-color: rgba(255, 255, 255, 0);
+    .filter-bar + .filter-bar {
+        margin-top: .75rem;
     }
 
     .classic h1 {
@@ -418,6 +395,44 @@
         gap: 1rem;
     }
 
+}
+
+/* ── Filter pills ── */
+/* Outlined until picked; a picked filter fills with teal, shows a check and gives a small pop */
+.filter-pill {
+    border: 2px solid rgba(230, 224, 212, 0.35);
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.filter-pill:hover {
+    border-color: var(--t4-mist);
+    background-color: rgba(230, 224, 212, 0.08);
+}
+
+.filter-pill:focus-visible {
+    outline: 3px solid var(--t4-gold);
+    outline-offset: 2px;
+}
+
+.filter-pill.filter-pill-active {
+    border-color: var(--t4-teal);
+    background-color: var(--t4-teal);
+    color: var(--t4-ink);
+    animation: filter-pop 220ms ease-out;
+}
+
+.filter-pill-active .fa-check {
+    font-size: .85em;
+}
+
+@keyframes filter-pop {
+    50% { transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .filter-pill.filter-pill-active {
+        animation: none;
+    }
 }
 
 /* ── Menu item cards ── */
