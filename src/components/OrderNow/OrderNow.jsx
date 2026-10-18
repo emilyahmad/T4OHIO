@@ -5,9 +5,7 @@ import { FILTER_TAGS, itemImage } from "../../data/menu.js";
 import { useMenu } from "../../data/useMenu.js";
 import ItemModal from "./ItemModal.jsx";
 import QuizModal from "../BobaQuiz/QuizModal.jsx";
-import { CartButton, CartDrawer } from "../Cart/Cart.jsx";
-import { useCart } from "../Cart/useCart.js";
-import { CART_ENABLED } from "../Cart/cartConfig.js";
+import { CLOVER_LINK_ENABLED, openCloverItem } from "../../data/cloverLinks.js";
 import { track } from "../../lib/analytics.js";
 
 const formatPrice = (n) => `$${n.toFixed(2)}`;
@@ -56,8 +54,6 @@ function OrderNow() {
     const [searchParams] = useSearchParams();
     const [query, setQuery] = useState(searchParams.get("q") ?? "");
     const [quizOpen, setQuizOpen] = useState(false);
-    const cart = useCart();
-    const [cartOpen, setCartOpen] = useState(false);
     // Categories start open; clicking a category's heading folds it away
     const [collapsed, setCollapsed] = useState(() => new Set());
     const toggleCategory = (id) => setCollapsed(prev => {
@@ -124,7 +120,7 @@ function OrderNow() {
         </ul>
     );
 
-    // TODO (Phase 4): put the line item in the cart
+    // Tracks the add, then opens the drink on Clover, where the order is finished
     const handleAdd = (order) => {
         const { sweetness, ice, toppings, customized, sizeUp } = order.selections;
         track("order_add", {
@@ -135,6 +131,7 @@ function OrderNow() {
             toppings: toppings ?? [],
             extras: [...(customized ?? []), ...(sizeUp ?? [])],
         });
+        if (CLOVER_LINK_ENABLED) openCloverItem(selectedDrink);
         setSelectedDrink(null);
     };
 
@@ -220,9 +217,6 @@ function OrderNow() {
                     onClose={() => setQuizOpen(false)}
                     onPick={(drinkName) => { typedSearch.current = false; setQuery(drinkName); setQuizOpen(false); }} />
             )}
-
-            {CART_ENABLED && <CartButton count={cart.count} onClick={() => setCartOpen(true)} />}
-            {CART_ENABLED && cartOpen && <CartDrawer cart={cart} onClose={() => setCartOpen(false)} />}
 
             {selectedDrink && (
                 <ItemModal

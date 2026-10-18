@@ -1,5 +1,6 @@
 .seasonal {
-    background-color: var(--t4-dark-2);
+    background-color: var(--t4-ink);
+    background-image: var(--t4-ink-gradient);
     color: white;
     margin: 0;
     padding: 5rem 2rem 5rem;

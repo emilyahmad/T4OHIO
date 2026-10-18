@@ -1,5 +1,6 @@
 .philosophy-section {
-    background-color: var(--t4-dark);
+    background-color: var(--t4-ink);
+    background-image: var(--t4-ink-gradient);
     color: white;
     text-align: center;
     padding: 5rem 2rem 6rem;

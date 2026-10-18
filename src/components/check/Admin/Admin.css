@@ -1,6 +1,6 @@
 /* The admin's navy: ink at the top fading to a near-black teal at the bottom */
 .admin-page, .adm-shell {
-    --ink-gradient: linear-gradient(180deg, var(--t4-ink) 0%, #1a2a2f 55%, #0e1a1d 100%);
+    --ink-gradient: var(--t4-ink-gradient);
 }
 
 /* ══ Sign-in gate (RequireAdmin) ══════════════════════ */

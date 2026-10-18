@@ -11,6 +11,8 @@
     --t4-gold: #D9B57E;
     --t4-gold-dark: #B8925A;
     --t4-ink: #26333A;
+    /* Ink at the top fading to a near-black teal at the bottom (admin sidebar, seasonal and philosophy sections) */
+    --t4-ink-gradient: linear-gradient(180deg, var(--t4-ink) 0%, #1a2a2f 55%, #0e1a1d 100%);
     --t4-charcoal: #4E5B5F;
     --t4-dark: #233A3F;
     --t4-dark-2: #2F4A50;
