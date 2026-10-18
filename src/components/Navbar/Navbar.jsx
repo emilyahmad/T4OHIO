@@ -1,6 +1,6 @@
 import { asset } from "../../utils/asset.js";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../auth/AuthContext.js";
 
@@ -10,6 +10,7 @@ const HIDE_AFTER = 80;
 function Navbar() {
   const { isAdmin } = useAuth();
   const [hidden, setHidden] = useState(false);
+  const [open, setOpen] = useState(false);
 
   // Hide the header when scrolling down, bring it back when scrolling up
   useEffect(() => {
@@ -27,7 +28,7 @@ function Navbar() {
 
   return (
     <div className="navbar-spacer">
-    <div className={hidden ? "navbar navbar-hidden" : "navbar"}>
+    <div className={`navbar${hidden && !open ? " navbar-hidden" : ""}${open ? " navbar-open" : ""}`}>
 
       <div className="white-circles">
         <div className="first-circle">
@@ -40,12 +41,25 @@ function Navbar() {
         </div>
       </div>
       
-      <div className="page-name">
-        <Link to="/">Home</Link>
-        <Link to="/philosophy">Philosophy</Link>
-        <Link to="/order-now">Order Now</Link>
+      <Link to="/" className="nav-brand" onClick={() => setOpen(false)}>
+        <img src={asset("img/navbar/logo-circle.png")} alt="T4 home" />
+      </Link>
+      <button
+        type="button"
+        className="nav-burger"
+        aria-label="Toggle menu"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+      >
+        <span /><span /><span />
+      </button>
+
+      <div className="page-name" onClick={() => setOpen(false)}>
+        <NavLink to="/" end>Home</NavLink>
+        <NavLink to="/philosophy">Philosophy</NavLink>
+        <NavLink to="/order-now">Order Now</NavLink>
         {/* Customers never see a login link; the owner bookmarks /admin, which asks them to sign in */}
-        {isAdmin && <Link to="/admin">Admin</Link>}
+        {isAdmin && <NavLink to="/admin">Admin</NavLink>}
       </div>
 
     </div>

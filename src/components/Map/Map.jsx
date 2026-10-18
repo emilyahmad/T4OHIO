@@ -1,7 +1,17 @@
 import "./Map.css";
 
 const MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3073.7001210515964!2d-84.16215212398288!3d39.61143727158048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88408f83aaac65af%3A0xa78426d198186c18!2sT4%20(Tea%20For%20U)%20Bubble%20Tea%20Cafe%20SnackBar!5e0!3m2!1sen!2sus!4v1774737859207!5m2!1sen!2sus";
-const DIRECTIONS = "https://www.google.com/maps/dir/?api=1&destination=T4+(Tea+For+U)+Bubble+Tea+Cafe+SnackBar%2C+9146+Dayton-Lebanon+Pike%2C+Centerville%2C+OH+45458";
+const ADDRESS = "9146 Dayton-Lebanon Pike, Centerville, OH 45458";
+
+// Apple devices get Apple Maps (which opens the app); everything else gets Google Maps, which opens its app on Android
+function directionsUrl() {
+  const dest = encodeURIComponent(ADDRESS);
+  const ua = navigator.userAgent;
+  const isApple = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  return isApple
+    ? `https://maps.apple.com/?daddr=${dest}&dirflg=d`
+    : `https://www.google.com/maps/dir/?api=1&destination=${dest}`;
+}
 
 // Store hours in 24-hour time (Ohio time); null = closed
 const HOURS = [
@@ -56,7 +66,7 @@ function Map() {
               9146 Dayton-Lebanon Pike (RT-48)<br/>
               Centerville, OH 45458
             </address>
-            <a className="store-directions" href={DIRECTIONS} target="_blank" rel="noreferrer">
+            <a className="store-directions" href={directionsUrl()} target="_blank" rel="noreferrer">
               Get directions <i className="fa-solid fa-arrow-right" aria-hidden="true"/>
             </a>
           </div>

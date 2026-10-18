@@ -3,7 +3,7 @@
     background-image: var(--t4-ink-gradient);
     color: white;
     text-align: center;
-    padding: 5rem 2rem 6rem;
+    padding: 5rem 2rem 3rem;
 }
 
 .philosophy-section h1 {
@@ -109,7 +109,7 @@
 
 @media (max-width: 768px) {
     .philosophy-section {
-        padding: 3rem 1rem 4rem;
+        padding: 3rem 1rem 2rem;
     }
 
     .philosophy-section h1 {

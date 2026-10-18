@@ -56,8 +56,21 @@ function BarList({ rows, limit = 8, empty = "Nothing yet." }) {
 function Panel({ title, note, children }) {
     return (
         <section className="adm-panel">
-            <h2 className="adm-panel-title">{title}{note && <> <span className="adm-title-note">{note}</span></>}</h2>
+            <h3 className="adm-panel-title">{title}{note && <> <span className="adm-title-note">{note}</span></>}</h3>
             {children}
+        </section>
+    );
+}
+
+// A titled group of panels, so the report reads in separate parts
+function Section({ title, hint, children }) {
+    return (
+        <section className="ins-section">
+            <div className="ins-section-head">
+                <h2>{title}</h2>
+                {hint && <p className="adm-subtitle">{hint}</p>}
+            </div>
+            <div className="ins-grid">{children}</div>
         </section>
     );
 }
@@ -106,7 +119,6 @@ function Insights() {
             <header className="adm-header">
                 <div>
                     <h1 className="adm-title">Insights</h1>
-                    <p className="adm-subtitle">What customers do on the site. Anonymous: no names, accounts or IP addresses are kept.</p>
                 </div>
                 <div className="ins-range" role="group" aria-label="Time period">
                     {RANGES.map(range => (
@@ -140,7 +152,7 @@ function Insights() {
                 <p className="adm-empty"><i className="fa-solid fa-spinner fa-spin" /> Loading…</p>
             ) : (
                 <>
-                    <div className="ins-grid">
+                    <Section title="Visitors" hint="Who is visiting and on what">
                         <Panel title="Phone or laptop?" note="(by visit)">
                             {visits.length === 0 ? <p className="adm-empty">{emptyNote}</p> : (
                                 <div className="ins-devices">
@@ -158,9 +170,9 @@ function Insights() {
                         <Panel title="Common screen sizes" note="(width × height)">
                             <BarList rows={screens} limit={6} empty={emptyNote} />
                         </Panel>
-                    </div>
+                    </Section>
 
-                    <div className="ins-grid">
+                    <Section title="Search &amp; filters" hint="How people look for something">
                         <Panel title="Filters used" note="(times turned on)">
                             <BarList rows={tally(ofType("filter").map(e => e.data.name))} empty={emptyNote} />
                         </Panel>
@@ -173,9 +185,9 @@ function Insights() {
                                 </>
                             )}
                         </Panel>
-                    </div>
+                    </Section>
 
-                    <div className="ins-grid">
+                    <Section title="Drink choices" hint="What people pick when they customize a drink">
                         <Panel title="Sweetness" note="(when adding a drink)">
                             <BarList rows={tally(orders.map(e => e.data.sweetness))} empty={emptyNote} />
                         </Panel>
@@ -188,9 +200,9 @@ function Insights() {
                         <Panel title="Add-ons &amp; size-ups">
                             <BarList rows={tally(orders.flatMap(e => e.data.extras ?? []))} empty={emptyNote} />
                         </Panel>
-                    </div>
+                    </Section>
 
-                    <div className="ins-grid">
+                    <Section title="Menu favorites" hint="Which drinks get the most attention">
                         <Panel title="Most opened drinks">
                             <BarList rows={tally(ofType("item_view").map(e => e.data.item))} empty={emptyNote} />
                         </Panel>
@@ -200,7 +212,7 @@ function Insights() {
                         <Panel title="Boba quiz results">
                             <BarList rows={tally(ofType("quiz").map(e => e.data.result))} empty={emptyNote} />
                         </Panel>
-                    </div>
+                    </Section>
                 </>
             )}
         </div>

@@ -45,4 +45,21 @@
     .card {
         width: calc(50% - 0.5rem);
     }
+
+    /* Exactly 3 posters: shrink them so all three fit on one row */
+    .card:first-child:nth-last-child(3),
+    .card:first-child:nth-last-child(3) ~ .card {
+        width: calc((100% - 2rem) / 3);
+    }
+}
+
+@media (max-width: 480px) {
+    .seasonal-cards {
+        gap: 0.5rem;
+    }
+
+    .card:first-child:nth-last-child(3),
+    .card:first-child:nth-last-child(3) ~ .card {
+        width: calc((100% - 1rem) / 3);
+    }
 }

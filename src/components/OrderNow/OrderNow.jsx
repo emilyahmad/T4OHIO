@@ -10,9 +10,8 @@ import { track } from "../../lib/analytics.js";
 
 const formatPrice = (n) => `$${n.toFixed(2)}`;
 
-// One menu item: photo, name, iced/hot, price and an add button. The whole card opens the item.
+// One menu item: photo, name, price and an add button. The whole card opens the item.
 function DrinkCard({ item, onSelect }) {
-    const temperature = [item.tags.includes("Cold") && "Iced", item.tags.includes("Hot") && "Hot"].filter(Boolean).join(" · ");
     const isNew = item.tags.includes("New");
 
     return (
@@ -23,7 +22,6 @@ function DrinkCard({ item, onSelect }) {
             </div>
             <div className="drink-card-body">
                 <h3>{item.name}</h3>
-                {temperature && <span className="drink-card-meta">{temperature}</span>}
                 <div className="drink-card-footer">
                     <span className="drink-card-price">{formatPrice(item.price)}</span>
                     <span className="drink-card-add" aria-hidden="true"><i className="fa-solid fa-plus"></i></span>

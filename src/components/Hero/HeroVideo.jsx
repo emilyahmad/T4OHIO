@@ -35,7 +35,18 @@ function HeroVideo({ video, title }) {
     let player;
     let loopTimer;
     let revealTimer;
+    let retryTimer;
     let cancelled = false;
+
+    // If the browser blocked autoplay, the first tap/click/scroll counts as a user gesture and lets it start
+    const gestures = ["pointerdown", "touchstart", "keydown", "scroll"];
+    const startOnGesture = () => {
+      if (player?.getPlayerState?.() !== window.YT?.PlayerState.PLAYING) {
+        player?.mute?.();
+        player?.playVideo?.();
+      }
+    };
+    gestures.forEach((e) => window.addEventListener(e, startOnGesture, { passive: true }));
 
     loadYouTubeApi().then((YT) => {
       if (cancelled) return;
@@ -44,6 +55,17 @@ function HeroVideo({ video, title }) {
           onReady: () => {
             player.mute();
             player.playVideo();
+            // Autoplay can be ignored (slow start, Safari, low power mode), so keep nudging it
+            // until it's actually playing
+            let attempts = 0;
+            retryTimer = setInterval(() => {
+              if (player.getPlayerState?.() === YT.PlayerState.PLAYING || ++attempts > 20) {
+                clearInterval(retryTimer);
+                return;
+              }
+              player.mute();
+              player.playVideo();
+            }, 500);
           },
           onStateChange: ({ data }) => {
             // Buffering keeps whatever is showing; the video only appears once it's really playing,
@@ -73,7 +95,9 @@ function HeroVideo({ video, title }) {
       cancelled = true;
       // No player.destroy(): it removes the iframe, which React still owns
       clearInterval(loopTimer);
+      clearInterval(retryTimer);
       clearTimeout(revealTimer);
+      gestures.forEach((e) => window.removeEventListener(e, startOnGesture));
     };
   }, [video]);
 

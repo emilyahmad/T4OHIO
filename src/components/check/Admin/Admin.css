@@ -753,11 +753,45 @@ textarea.adm-input { resize: vertical; line-height: 1.35; }
         padding: 0.75rem 1rem;
     }
 
+    .adm-sidebar { flex-wrap: nowrap; justify-content: space-between; }
     .adm-sidebar-title { font-size: 1.2rem; padding: 0; }
-    .adm-nav { flex-direction: row; flex-wrap: wrap; order: 3; width: 100%; }
-    .adm-nav-link { padding: 0.5rem 0.75rem; font-size: 1rem; }
-    .adm-sidebar-footer { margin: 0 0 0 auto; flex-direction: row; align-items: center; padding: 0; }
+    .adm-sidebar-footer { margin: 0; flex-direction: row; align-items: center; padding: 0; }
     .adm-signed-in { display: none; }
+
+    /* Nav becomes a bottom tab bar: icon over label, one thumb-sized tab per page */
+    .adm-nav {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+        flex-direction: row;
+        gap: 0;
+        padding: 0.35rem 0.25rem calc(0.35rem + env(safe-area-inset-bottom));
+        background-color: var(--ink);
+        background-image: var(--ink-gradient);
+        border-top: 1px solid rgba(237, 237, 237, 0.2);
+    }
+
+    .adm-nav-link {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 3.5rem;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.2rem;
+        padding: 0.4rem 0.1rem;
+        font-size: 0.8rem;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .adm-nav-link i { width: auto; font-size: 1.3rem; }
+
+    /* Keep the last content, save bar and toast clear of the tab bar */
+    .adm-main { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom)); }
+    .adm-savebar { bottom: calc(4.5rem + env(safe-area-inset-bottom)); }
+    .adm-toast { bottom: calc(9rem + env(safe-area-inset-bottom)); }
 
     .adm-page { padding: 1.5rem 1rem 0; }
     .adm-savebar { margin: auto -1rem 0; padding: 0.75rem 1rem; }
@@ -813,6 +847,21 @@ textarea.adm-input { resize: vertical; line-height: 1.35; }
 
 .ins-range button:hover { color: var(--ink); }
 .ins-range button.is-active { background-color: var(--ink); color: var(--mist); }
+
+/* Each section is a light teal band so the report reads in distinct parts; the cards inside stay white */
+.ins-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.25rem;
+    border-radius: 1.25rem;
+    border: 1px solid color-mix(in srgb, var(--t4-teal) 35%, white);
+    background-color: color-mix(in srgb, var(--t4-teal) 16%, white);
+}
+@media (max-width: 600px) {
+    .ins-section { padding: 0.9rem; border-radius: 1rem; }
+}
+.ins-section-head h2 { font-size: 1.6rem; font-weight: 800; line-height: 1.1; }
 
 .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1rem; }
 

@@ -10,6 +10,9 @@ import "./BobaQuiz.css";
 // Stored as the index of the chosen option for each question; "Take it again" clears them.
 const SAVE_KEY = "boba-quiz-answers";
 
+// How long (ms) a step takes to slide out; keep in sync with the quiz-leave animations in BobaQuiz.css
+const LEAVE_MS = 180;
+
 function loadAnswers() {
     try {
         const saved = JSON.parse(sessionStorage.getItem(SAVE_KEY));
@@ -31,6 +34,11 @@ function QuizModal({ onClose, onPick }) {
             sessionStorage.setItem(SAVE_KEY, JSON.stringify(answers.map((answer, step) => QUESTIONS[step].options.indexOf(answer))));
         } catch { /* not saved; the quiz still works */ }
     }, [answers]);
+    // Which way the next step slides in, and the answer/direction of a step that is sliding out
+    const [direction, setDirection] = useState("next");
+    const [leaving, setLeaving] = useState(null);
+    const leaveTimer = useRef(null);
+    useEffect(() => () => clearTimeout(leaveTimer.current), []);
     const closeRef = useRef(null);
     // Kept in a ref so the effect below runs once on open, not on every re-render
     const onCloseRef = useRef(onClose);
@@ -50,6 +58,19 @@ function QuizModal({ onClose, onPick }) {
         };
     }, []);
 
+    // Slides the current step out, then swaps in the next one from the matching side
+    const goTo = (nextAnswers, dir, picked = null) => {
+        if (leaving) return;
+        const swap = () => {
+            setDirection(dir);
+            setAnswers(nextAnswers);
+            setLeaving(null);
+        };
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return swap();
+        setLeaving({ dir, picked });
+        leaveTimer.current = setTimeout(swap, LEAVE_MS);
+    };
+
     const step = answers.length;
     const finished = step === QUESTIONS.length;
     const question = QUESTIONS[step];
@@ -61,6 +82,8 @@ function QuizModal({ onClose, onPick }) {
         .find(item => item.name.toLowerCase().startsWith(result.drink.toLowerCase()));
     const orderPath = result && `/order-now?q=${encodeURIComponent(result.drink)}`;
 
+    const stepClass = ["quiz-step", `enter-${direction}`, leaving && `leave-${leaving.dir}`].filter(Boolean).join(" ");
+
     return (
         <div className="quiz-backdrop" onClick={onClose}>
             <div className="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quiz-title"
@@ -70,20 +93,26 @@ function QuizModal({ onClose, onPick }) {
                     <i className="fa-solid fa-xmark" aria-hidden="true" />
                 </button>
 
+                {/* Outside the sliding step so the bar fills smoothly instead of restarting */}
+                {!finished && (
+                    <div className="quiz-progress" role="progressbar" aria-label="Quiz progress"
+                        aria-valuemin={1} aria-valuemax={QUESTIONS.length} aria-valuenow={step + 1}>
+                        <span style={{ width: `${((step + 1) / QUESTIONS.length) * 100}%` }} />
+                    </div>
+                )}
+
                 {!finished ? (
-                    <div className="quiz-step" key={step}>
-                        <div className="quiz-progress" role="progressbar" aria-label="Quiz progress"
-                            aria-valuemin={1} aria-valuemax={QUESTIONS.length} aria-valuenow={step + 1}>
-                            <span style={{ width: `${((step + 1) / QUESTIONS.length) * 100}%` }} />
-                        </div>
+                    <div className={stepClass} key={step}>
                         <h2 id="quiz-title">{question.question}</h2>
                         <div className="quiz-options">
                             {question.options.map((option) => (
-                                <button type="button" className="quiz-option" key={option.label}
+                                <button type="button" key={option.label}
+                                    className={leaving?.picked === option ? "quiz-option is-picked" : "quiz-option"}
                                     onClick={() => {
+                                        if (leaving) return;
                                         const next = [...answers, option];
                                         if (next.length === QUESTIONS.length) track("quiz", { result: RESULTS[pickResult(next)].drink });
-                                        setAnswers(next);
+                                        goTo(next, "next", option);
                                     }}>
                                     {option.label}
                                 </button>
@@ -92,14 +121,14 @@ function QuizModal({ onClose, onPick }) {
                         {/* Always takes up its space, so the answers sit in the same place on every question */}
                         <div className="quiz-footer">
                             {step > 0 && (
-                                <button type="button" className="quiz-link" onClick={() => setAnswers(answers.slice(0, -1))}>
+                                <button type="button" className="quiz-link" onClick={() => goTo(answers.slice(0, -1), "back")}>
                                     <i className="fa-solid fa-arrow-left" aria-hidden="true" /> Back
                                 </button>
                             )}
                         </div>
                     </div>
                 ) : (
-                    <div className="quiz-step quiz-result">
+                    <div className={`${stepClass} quiz-result`}>
                         <p className="quiz-count">What drink are you?</p>
                         <div className="quiz-drink">
                             {drink && <img src={itemImage(drink)} alt="" className={drink.image ? undefined : "is-logo"} />}
@@ -118,7 +147,7 @@ function QuizModal({ onClose, onPick }) {
                         ) : (
                             <Link className="quiz-primary" to={orderPath} onClick={onClose}>Find it on the menu</Link>
                         )}
-                        <button type="button" className="quiz-link" onClick={() => setAnswers([])}>
+                        <button type="button" className="quiz-link" onClick={() => goTo([], "back")}>
                             <i className="fa-solid fa-rotate-left" aria-hidden="true" /> Take it again
                         </button>
                     </div>

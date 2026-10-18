@@ -96,8 +96,26 @@
     from { opacity: 0; transform: translateY(12px) scale(0.98); }
 }
 
-@keyframes quiz-slide {
-    from { opacity: 0; transform: translateX(16px); }
+/* A step slides in from the side it's coming from, and the one it replaces slides out the other way */
+@keyframes quiz-enter-next {
+    from { opacity: 0; transform: translateX(32px); }
+}
+
+@keyframes quiz-enter-back {
+    from { opacity: 0; transform: translateX(-32px); }
+}
+
+@keyframes quiz-leave-next {
+    to { opacity: 0; transform: translateX(-32px); }
+}
+
+@keyframes quiz-leave-back {
+    to { opacity: 0; transform: translateX(32px); }
+}
+
+/* Answers float up one after another as a question arrives */
+@keyframes quiz-rise {
+    from { opacity: 0; transform: translateY(10px); }
 }
 
 .quiz-close {
@@ -123,8 +141,23 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    animation: quiz-slide 260ms ease;
 }
+
+.quiz-step.enter-next { animation: quiz-enter-next 320ms cubic-bezier(0.2, 0.8, 0.3, 1); }
+.quiz-step.enter-back { animation: quiz-enter-back 320ms cubic-bezier(0.2, 0.8, 0.3, 1); }
+
+/* While leaving, the answers can't be tapped again */
+.quiz-step.leave-next { animation: quiz-leave-next 180ms ease-in forwards; pointer-events: none; }
+.quiz-step.leave-back { animation: quiz-leave-back 180ms ease-in forwards; pointer-events: none; }
+
+.quiz-step:not(.quiz-result) .quiz-option {
+    animation: quiz-rise 320ms cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+}
+
+.quiz-step:not(.quiz-result) .quiz-option:nth-child(2) { animation-delay: 50ms; }
+.quiz-step:not(.quiz-result) .quiz-option:nth-child(3) { animation-delay: 100ms; }
+.quiz-step:not(.quiz-result) .quiz-option:nth-child(4) { animation-delay: 150ms; }
+.quiz-step:not(.quiz-result) .quiz-option:nth-child(5) { animation-delay: 200ms; }
 
 /* The question gets all the room above the answers and sits in the middle of it;
    the answers are kept down near the bottom of the dialog */
@@ -203,6 +236,14 @@
     border-color: var(--t4-teal);
     background-color: rgba(37, 184, 188, 0.1);
     transform: translateY(-1px);
+}
+
+/* The answer just tapped, held while its step slides away */
+.quiz-option.is-picked {
+    border-color: var(--t4-teal);
+    background-color: var(--t4-teal);
+    color: var(--t4-ink);
+    font-weight: 700;
 }
 
 .quiz-option:focus-visible,
@@ -378,10 +419,111 @@
     }
 }
 
+/* Phones: the dialog keeps one size (tall enough for the longest question), with the question tight
+   against its answers at the top and Back pinned to the bottom */
+@media (max-width: 768px) {
+    .quiz-modal {
+        height: min(30rem, 95dvh);
+        padding: 1.1rem 1rem 0.5rem;
+    }
+
+    .quiz-close {
+        top: 0.6rem;
+        right: 0.6rem;
+    }
+
+    .quiz-progress {
+        margin-right: 2.75rem;
+    }
+
+    .quiz-step:not(.quiz-result) h2 {
+        flex: none;
+        padding: 0.9rem 0 0.8rem;
+    }
+
+    .quiz-footer {
+        min-height: 2.5rem;
+        margin-top: auto;
+        padding-top: 0.4rem;
+    }
+
+    .quiz-result .quiz-count {
+        margin-bottom: 0.9rem;
+    }
+}
+
+/* Short phones (or a browser with big toolbars): tighter text and spacing so the longest question still fits without scrolling */
+@media (max-width: 768px) and (max-height: 640px) {
+    .quiz-modal {
+        padding: 0.9rem 0.85rem 0.4rem;
+    }
+
+    .quiz-step:not(.quiz-result) h2 {
+        font-size: 1.1rem;
+        line-height: 1.25;
+        padding: 0.6rem 0 0.55rem;
+    }
+
+    .quiz-options {
+        gap: 0.35rem;
+    }
+
+    .quiz-option {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.9rem;
+        line-height: 1.22;
+        border-radius: 0.75rem;
+    }
+
+    .quiz-footer {
+        min-height: 2rem;
+        padding-top: 0.2rem;
+    }
+
+    .quiz-link {
+        font-size: 1rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    .quiz-result .quiz-count {
+        margin-bottom: 0.6rem;
+    }
+
+    .quiz-modal .quiz-drink h2 {
+        font-size: 1.25rem;
+    }
+
+    .quiz-drink {
+        margin-bottom: 0.6rem;
+    }
+
+    .quiz-drink img {
+        width: 3.25rem;
+        height: 3.25rem;
+    }
+
+    .quiz-blurb,
+    .quiz-tip {
+        font-size: 0.9rem;
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+    }
+
+    .quiz-primary {
+        padding: 0.65rem 1.25rem;
+        font-size: 1.1rem;
+    }
+
+    .quiz-result .quiz-link {
+        margin-top: 0.4rem;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .quiz-backdrop,
     .quiz-modal,
-    .quiz-step {
-        animation: none;
+    .quiz-step,
+    .quiz-option {
+        animation: none !important;
     }
 }

@@ -1,7 +1,7 @@
 .map {
     background-color: var(--t4-light);
     color: var(--t4-ink);
-    padding: 5rem 8rem;
+    padding: 5rem 8rem 3rem;
 }
 
 .map h1 {
@@ -127,7 +127,7 @@
 
 @media (max-width: 900px) {
     .map {
-        padding: 3rem 1.5rem;
+        padding: 3rem 1.5rem 1.5rem;
     }
 
     .map h1 {

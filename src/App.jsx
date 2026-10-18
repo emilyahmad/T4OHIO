@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { asset } from "./utils/asset.js";
 import { useSiteContent, DEFAULT_CONTENT } from "./data/siteContent.js";
 import { youtubeId } from "./utils/youtube.js";
@@ -58,6 +58,13 @@ function Home() {
   );
 }
 
+// Start each page at the top when navigating (e.g. from a footer link)
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
 function App() {
   // Count the visit, but not the owner signing in or working in the admin
   useEffect(() => {
@@ -67,6 +74,7 @@ function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AuthProvider>
+      <ScrollToTop />
       <Navbar />
       <ScrollFade />
       <ClickBurst />
@@ -95,8 +103,11 @@ function App() {
               name="Our Philosophy"
               subtitle1="From leaf to cup, every step is done with care."
               subtitle2=""
-              imageAlt="Rows of green tea bushes curving across a misty hillside, framed by leafy branches."
-              backgroundImage="https://plus.unsplash.com/premium_photo-1692049124070-87d5ddfea09a?q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+              imageAlt="Tea bushes on misty, forested hillsides: bright green rolling hills, and a tea picker working among curved rows."
+              backgroundImage={[
+                "https://images.unsplash.com/photo-1491497895121-1334fc14d8c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+                "https://images.unsplash.com/photo-1787367897869-a4bae7219bc7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+              ]}
               centered
             />
             <Philosophy />

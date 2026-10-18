@@ -1,55 +1,118 @@
-@media (max-width: 768px) {
+/* Brand logo and hamburger only exist in the mobile layout */
+.nav-brand,
+.nav-burger {
+    display: none;
+}
+
+@media (max-width: 767px) {
     .white-circles {
         display: none;
     }
 
     .navbar {
         background-color: rgb(255, 255, 255);
-        height: 5rem;
-    }
-
-    /* .white-circles {
+        height: 3.5rem;
         display: flex;
-        margin: 0;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+    }
+
+    .nav-brand {
+        display: block;
+    }
+
+    .nav-brand img {
+        display: block;
+        height: 2.5rem;
+        width: auto;
+    }
+
+    /* Hamburger: the three bars slide into an X while the menu is open */
+    .nav-burger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 2.75rem;
+        height: 2.75rem;
+        padding: .6rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-burger span {
+        display: block;
+        height: 3px;
+        background: var(--t4-ink);
+        border-radius: 2px;
+        transition: transform 350ms cubic-bezier(.4, 0, .2, 1), opacity 200ms ease;
+    }
+
+    .navbar-open .nav-burger span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .navbar-open .nav-burger span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .navbar-open .nav-burger span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* The panel is always rendered and slides/fades in; visibility keeps it out of reach while closed */
+    .page-name {
         position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background: white;
+        box-shadow: 0 8px 12px rgba(0, 0, 0, .15);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-.75rem);
+        pointer-events: none;
+        transition: opacity 300ms ease, transform 350ms cubic-bezier(.4, 0, .2, 1), visibility 0s linear 350ms;
     }
 
-    .white-circles img {
-        width: 30%;
+    .navbar-open .page-name {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        pointer-events: auto;
+        transition: opacity 300ms ease, transform 350ms cubic-bezier(.4, 0, .2, 1), visibility 0s;
     }
-
-    .first-circle {
-        margin-top: 2rem;
-        margin-left: .25rem;
-        margin-right: -11.75rem;
-    }
-
-    .second-circle {
-        margin-top: 4.5rem;
-    }
-    */
 
     .page-name a {
+        padding: 1rem 1.5rem;
+        font-size: 1.5rem;
         color: var(--t4-ink);
         text-decoration: none;
-        padding: .75rem .75rem;
-        border-radius: 1.25rem 1rem 0 0;
-        white-space: nowrap;
+        opacity: 0;
+        transform: translateY(-.5rem);
+        transition: opacity 300ms ease, transform 300ms ease, background-color 200ms ease;
     }
 
-    .page-name a:hover {
+    /* Links fade in one after another once the panel is open */
+    .navbar-open .page-name a {
+        opacity: 1;
+        transform: none;
+    }
+
+    .navbar-open .page-name a:nth-child(1) { transition-delay: 60ms, 60ms, 0s; }
+    .navbar-open .page-name a:nth-child(2) { transition-delay: 120ms, 120ms, 0s; }
+    .navbar-open .page-name a:nth-child(3) { transition-delay: 180ms, 180ms, 0s; }
+    .navbar-open .page-name a:nth-child(4) { transition-delay: 240ms, 240ms, 0s; }
+
+    .page-name a:hover,
+    .page-name a.active {
         background-color: var(--t4-teal);
-    }
-
-    .page-name {
-        z-index: 2;
-        font-size: 1rem;
-        display: flex;
-        /* margin-left: 25%; */
-        /* margin-right: 10%; */
-        justify-content: space-evenly;
-        align-items: center;
-        padding-top: 2.5rem;
     }
 }
 
@@ -100,8 +163,9 @@
         display: flex;
         margin-left: 25%;
         justify-content: space-evenly;
-        align-items: center;
-        padding-top: 6.15rem;
+        /* Links sit on the bar's bottom edge so the highlight ends exactly there instead of spilling onto the section below */
+        align-items: flex-end;
+        height: 100%;
     }
 }
 /* The navbar is fixed so it can slide away; the spacer keeps its spot in the page */
@@ -119,14 +183,47 @@
     transform: translateY(calc(-100% - 5rem));
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .navbar-spacer {
-        height: 5rem;
+        height: 3.5rem;
     }
 }
 
 @media (min-width: 768px) {
     .navbar-spacer {
         height: 10rem;
+    }
+}
+
+/* Tablets: the full-size desktop links are too wide */
+@media (min-width: 768px) and (max-width: 1100px) {
+    .page-name {
+        font-size: 1.5rem;
+        margin-left: 22%;
+    }
+
+    .page-name a {
+        padding: .75rem 1.25rem;
+    }
+
+    /* Smaller logo and circle, pushed to the left edge so they stay clear of the selected link's highlight */
+    .white-circles {
+        margin-left: 0;
+    }
+
+    .white-circles img {
+        width: 100%;
+    }
+
+    .first-circle {
+        width: 9rem;
+        margin-top: 1.5rem;
+        margin-left: .25rem;
+        margin-right: -3rem;
+    }
+
+    .second-circle {
+        width: 4.5rem;
+        margin-top: 7.5rem;
     }
 }

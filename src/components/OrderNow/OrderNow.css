@@ -158,7 +158,7 @@
         color: var(--t4-ink);
         max-width: 75rem;
         margin: 2rem auto 0;
-        padding: 0 2rem 5rem;
+        padding: 0 2rem 3rem;
 
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
@@ -388,7 +388,7 @@
     .classic-drinks {
         color: var(--t4-ink);
         margin: 1.5rem 0 0;
-        padding: 0 1rem 4rem;
+        padding: 0 1rem 2rem;
 
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -414,6 +414,14 @@
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 3px;
+}
+
+/* On small screens the call to action drops to its own line under the question */
+@media (max-width: 767px) {
+    .quiz-prompt span {
+        display: block;
+        margin-top: 0.25rem;
+    }
 }
 
 .quiz-prompt:hover span {
@@ -548,11 +556,6 @@
     overflow: hidden;
 }
 
-.drink-card-meta {
-    font-size: 0.85rem;
-    color: var(--t4-charcoal);
-}
-
 .drink-card-footer {
     margin-top: auto;
     padding-top: 0.6rem;
@@ -642,12 +645,12 @@
 /* When the last category (Coffee) is folded, keep the same breathing room above the footer
    that its open grid of cards would have had */
 .classic.is-collapsed:last-child {
-    padding-bottom: 5rem;
+    padding-bottom: 3rem;
 }
 
 @media (max-width: 768px) {
     .classic.is-collapsed:last-child {
-        padding-bottom: 4rem;
+        padding-bottom: 2rem;
     }
 }
 

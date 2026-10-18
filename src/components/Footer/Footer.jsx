@@ -19,8 +19,8 @@ function Footer() {
                 <nav className="footer-col" aria-label="More">
                     <h4>More</h4>
                     <ul>
-                        <li><a href="https://www.t4.com.tw/en/Store">More Locations</a></li>
-                        <li><a href="https://www.t4.com.tw/en/Franchising1">Franchising</a></li>
+                        <li><a href="https://www.t4.com.tw/en/Store" target="_blank" rel="noopener noreferrer">More Locations</a></li>
+                        <li><a href="https://www.t4.com.tw/en/Franchising1" target="_blank" rel="noopener noreferrer">Franchising</a></li>
                         <li><a href={GOOGLE_REVIEWS_URL}>Leave a Review</a></li>
                     </ul>
                 </nav>
@@ -34,7 +34,7 @@ function Footer() {
             </div>
             {/* Thin bar along the bottom: copyright on the left, social icons on the right */}
             <div className="footer-bottom">
-                <p>© {new Date().getFullYear()} T4 Ohio · Tea For U</p>
+                <p>© {new Date().getFullYear()} T4 Ohio · T4</p>
                 <ul className="footer-social">
                     <li><a href="https://www.instagram.com/t4ohio/" aria-label="Instagram"><i className="fa-brands fa-instagram"></i></a></li>
                     <li><a href="https://www.facebook.com/T4DAYTON/" aria-label="Facebook"><i className="fa-brands fa-facebook"></i></a></li>

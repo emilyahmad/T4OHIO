@@ -1,4 +1,4 @@
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .hide-mobile {
         display: none;
     }
@@ -33,10 +33,10 @@
         width: 35vw;
     }
 
-    /* Fill the rest of the screen under the 5rem navbar (dvh accounts for mobile browser bars) */
+    /* Fill the rest of the screen under the 3.5rem navbar (dvh accounts for mobile browser bars) */
     .hero-has-video {
-        height: calc(100vh - 5rem);
-        height: calc(100dvh - 5rem);
+        height: calc(100vh - 3.5rem);
+        height: calc(100dvh - 3.5rem);
     }
         
 }
@@ -94,6 +94,20 @@
     background-position: center;
 }
 
+/* Image slideshow: every slide is stacked and only the active one is visible, so they crossfade */
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1500ms ease;
+}
+
+.hero-slide-active {
+    opacity: 1;
+}
+
 /* Scale the 16:9 video so it always covers the section, cropping the edges like background-size: cover.
    It's zoomed in a further 35% (plus 100px) so YouTube's title bar, logo and any black edges fall outside the visible area,
    and nudged down a little (the -45% below) to push the bottom-right captions and controls further out of view. */
@@ -135,7 +149,7 @@
     margin: 0 4rem 4rem 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .hero-has-video .hero-text-container {
         margin: 0 1.5rem 2rem 0;
     }

@@ -5,6 +5,7 @@ import { useAuth } from "../../../auth/AuthContext.js";
 import { useMenu } from "../../../data/useMenu.js";
 import { useSiteContent } from "../../../data/siteContent.js";
 import { itemImage } from "../../../data/menu.js";
+import { CollapsiblePanel } from "./AdminParts.jsx";
 
 const formatDate = (date) => date.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
 
@@ -79,11 +80,10 @@ function Admin() {
                 </Link>
             </div>
 
-            <section className="adm-panel">
-                <h2 className="adm-panel-title">
-                    Sold out right now{" "}
-                    <span className="adm-title-note">(Not currently shown on the menu page, but appeared on the menu in the past)</span>
-                </h2>
+            <CollapsiblePanel id="dash-soldout" title={<>
+                Sold out right now{" "}
+                <span className="adm-title-note">(Not currently shown on the menu page, but appeared on the menu in the past)</span>
+            </>}>
                 {loading ? (
                     <p className="adm-empty"><i className="fa-solid fa-spinner fa-spin" /> Loading…</p>
                 ) : soldOut.length === 0 ? (
@@ -101,7 +101,7 @@ function Admin() {
                         ))}
                     </ul>
                 )}
-            </section>
+            </CollapsiblePanel>
         </div>
     );
 }

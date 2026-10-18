@@ -9,7 +9,7 @@ import { PromotionsGrid } from "../../Promotions/Promotions.jsx";
 import { youtubeId, youtubeThumbnail } from "../../../utils/youtube.js";
 
 function ManageFrontPage() {
-    const { content, updatedAt, loading, error } = useSiteContent();
+    const { content, loading, error } = useSiteContent();
 
     if (loading || error) {
         return (
@@ -23,19 +23,15 @@ function ManageFrontPage() {
         );
     }
 
-    return <FrontPageEditor initial={{ hero: content.hero, seasonal: content.seasonal, promotions: content.promotions, reviews: content.reviews }} updatedAt={updatedAt} />;
+    return <FrontPageEditor initial={{ hero: content.hero, seasonal: content.seasonal, promotions: content.promotions, reviews: content.reviews }} />;
 }
 
-function FrontPageEditor({ initial, updatedAt }) {
+function FrontPageEditor({ initial }) {
     const { notify } = useOutletContext();
     const history = useEditHistory(initial);
     const { draft, update, undo, markSaved } = history;
     const { hero, seasonal, promotions, reviews } = draft;
     const [saving, setSaving] = useState(false);
-    const [lastSaved, setLastSaved] = useState(() => {
-        const dates = Object.values(updatedAt);
-        return dates.length ? new Date(Math.max(...dates)) : null;
-    });
 
     useReportDirty(history.dirty);
 
@@ -111,7 +107,6 @@ function FrontPageEditor({ initial, updatedAt }) {
                 : `Couldn't save: ${error.message}`, { type: "error" });
         } else {
             markSaved(snapshot);
-            setLastSaved(new Date());
             notify("Front page saved. It's live now.");
         }
     };
@@ -124,10 +119,6 @@ function FrontPageEditor({ initial, updatedAt }) {
             <header className="adm-header">
                 <div>
                     <h1 className="adm-title">Front Page <span className="adm-title-note">(Home)</span></h1>
-                    <p className="adm-subtitle">
-                        Edit the banner at the top of the home page and the Promotions, Seasonal and Reviews sections.
-                        {lastSaved && <> Last saved {lastSaved.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })}.</>}
-                    </p>
                 </div>
             </header>
 
