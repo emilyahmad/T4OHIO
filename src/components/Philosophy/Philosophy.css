@@ -83,6 +83,17 @@
     color: var(--t4-mist);
 }
 
+.philosophy-photo-credit {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.philosophy-photo-credit a {
+    color: inherit;
+}
+
 .philosophy-feature h2 {
     font-size: 2.75rem;
     line-height: 1.1;
@@ -107,6 +118,7 @@
 
     .tea-video-caption {
         font-size: 1.1rem;
+        line-height: 1.4;
         margin-top: 1.5rem;
     }
 

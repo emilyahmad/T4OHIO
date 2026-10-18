@@ -85,8 +85,8 @@ function App() {
               name="Our Philosophy"
               subtitle1="From leaf to cup, every step is done with care."
               subtitle2=""
-              imageAlt="Several T4 drinks with teal lids on a wooden tray, including a milk tea with boba."
-              backgroundImage={asset("img/philo-video.png")}
+              imageAlt="Rows of green tea bushes curving across a misty hillside, framed by leafy branches."
+              backgroundImage="https://plus.unsplash.com/premium_photo-1692049124070-87d5ddfea09a?q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
               centered
             />
             <Philosophy />

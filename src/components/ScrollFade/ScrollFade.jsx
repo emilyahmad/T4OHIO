@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./ScrollFade.css";
 
@@ -11,7 +11,9 @@ const SKIP = ".navbar, .adm-shell, .modal-container, .map, .footer";
 function ScrollFade() {
   const { pathname } = useLocation();
 
-  useEffect(() => {
+  // A layout effect runs before the browser paints, so text is hidden before it's ever shown
+  // (with a plain effect it would flash on screen and then fade out before fading back in)
+  useLayoutEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -23,7 +25,10 @@ function ScrollFade() {
 
     const tagText = () => {
       document.querySelectorAll(TEXT).forEach((el) => {
-        if (el.classList.contains("fade-text") || el.closest(SKIP)) return;
+        // Text that has already faded in stays as it is. Text that was hidden but hasn't faded in yet
+        // is watched again: this effect re-runs (on page changes, and twice in development), and a
+        // previous run's watcher is disconnected, which used to leave that text invisible for good.
+        if (el.classList.contains("fade-text-visible") || el.closest(SKIP)) return;
         el.classList.add("fade-text");
         observer.observe(el);
       });
