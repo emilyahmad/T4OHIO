@@ -49,9 +49,9 @@ function Home() {
         />
       )}
       {!loading && <Promotions title={promotions.title} images={promotions.images} />}
-      {!loading && <BobaQuiz />}
       {!loading && <Seasonal title={seasonal.title} cards={seasonal.cards} />}
       {!loading && <Reviews title={reviews.title} reviews={reviews.reviews} />}
+      {!loading && <BobaQuiz />}
       <Map />
       <Footer />
     </>
