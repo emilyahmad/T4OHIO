@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GOOGLE_REVIEWS_URL, reviewPhotos } from "../../data/siteContent.js";
 import { asset } from "../../utils/asset.js";
 import "./Reviews.css";
@@ -31,6 +31,21 @@ const SECONDS_PER_CARD = 16;
 const SHORT_REVIEW_CHARS = 120;
 // How long each photo shows on a card with several
 const PHOTO_SECONDS = 3.5;
+
+// Phones get a swipeable row of cards under the heading instead of the moving background
+const MOBILE_QUERY = "(max-width: 768px)";
+
+function useIsMobile() {
+    const [isMobile, setIsMobile] = useState(() => window.matchMedia?.(MOBILE_QUERY).matches ?? false);
+    useEffect(() => {
+        const query = window.matchMedia?.(MOBILE_QUERY);
+        if (!query) return;
+        const onChange = (e) => setIsMobile(e.matches);
+        query.addEventListener("change", onChange);
+        return () => query.removeEventListener("change", onChange);
+    }, []);
+    return isMobile;
+}
 
 const prefersReducedMotion = () => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
@@ -140,13 +155,29 @@ function Reviews({ title, reviews }) {
     const usingSamples = shown.length === 0 && import.meta.env.DEV;
     if (usingSamples) shown = SAMPLE_REVIEWS;
 
+    const isMobile = useIsMobile();
+
+    // On phones only reviews with photos are shown (all of them if none have photos, so the section isn't empty)
+    const withPhotos = shown.filter((review) => reviewPhotos(review).length > 0);
+    const swipeable = withPhotos.length ? withPhotos : shown;
+
+    // The phone carousel opens on the middle card, so there's something to swipe to on both sides
+    const swipeRef = useRef(null);
+    useEffect(() => {
+        const list = swipeRef.current;
+        const middle = list?.children[Math.floor(list.children.length / 2)];
+        if (!middle) return;
+        const offset = middle.getBoundingClientRect().left - list.getBoundingClientRect().left;
+        list.scrollLeft += offset - (list.clientWidth - middle.offsetWidth) / 2;
+    }, [isMobile, swipeable.length]);
+
     // Columns are dealt out to the rows in turn, so each row keeps the newest-first order
     const columns = toColumns(shown);
     const rows = Array.from({ length: Math.min(ROWS, columns.length) }, (_, r) => columns.filter((_, i) => i % ROWS === r));
 
     return (
         <section className={rows.length ? "reviews" : "reviews is-empty"}>
-            {rows.length > 0 && (
+            {rows.length > 0 && !isMobile && (
                 <div className="reviews-backdrop">
                     {rows.map((row, r) => <ReviewRow key={r} columns={row} reverse={r % 2 === 1}/>)}
                 </div>
@@ -160,6 +191,12 @@ function Reviews({ title, reviews }) {
                     <i className="fa-brands fa-google" aria-hidden="true"/> Read &amp; leave reviews on Google
                 </a>
             </div>
+
+            {rows.length > 0 && isMobile && (
+                <div className="reviews-swipe" ref={swipeRef} tabIndex={0} aria-label="Customer reviews, swipe to see more">
+                    {swipeable.map((review, i) => <ReviewCard key={review.id} review={review} index={i}/>)}
+                </div>
+            )}
         </section>
     );
 }

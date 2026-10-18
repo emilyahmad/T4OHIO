@@ -261,8 +261,54 @@
         padding: 3rem 0;
     }
 
+    /* Heading and button sit at the top; the cards swipe underneath */
+    .reviews {
+        min-height: 0;
+        padding: 3rem 0 2rem;
+    }
+
     .reviews-overlay {
-        background: radial-gradient(ellipse 20rem 12rem at center, rgba(255, 255, 255, 0.95) 40%, rgba(255, 255, 255, 0.6) 70%, transparent 100%);
+        position: static;
+        background: none;
+        padding: 0 1.5rem;
+    }
+
+    .reviews-subheading {
+        margin-bottom: 1.5rem;
+    }
+
+    .reviews-swipe {
+        display: flex;
+        gap: var(--card-gap);
+        margin-top: 2rem;
+        /* Side padding lets the first and last cards sit in the center too */
+        padding: 0.25rem calc((100% - min(80vw, 18rem)) / 2) 0.75rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .reviews-swipe::-webkit-scrollbar {
+        display: none;
+    }
+
+    .reviews-swipe .review-card {
+        flex: 0 0 min(80vw, 18rem);
+        scroll-snap-align: center;
+    }
+
+    .reviews-swipe .review-card blockquote {
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+    }
+
+    .reviews-swipe .review-card {
+        gap: 0.4rem;
+    }
+
+    .reviews-swipe .review-photo {
+        aspect-ratio: 2 / 1;
     }
 
     .reviews h1 {
