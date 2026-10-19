@@ -431,8 +431,54 @@
    against its answers at the top and Back pinned to the bottom */
 @media (max-width: 768px) {
     .quiz-modal {
-        min-height: min(30rem, 96dvh);
+        /* A fixed height, so every question and the result are the same size */
+        height: min(36rem, 96dvh);
+        min-height: 0;
         padding: 0.75rem 1rem 0.5rem;
+    }
+
+    /* Slightly smaller text than on desktop, so the longest question and result fit without scrolling */
+    .quiz-step:not(.quiz-result) h2 {
+        font-size: 1.2rem;
+    }
+
+    .quiz-options {
+        gap: 0.45rem;
+    }
+
+    .quiz-option {
+        padding: 0.5rem 0.85rem;
+        font-size: 0.95rem;
+        line-height: 1.25;
+    }
+
+    .quiz-modal .quiz-drink h2 {
+        font-size: 1.3rem;
+    }
+
+    .quiz-drink {
+        margin-bottom: 0.6rem;
+    }
+
+    .quiz-drink img {
+        width: 3.25rem;
+        height: 3.25rem;
+    }
+
+    .quiz-blurb,
+    .quiz-tip {
+        font-size: 0.88rem;
+        line-height: 1.32;
+        margin-bottom: 0.5rem;
+    }
+
+    .quiz-primary {
+        padding: 0.65rem 1.25rem;
+        font-size: 1.1rem;
+    }
+
+    .quiz-result .quiz-link {
+        margin-top: 0.4rem;
     }
 
     .quiz-close {
